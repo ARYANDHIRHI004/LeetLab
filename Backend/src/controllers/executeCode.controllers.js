@@ -1,4 +1,5 @@
 import { db } from "../libs/db"
+import { pollBatchResults, submitBatch } from "../libs/judge0.lib";
 
 export const executeCode = async(req, res) => {
     try {
@@ -21,8 +22,16 @@ export const executeCode = async(req, res) => {
         const submission = stdin.map((input)=>({
             source_code,
             language_Id,
-            
+            stdin: input
         }))
+
+        const submiteResponse = await submitBatch(submission)
+
+        const tokens = submiteResponse.map((res)=>(res.token))
+
+        const result = await pollBatchResults(tokens)
+
+        
 
     } catch (error) {
         

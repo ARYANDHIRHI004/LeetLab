@@ -70,7 +70,7 @@ model Submission {
   id            String  @id @default(uuid())
   userId        String
   problemId     String
-  sourceDOe     Json
+  sourceCode    Json
   language      String
   stdin         String?
   stdout        String?
