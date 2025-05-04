@@ -60,9 +60,7 @@ export const createProblems = async (req, res) => {
             }
           }
         }
-        
-        console.log('aryan');
-        
+                
         const newProblem = await db.problem.create({
           data: {
             title,
