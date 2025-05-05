@@ -137,9 +137,7 @@ export const getProblemId = async (req, res) => {
 }
 
 export const updateProblem = async (req, res) => {
-  //id
-  //check
-  //same as create
+
   const {problemId} = req.params;
   
   if(req.user.role !== "ADMIN"){
