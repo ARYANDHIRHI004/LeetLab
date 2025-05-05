@@ -140,7 +140,7 @@ export const updateProblem = async (req, res) => {
   //id
   //check
   //same as create
-  const {id} = req.params;
+  const {problemId} = req.params;
   
   if(req.user.role !== "ADMIN"){
     return res.status(401).json({
@@ -199,7 +199,7 @@ export const updateProblem = async (req, res) => {
 
     const updatedProblem = await db.problem.update({
       where:{
-        id
+        problemId
       },
       data:{
         title,
@@ -229,12 +229,12 @@ export const updateProblem = async (req, res) => {
 }
 
 export const deleteProblem = async (req, res) => {
-  const {id} = req.params
+  const {problemId} = req.params
 
   try {
     const problem = await db.problem.findUnique({
         where: {
-            id
+          problemId
         }
     })
     if(!problem){
@@ -245,7 +245,7 @@ export const deleteProblem = async (req, res) => {
 
     await db.problem.delete({
         where:{
-            id
+          problemId
         }
     })
     return res.status(200).json({

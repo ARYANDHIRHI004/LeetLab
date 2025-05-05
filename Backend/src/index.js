@@ -17,6 +17,7 @@ app.use(cookieParser())
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/problems", problemsRoute)
 app.use("/api/v1/execute-code", executionRoute)
+app.use("/api/v1/submisstion", submissionRoute)
 app.use("/api/v1/playlist", playlistRoute)
 
 app.get('/', (req, res) => {
