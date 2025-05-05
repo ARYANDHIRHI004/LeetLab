@@ -4,6 +4,7 @@ import authRouter from "./routes/auth.routes.js"
 import cookieParser from "cookie-parser"
 import problemsRoute from "./routes/problem.routes.js"
 import executionRoute from "./routes/executeCode.routes.js"
+import playlistRoute from "./routes/playlist.routes.js"
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use(cookieParser())
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/problems", problemsRoute)
 app.use("/api/v1/execute-code", executionRoute)
+app.use("/api/v1/playlist", playlistRoute)
 
 app.get('/', (req, res) => {
   res.send("Hello Guys welcome to LeetLeb...")
