@@ -14,6 +14,6 @@ problemsRoute.get("/get-all-problems", verifyJwt, getAllProblems)
 problemsRoute.get("/get-problem/:id", verifyJwt, getProblemId)
 problemsRoute.put("/update-problem/:id", verifyJwt, checkAdmin, updateProblem)
 problemsRoute.delete("/delete-problem/:id", verifyJwt, checkAdmin, deleteProblem)
-problemsRoute.get("/get-solved-problem/:id", verifyJwt, getAllProblemSolvedByUser)
+problemsRoute.get("/get-solved-problems", verifyJwt, getAllProblemSolvedByUser)
 
 export default problemsRoute
