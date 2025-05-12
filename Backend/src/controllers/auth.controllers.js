@@ -108,6 +108,7 @@ const loginUser = async (req, res) => {
         })
 
         res.status(200).json({
+            success: true,
             message: "User logedin successfully",
             user: {
                 id: user.id,
@@ -121,7 +122,7 @@ const loginUser = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({
-            error: "error logging in user"
+            error: "erro    r logging in user"
         })
     }
 }
@@ -153,6 +154,7 @@ const checkUser = async (req, res) => {
             user: req.user
         })
     } catch (error) {
+        console.log(error);
         
     }
 }

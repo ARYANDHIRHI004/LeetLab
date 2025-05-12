@@ -106,7 +106,7 @@ export const executeCode = async (req, res) => {
       stdout: result.stdout,
       expected: result.expected,
       stderr: result.stderr,
-      compileOutput: result.compile_output,
+      compileOutput: result.compile_output, 
       status: result.status,
       memory: result.memory,
       time: result.time,

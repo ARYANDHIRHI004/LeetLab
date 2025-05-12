@@ -12,9 +12,9 @@ export const createProblems = async (req, res) => {
         tags, 
         examples, 
         constraints, 
-        testcases, 
+        testCases, 
         codeSnippets, 
-        refrenceSolution} = req.body
+        referenceSolutions} = req.body
 
     if(req.user.role !== "ADMIN"){
         return res.status(401).json({
@@ -22,9 +22,10 @@ export const createProblems = async (req, res) => {
         })
     }
 
+
     
     try {
-        for (const [language, solutionCode] of Object.entries(refrenceSolution)) {
+      for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
           const languageId = getJudge0LanguageId(language);
             
           if (!languageId) {
@@ -34,7 +35,7 @@ export const createProblems = async (req, res) => {
           }
     
           //
-          const submissions = testcases.map(({ input, output }) => ({
+          const submissions = testCases.map(({ input, output }) => ({
             source_code: solutionCode,
             language_id: languageId,
             stdin: input,
@@ -60,7 +61,7 @@ export const createProblems = async (req, res) => {
             }
           }
         }
-                
+          
         const newProblem = await db.problem.create({
           data: {
             title,
@@ -69,9 +70,9 @@ export const createProblems = async (req, res) => {
             tags,
             examples,
             constraints,
-            testcases,
+            testcases: testCases,
             codeSnippets,
-            refrenceSolution,
+            refrenceSolution: referenceSolutions ,
             userId: req.user.id,
           },
         });
@@ -136,7 +137,7 @@ export const getProblemId = async (req, res) => {
     }
 }
 
-export const updateProblem = async (req, res) => {
+export const updateProblem = async (req, res) => { 
 
   const {problemId} = req.params;
   
@@ -152,13 +153,13 @@ export const updateProblem = async (req, res) => {
     tags,
     examples,
     constraints,
-    testcases,
+    testCases,
     codeSnippets,
-    refrenceSolution } = req.body
+    referenceSolutions } = req.body
 
   try {
 
-    for (const [language, solutionCode] of Object.entries(refrenceSolution)) {
+    for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
       const languageId = getJudge0LanguageId(language);
         
       if (!languageId) {
@@ -168,7 +169,7 @@ export const updateProblem = async (req, res) => {
       }
 
       //
-      const submissions = testcases.map(({ input, output }) => ({
+      const submissions = testCases.map(({ input, output }) => ({
         source_code: solutionCode,
         language_id: languageId,
         stdin: input,
@@ -206,9 +207,9 @@ export const updateProblem = async (req, res) => {
         tags,
         examples,
         constraints,
-        testcases,
+        testCases,
         codeSnippets,
-        refrenceSolution
+        referenceSolutions
       }
     })
 
