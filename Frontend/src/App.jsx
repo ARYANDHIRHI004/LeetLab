@@ -1,16 +1,46 @@
-import './App.css'
-import neurocodiumLogo from "./assets/neurocodiumLogo.png"
-function App() {
+import React, { useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
+import HomePage from './pages/Homepage'
+import { Toaster } from 'react-hot-toast'
+import { useAuthStore } from './Store/useAuthStore'
+import { Loader } from 'lucide-react'
+import Layout from './components/Layout'
+import CreateProblemForm from './components/AddProblemForm' 
+
+const App = () => {
+
+  const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
+
+
+  useEffect((params) => {
+    checkAuth()
+  },[checkAuth])
+
+  if(isCheckingAuth && !authUser){
+    return (
+      <div className='h-screen flex justify-center items-center'>
+        <Loader className='size-10 animate-spin' ></Loader>
+      </div>
+    )
+  }
+
 
   return (
     <>
-        <div className='flex bg-linear-to-r from-[#11002e] to-black h-[100vh] items-center text-purple-50 justify-center '>
-            <div className='text-center flex flex-col items-center'>
-              <img className='w-[20vh]' src={neurocodiumLogo} alt="hitesh sir" />
-              <h1 className='text-5xl font-bold m-4 text-shadow-white'> Welcome To <span className='font-extrabold text-purple-600'>Neurocodium</span></h1>
-              <h2 className='text-center text-2xl font-semibold'>We are Coming Soon...</h2>
-            </div>
-        </div>
+      <div className='flex flex-col items-center justify-start'>
+        <Toaster />
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route path='/' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
+            <Route path='/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
+          </Route>
+          
+          <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
+          <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/"}/>} />
+        </Routes>        
+      </div>
     </>
   )
 }
