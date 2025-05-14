@@ -32,12 +32,12 @@ const App = () => {
       <div className='flex flex-col items-center justify-start'>
         <Toaster />
         <Routes>
-          <Route path='/' element={<Layout />}>
+          {/* <Route path='/' element={<Layout />}>
             <Route path='/' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
             <Route path='/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
-          </Route>
+          </Route> */}
           
-          <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
+          <Route path='/' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
           <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/"}/>} />
         </Routes>        
       </div>
