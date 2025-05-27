@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: "https://leetlab.onrender.com/api/v1",
+    baseURL: "https://172.105.60.107/api/v1",
     withCredentials: true
 })
