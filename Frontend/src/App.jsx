@@ -33,7 +33,7 @@ const App = () => {
         <Toaster />
         <Routes>
           <Route path='/' element={<Layout />}>
-            {/* <Route path='/' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />    */}
+            <Route path='/' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
             <Route path='/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
           </Route>
           
