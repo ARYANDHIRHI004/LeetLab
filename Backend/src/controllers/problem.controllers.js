@@ -24,9 +24,10 @@ export const createProblems = async (req, res) => {
 
 
     
-    try {
+    // try {
+      console.log("aryan");
       for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
-          const languageId = getJudge0LanguageId(language);
+        const languageId = getJudge0LanguageId(language);
             
           if (!languageId) {
             return res
@@ -47,7 +48,7 @@ export const createProblems = async (req, res) => {
           const tokens = submissionResults.map((res) => res.token);
     
           const results = await pollBatchResults(tokens);
-    
+          
           for (let i = 0; i < results.length; i++) {
             const result = results[i];
             console.log("Result-----" , result)
@@ -82,12 +83,12 @@ export const createProblems = async (req, res) => {
           message:"Message Created Successfully",
           problem:newProblem
         });
-      } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-          error: "Error While Creating Problem",
-        });
-      }
+      // } catch (error) {
+      //   console.log(error);
+      //   return res.status(500).json({
+      //     error: "Error While Creating Problem",
+      //   });
+      // }
 
 }
 
