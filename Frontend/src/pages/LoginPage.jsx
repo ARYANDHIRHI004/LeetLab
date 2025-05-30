@@ -15,7 +15,7 @@ import { useAuthStore } from '../Store/useAuthStore'
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] =  useState("")
-const {login, isLoggedIn} = useAuthStore()
+  const {login, isLogingIn, isSigninUp} = useAuthStore()
   const {
     register,
     handleSubmit,
@@ -111,17 +111,16 @@ const {login, isLoggedIn} = useAuthStore()
             <button
               type="submit"
               className="btn btn-primary w-full"
-              // disabled={isSigninUp}
+              disabled={isLogingIn}
             >
-              {/* {isSigninUp ? (
+              {isLogingIn ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
                   Loading...
                 </>
               ) : (
-                "Sign in"
-              )} */}
-              Sign In
+                "Sign In"
+              )}
             </button>
           </form>
 

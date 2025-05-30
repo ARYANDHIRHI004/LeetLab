@@ -1,26 +1,34 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 export const useProblemStore = create((set) => ({
     problems:[],
     problem: null,
     solvedProblem: [],
+    isProblemsLoading: false,
+    isProblemLoading: false,
 
     getAllProblems: async () => {
       try {
+        
+        set({isProblemsLoading: true})
         const res = await axiosInstance.get("/problems/get-all-problems")
-        console.log(res.data);
+        
         set({problems: res.data.problems})
         
       } catch (error) {
+        console.log("error", error);
         
+      }
+      finally{
+        set({isProblemsLoading: false})
       }
     },
     
     getProblemId: async (id) => {
       try {
+        set({isProblemLoading: true})
         const res = await axiosInstance.get("/problems/get-problem", {
             params: id
         })
@@ -28,22 +36,20 @@ export const useProblemStore = create((set) => ({
         set({problem: res.data.problem})
         
       } catch (error) {
+        console.log("error", error);
         
+      }finally{
+        set({isProblemLoading: false})
       }
     },
 
-    updateProblem: async () => {
-      
+    getSolvedProblemByUser: async () => {
+      try {
+        const res = await axiosInstance.get("/problems/get-solved-problem")
+        set({solvedProblem: res.data.problems})
+      } catch (error) {
+        console.log("error", error);
+      }
     },
-
-    deleteProblem: async () => {
-      
-    },
-
-    getSolvedProblem: async () => {
-      
-    },
-    
-
     
 })) 

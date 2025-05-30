@@ -9,14 +9,14 @@ import { useAuthStore } from '../Store/useAuthStore'
 
  const signUpSchema = z.object({
     email: z.string().email("Enter a valid email..."),
-    password: z.string().min(6, "Password must be atleat of 6 che"),
+    password: z.string().min(6, "Password must be atleast of 6 character"),
     name: z.string().min(3, "Name must be atleast 3 character")
   })
 
 
 const SignUpPage = () => {
-  const [showPassword, setShowPassword] =  useState("")
-  const {signup, isSignedUp} = useAuthStore()
+  const [showPassword, setShowPassword] =  useState(false)
+  const {signup, isSigningUp} = useAuthStore()
 
   const {
     register,
@@ -136,9 +136,9 @@ const SignUpPage = () => {
             <button
               type="submit"
               className="btn btn-primary w-full"
-              disabled={isSignedUp}
+              disabled={isSigningUp}
             >
-              {isSignedUp ? (
+              {isSigningUp ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
                   Loading...

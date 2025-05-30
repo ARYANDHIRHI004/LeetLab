@@ -5,14 +5,13 @@ import SignUpPage from './pages/SignUpPage'
 import HomePage from './pages/HomePage'
 import { Toaster } from 'react-hot-toast'
 import { useAuthStore } from './Store/useAuthStore'
-import { Loader } from 'lucide-react'
+import { CloudCog, Loader } from 'lucide-react'
 import Layout from './components/Layout'
 import CreateProblemForm from './components/AddProblemForm' 
 
 const App = () => {
 
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
-
 
   useEffect((params) => {
     checkAuth()
