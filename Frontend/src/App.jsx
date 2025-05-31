@@ -42,9 +42,9 @@ const App = () => {
 
           
           <Route path='/' element={<LogoutOutlet />}>
-            <Route path='/' element={ !authUser? <WelcomePage />: <Navigate to={"/"}/>} />
-            <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
-            <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/"}/>} />
+            <Route path='/' element={ !authUser? <WelcomePage />: <Navigate to={"/home"}/>} />
+            <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/home"}/>} />
+            <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/home"}/>} />
           </Route>
         </Routes>        
       </div>
