@@ -7,7 +7,10 @@ import { Toaster } from 'react-hot-toast'
 import { useAuthStore } from './Store/useAuthStore'
 import { CloudCog, Loader } from 'lucide-react'
 import Layout from './components/Layout'
+import LogoutOutlet from './components/LogoutOutlet'
 import CreateProblemForm from './components/AddProblemForm' 
+import ProblemPage from './pages/ProblemPage'
+import WelcomePage from './pages/WelcomePage'
 
 const App = () => {
 
@@ -28,16 +31,21 @@ const App = () => {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-start'>
+      <div className='flex flex-col items-center justify-start w-full'>
         <Toaster />
         <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route path='/' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
-            <Route path='/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
+          <Route path='/home' element={<Layout />}>
+            <Route path='/home' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
+            <Route path='/home/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
           </Route>
+            <Route path='/problem/:id' element={ authUser? <ProblemPage />: <Navigate to={"/login"}/>} />   
+
           
-          <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
-          <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/"}/>} />
+          <Route path='/' element={<LogoutOutlet />}>
+            <Route path='/' element={ !authUser? <WelcomePage />: <Navigate to={"/"}/>} />
+            <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/"}/>} />
+            <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/"}/>} />
+          </Route>
         </Routes>        
       </div>
     </>

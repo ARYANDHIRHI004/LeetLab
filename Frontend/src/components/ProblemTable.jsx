@@ -116,6 +116,11 @@ console.log('paginatedProblems', paginatedProblems)
                           {problem.title}
                         </Link>
                       </td>
+                      <td >
+                        {problem.tags.map((tag)=>
+                          <span className='text-[11px] mx-0.5 bg-white text-purple-900 px-2 rounded-2xl'>{tag}</span>
+                        )}
+                      </td>
                     </tr>
                   )
                 })
