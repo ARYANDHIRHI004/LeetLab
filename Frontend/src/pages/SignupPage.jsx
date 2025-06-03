@@ -6,8 +6,12 @@ const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    signup(data);
+  const onSubmit = async (data) => {
+    try {
+      await signup(data);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
