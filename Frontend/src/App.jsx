@@ -1,52 +1,29 @@
-import React, { useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import LoginPage from './pages/LoginPage'
-import SignUpPage from './pages/SignUpPage'
-import HomePage from './pages/HomePage'
-import { Toaster } from 'react-hot-toast'
-import { useAuthStore } from './Store/useAuthStore'
-import { CloudCog, Loader } from 'lucide-react'
+import React from 'react'
+import { useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-import LogoutOutlet from './components/LogoutOutlet'
-import CreateProblemForm from './components/AddProblemForm' 
-import ProblemPage from './pages/ProblemPage'
 import WelcomePage from './pages/WelcomePage'
+import { useAuthStore } from './Store/useAuthStore'
+import HomePage from './pages/HomePage'
 
-const App = () => {
 
-  const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
 
-  useEffect((params) => {
-    checkAuth()
-  },[checkAuth])
-
-  if(isCheckingAuth && !authUser){
-    return (
-      <div className='h-screen flex justify-center items-center'>
-        <Loader className='size-10 animate-spin' ></Loader>
-      </div>
-    )
-  }
-
+function App() {
+  
+  const { authUser } = useAuthStore()
 
   return (
     <>
-      <div className='flex flex-col items-center justify-start w-full'>
-        <Toaster />
+      <div>
         <Routes>
-          <Route path='/home' element={<Layout />}>
-            <Route path='/home' element={ authUser? <HomePage />: <Navigate to={"/login"}/>} />   
-            <Route path='/home/add-problem' element={ authUser? <CreateProblemForm />: <Navigate to={"/login"}/>} />   
+          <Route path='/' element = {<Layout />}>
+            <Route path='/' element = {!authUser? <WelcomePage/>:<HomePage />}/>
+            {/* <Route path='/add-problem' element = {authUser? <AppProblem/>:<Navigate to={"/"}/>}/> */}
           </Route>
-            <Route path='/problem/:id' element={ authUser? <ProblemPage />: <Navigate to={"/login"}/>} />   
+          {/* <Route path='/login' element = {!authUser? <Login />:<Navigate to={"/"}/> }/> */}
+          {/* <Route path='/signup' element = {!authUser? <SignUp />:<Navigate to={"/"}/> }/> */}
 
-          
-          <Route path='/' element={<LogoutOutlet />}>
-            <Route path='/' element={ !authUser? <WelcomePage />: <Navigate to={"/home"}/>} />
-            <Route path='/login' element={ !authUser? <LoginPage />: <Navigate to={"/home"}/>} />
-            <Route path='/signup' element={!authUser?<SignUpPage />: <Navigate to={"/home"}/>} />
-          </Route>
-        </Routes>        
+        </Routes>
       </div>
     </>
   )

@@ -36,6 +36,8 @@ export const useAuthStore = create((set) => ({
     },
 
     login: async (data) => {
+        
+        
         set({isLogingIn: true})
       try {
           const res = await axiosInstance.post("/auth/login", data)

@@ -14,6 +14,7 @@ export const useProblemStore = create((set) => ({
         
         set({isProblemsLoading: true})
         const res = await axiosInstance.get("/problems/get-all-problems")
+        console.log(res);
         
         set({problems: res.data.problems})
         
