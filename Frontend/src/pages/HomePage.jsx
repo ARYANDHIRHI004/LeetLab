@@ -28,12 +28,12 @@ const HomePage = () => {
   });
 
   return (
-    <section className="bg-[#05001C] h-[100vh] flex pt-20 justify-between px-8 gap-6">
-      <div className="bg-[#282828] h-[89vh] w-[20vw] rounded-2xl">
+    <section className="bg-[#05001C] h-[100vh] flex pt-17 justify-between px-2 gap-2">
+      <div className="bg-[#1d1d1d] h-[92vh] w-[20vw] rounded-2xl">
         {/* play list */}
         {/* recent visit */}
       </div>
-      <div className="bg-[#282828] h-[89vh] w-[60vw] rounded-2xl p-2">
+      <div className="bg-[#111111] h-[92vh] w-[60vw] rounded-2xl p-2">
         {/* question list */}
         <div className="flex p-5 justify-between text-xl text-white">
           <div className="bg-[linear-gradient(140deg,#FFD000,#BE6C00)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
@@ -90,7 +90,7 @@ const HomePage = () => {
               filteredProblem.map((problem, index) => (
                 <div
                 className={`${
-                  index % 2 === 0 ? "bg-[#988E8E]" : "bg-[#5B5B5B]"
+                  index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
                 } px-8 h-14 rounded-xl grid grid-cols-4 items-center text-xl m-4`}
               >
                 <div className="flex gap-2">
@@ -98,11 +98,11 @@ const HomePage = () => {
                   <p className="font-bold text-white">{problem.title}</p>
                 </div>
                 <div className="flex text-[10px] gap-5 ">
-                  {
+                  {/* {
                   problem.tags.map((tag, index)=>(
-                    <p className="bg-yellow-300 flex items-center px-5 rounded-4xl">{tag}</p>
+                    <p className="bg-yellow-500 text-cyan-700 flex items-center px-5 rounded-4xl">{tag}</p>
                   ))
-                }
+                } */}
                 </div>
                 <p className="flex justify-end text-[10px]">
                   <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-2xl`}>
@@ -129,11 +129,11 @@ const HomePage = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-6">
-        <div className="bg-[#282828] h-[35vh] w-[20vw] rounded-2xl">
+      <div className="flex flex-col gap-2">
+        <div className="bg-[#282828] h-[37vh] w-[20vw] rounded-2xl">
           {/* Calander */}
         </div>
-        <div className="bg-[#282828] h-[51vh] w-[20vw] rounded-2xl">
+        <div className="bg-[#282828] h-[54vh] w-[20vw] rounded-2xl">
           {/* todays question */}
         </div>
       </div>
