@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { useAuthStore } from '../Store/useAuthStore'
+import { Loader } from "lucide-react";
 
 const LoginPage = () => {
    const {isLoggingIn, login} = useAuthStore()
@@ -44,7 +45,12 @@ const LoginPage = () => {
                 type="submit"
                 >
                     {
-                       isLoggingIn? "loggingin...":"Login" 
+                       isLoggingIn? ( 
+                       <div className='flex justify-center items-center gap-2'>
+                        <Loader className="size-5 animate-spin" />
+                        Loggin in
+                       </div>
+                    ):"Login" 
                     }
                 </button>
                
