@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
@@ -12,7 +12,11 @@ import SignupPage from './pages/SignupPage'
 
 function App() {
   
-  const { authUser } = useAuthStore()
+  const { authUser, checkAuth } = useAuthStore()
+
+  useEffect(() => {
+    checkAuth()
+  },[checkAuth])
 
   return (
     <>
