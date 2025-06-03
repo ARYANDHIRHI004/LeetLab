@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import { Loader } from "lucide-react";
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <div>
+        <Toaster />
         <Routes>
           <Route path='/' element = {<Layout />}>
             <Route path='/' element = {!authUser? <WelcomePage/>:<HomePage />}/>
