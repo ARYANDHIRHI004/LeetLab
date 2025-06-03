@@ -6,8 +6,12 @@ const LoginPage = () => {
    const {isLoggingIn, login} = useAuthStore()
    const {register, handleSubmit} = useForm()
 
-   const onSubmit = (data) =>{
-        login(data)
+   const onSubmit = async(data) =>{
+        try {
+            await login(data)
+        } catch (error) {
+            console.log(error)
+        }
    }
 
   return (

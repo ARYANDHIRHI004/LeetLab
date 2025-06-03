@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
 import { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import WelcomePage from './pages/WelcomePage'
@@ -7,16 +7,22 @@ import { useAuthStore } from './Store/useAuthStore'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
-
-
+import { Loader } from "lucide-react";
 
 function App() {
   
-  const { authUser, checkAuth } = useAuthStore()
+  const { authUser, checkAuth, isCheckingAuth } = useAuthStore()
 
   useEffect(() => {
     checkAuth()
   },[checkAuth])
+
+   if (isCheckingAuth && !authUser)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader className="size-10 animate-spin" />
+      </div>
+    );
 
   return (
     <>
