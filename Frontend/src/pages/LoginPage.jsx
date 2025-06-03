@@ -33,7 +33,7 @@ const LoginPage = () => {
                     <label htmlFor="password">Password</label>
                     <input 
                     className='border-blue-950 border-2 rounded-xl p-2 bg-black' 
-                    type="text" 
+                    type="password" 
                     name='password' 
                     placeholder='*******'
                     {...register("password")}
