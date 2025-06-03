@@ -48,7 +48,7 @@ const LoginPage = () => {
                        isLoggingIn? ( 
                        <div className='flex justify-center items-center gap-2'>
                         <Loader className="size-5 animate-spin" />
-                        Loggin in
+                        Logging in
                        </div>
                     ):"Login" 
                     }

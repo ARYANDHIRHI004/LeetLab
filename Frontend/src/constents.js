@@ -1,5 +1,5 @@
 export const NavbarMenu = [
-    {id: "Home", label: "Home"},
-    {id: "About", label: "About"},
-    {id: "ContectUs", label: "Contect Us"},
+    {id: "home", label: "Home"},
+    {id: "about", label: "About"},
+    {id: "contectUs", label: "Contect Us"},
 ]

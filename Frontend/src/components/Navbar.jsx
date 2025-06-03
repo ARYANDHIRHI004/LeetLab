@@ -19,9 +19,9 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" fixed flex justify-around items-center text-[15px] bg-black text-white w-full h-17 font-medium gap-60 z-50">
-      <Link to={"/"} className="text-3xl flex gap-2">
-        <img src={Neurocodium} className="w-20" />
+    <nav className=" fixed flex justify-around items-center text-[12px] bg-black text-white w-full h-15 font-medium gap-60 z-50">
+      <Link to={"/"} className="text-3xl flex gap-2 items-center">
+        <img src={Neurocodium} className="w-16 h-6" />
         <span>Neurocodium</span>
       </Link>
       <div>
