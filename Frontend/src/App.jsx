@@ -1,13 +1,30 @@
+import React from 'react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import WelcomePage from './pages/WelcomePage'
+import { useAuthStore } from './Store/useAuthStore'
+import HomePage from './pages/HomePage'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const { authUser } = useAuthStore()
 
   return (
     <>
-      <h1>Aryan</h1>
+      <div>
+        <Routes>
+          <Route path='/' element = {<Layout />}>
+            <Route path='/' element = {!authUser? <WelcomePage/>:<HomePage />}/>
+            {/* <Route path='/add-problem' element = {authUser? <AppProblem/>:<Navigate to={"/"}/>}/> */}
+          </Route>
+          {/* <Route path='/login' element = {!authUser? <Login />:<Navigate to={"/"}/> }/> */}
+          {/* <Route path='/signup' element = {!authUser? <SignUp />:<Navigate to={"/"}/> }/> */}
+
+        </Routes>
+      </div>
     </>
   )
 }
