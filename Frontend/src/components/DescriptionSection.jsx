@@ -48,7 +48,7 @@ const DescriptionSection = () => {
         
         <div className='mt-5 text-[13px]'>
           <p className='pb-2 font-bold text-2xl'>Constraints</p>
-          {problem.constraints}
+          {problem?.constraints}
         </div>
 
       </div>
