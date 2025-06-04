@@ -112,7 +112,7 @@ const ProblemPage = () => {
           {
             NavComponents.map((component)=>(
               component.id === activeNavTab?(
-                <component.component/>
+                <component.component language={language}/>
               ):""
             ))
           }
