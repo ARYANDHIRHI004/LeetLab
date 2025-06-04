@@ -4,6 +4,7 @@ import { NavbarMenu } from "../constents";
 import Neurocodium from "../assets/neurocodiumLogo.png";
 import { useAuthStore } from "../Store/useAuthStore";
 import { Loader } from "lucide-react";
+import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
   const { authUser, logout, isLoggingOut} = useAuthStore();
@@ -19,18 +20,22 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" fixed flex justify-around items-center text-[12px] bg-black text-white w-full h-15 font-medium gap-60 z-50">
+    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-black text-white w-full h-15 font-medium gap-60 z-50">
       <Link to={"/"} className="text-3xl flex gap-2 items-center">
         <img src={Neurocodium} className="w-16 h-6" />
         <span>Neurocodium</span>
       </Link>
-      <div>
+      {
+        !authUser?(
+          <div>
         <ul className="flex gap-14">
           {NavbarMenu.map((navMenu) => (
             <li key={navMenu.id}>{navMenu.label}</li>
           ))}
         </ul>
       </div>
+        ):(<ProfileMenu />)
+      }
       <div className="flex gap-5 items-center">
         {!authUser ? (
           <Link
@@ -61,7 +66,7 @@ const Navbar = () => {
             sign Up
           </Link>
         ) : (
-          null
+          ""
         )}
       </div>
     </nav>

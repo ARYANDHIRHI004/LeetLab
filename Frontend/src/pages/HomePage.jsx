@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
@@ -88,7 +89,7 @@ const HomePage = () => {
             
             filteredProblem.length !== 0?( 
               filteredProblem.map((problem, index) => (
-                <div
+                <Link to={`/problem/${problem.id}`} 
                 className={`${
                   index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
                 } px-8 h-14 rounded-xl grid grid-cols-4 items-center text-xl m-4`}
@@ -104,11 +105,11 @@ const HomePage = () => {
                   ))
                 } */}
                 </div>
-                <p className="flex justify-end text-[10px]">
+                <div className="flex justify-end text-[10px]">
                   <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-2xl`}>
                     {problem.difficulty}
                   </div>
-                </p>
+                </div>
                 <div className="flex gap-3  justify-end">
                   <button className="bg-blue-700 w-14 h-10 rounded-xl">
                     u
@@ -117,7 +118,7 @@ const HomePage = () => {
                     p
                   </button>
                 </div>
-              </div>
+              </Link>
             ))
             ):(
               <div className="text-3xl text-gray-500 h-50 flex items-center justify-center ">No Problem Found</div>

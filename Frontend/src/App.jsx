@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import { Loader } from "lucide-react";
 import { Toaster } from 'react-hot-toast'
+import ProblemPage from './pages/ProblemPage'
 
 function App() {
   
@@ -36,6 +37,8 @@ function App() {
             <Route path='/signup' element = {!authUser? <SignupPage />:<Navigate to={"/"}/> }/>
             {/* <Route path='/add-problem' element = {authUser? <AppProblem/>:<Navigate to={"/"}/>}/> */}
           </Route>
+            <Route path='/problem/:id' element = {!authUser? <Navigate to={"/login"} />:<ProblemPage/> }/>
+          
 
         </Routes>
       </div>
