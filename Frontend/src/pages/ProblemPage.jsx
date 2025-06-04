@@ -87,7 +87,7 @@ const ProblemPage = () => {
 
   return (
     <div className=" flex bg-[#111111] h-[100vh] justify-center gap-1.5 box w-[100%] p-2">
-      <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4">
+      <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4 overflow-scroll">
         {/* question details */}
         <div className="text-2xl font-black text-[#8EC5FF] flex items-center gap-2">
           <Link to={"/"}>
