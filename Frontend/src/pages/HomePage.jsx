@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
+import { useAuthStore } from "../Store/useAuthStore";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
+  const {authUser} = useAuthStore();
+
 
   useEffect(() => {
     getAllProblems();
@@ -36,6 +39,9 @@ const HomePage = () => {
       </div>
       <div className="bg-[#111111] h-[92vh] w-[60vw] rounded-2xl p-2">
         {/* question list */}
+        <div className="text-white text-3xl px-6 pt-4">
+          Hi, <span className="font-bold">{authUser.name.toUpperCase()}</span>
+        </div>
         <div className="flex p-5 justify-between text-xl text-white">
           <div className="bg-[linear-gradient(140deg,#FFD000,#BE6C00)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
             30 Days DSA<div className="font-bold" > CHALLANGE </div>question package
