@@ -6,7 +6,8 @@ import { House, Database, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import { useExecution } from "../Store/useExecution";
-import { getLanguageId } from "../lib/utils";
+import { getLanguageId, NavComponents, problemSectionNavTab } from "../lib/utils";
+
 
 const ProblemPage = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const ProblemPage = () => {
   const [language, setLanguage] = useState("JAVASCRIPT");
   const [codeSnippit, setCodeSnippit] = useState("");
   const [code, setCode] = useState("");
+  const [activeNavTab, setActiveNavTab] = useState(1);
 
   useEffect(() => {
     switch (language) {
@@ -85,7 +87,7 @@ const ProblemPage = () => {
 
   return (
     <div className=" flex bg-[#111111] h-[100vh] justify-center gap-1.5 box w-[100%] p-2">
-      <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4">
+      <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4 overflow-scroll">
         {/* question details */}
         <div className="text-2xl font-black text-[#8EC5FF] flex items-center gap-2">
           <Link to={"/"}>
@@ -93,7 +95,30 @@ const ProblemPage = () => {
           </Link>
           {problem?.title}
         </div>
+        <div className="text-[#9fb2be] flex gap-5 px-10 pt-5 text-[13px] flex-wrap">
+          {
+            problemSectionNavTab.map((NavTabs) => (
+              <p 
+                key={NavTabs.id}
+                onClick={()=>setActiveNavTab(NavTabs.id)}
+                className={`${NavTabs.id === activeNavTab? "text-[#43b5fc]":null} hover:text-[#43b5fc]`}
+              >
+                  {NavTabs?.label}
+              </p>
+            ))
+          }
+        </div>
+        <div className="px-10 mt-5 text-white">
+          {
+            NavComponents.map((component)=>(
+              component.id === activeNavTab?(
+                <component.component/>
+              ):""
+            ))
+          }
+        </div>
       </div>
+
       <div
         onMouseDown={horizontalMouseDown}
         className="bg-[#1D1D1D] w-1 rounded-2xl hover:cursor-e-resize hover:bg-blue-800 flex items-center justify-center"
