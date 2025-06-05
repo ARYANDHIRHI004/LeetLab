@@ -40,7 +40,7 @@ const DescriptionSection = () => {
                 <p>{exampleObject.language}</p>
                 <p className='font-bold'>Input: <span className='font-normal'>{exampleObject.value.input.split("s =")}</span></p>
                 <p className='font-bold'>Output: <span className='font-normal'>{exampleObject.value.output}</span></p>
-                <p className='font-bold'>Explanation: <span className='font-normal'>{exampleObject.value.explanation.split("s =")}</span></p>
+                <p className='font-bold'>Explanation: <span className='font-normal'>{exampleObject.value.explanation}</span></p>
               </div>
             ))
           }

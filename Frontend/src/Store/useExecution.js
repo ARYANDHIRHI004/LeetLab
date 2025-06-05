@@ -3,21 +3,32 @@ import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 
 export const useExecution = create((set) => ({
-    submission: null,
-    isExecuting: false,
+    runResult: null,
+    isRunning: false,
 
-    executeCode: async ({source_code, language_id, stdin, expected_outputs, problemId}) => {
-      set({isExecuting: true});
+    clearRunResult: () => {
+       set({runResult: null});
+    },
+    
+
+    runCode: async ({source_code, language_id, stdin, expected_outputs, problemId}) => {
+        set({isRunning: true});
+        console.log(source_code);
       try {
-          const res = await axiosInstance.post("/execute-code",{source_code, language_id, stdin, expected_outputs, problemId})
+          const res = await axiosInstance.post("/execute-code/run",{source_code, language_id, stdin, expected_outputs, problemId})
+          console.log(res.data);
           
-          set({submission: res.data.submissionWithTestCase})
+          set({runResult: res.data})
         } catch (error) {
             console.log('error while fetching', error);
-            set({isExecuting: false})
+            set({isRunning: false})
         }finally{
-            set({isExecuting: false});
+            set({isRunning: false});
+            setTimeout(() => {
+              
+            },1000)
         }
     }
+
     
 }))

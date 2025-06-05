@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import { useExecution } from "../Store/useExecution";
 import { getLanguageId, NavComponents, problemSectionNavTab } from "../lib/utils";
+import TestCasesSection from "../components/TestCasesSection";
+import { useActions } from "../Store/useActions";
 
 
 const ProblemPage = () => {
   const { id } = useParams();
   const { getProblemId, problem, isProblemLoading } = useProblemStore();
-  const { submission, executeCode, isExecuting } = useExecution()
+  const { submission, runCode, isRunning, clearRunResult } = useExecution()
+  const {qustionNavTabsActive, changeQuestionNavtabActive, changetestCaseResultNavtabActive} = useActions();
 
   useEffect(() => {
     getProblemId(id);
@@ -24,8 +27,6 @@ const ProblemPage = () => {
   const [bottomHight, setBottomHight] = useState("40vw");
   const [language, setLanguage] = useState("JAVASCRIPT");
   const [codeSnippit, setCodeSnippit] = useState("");
-  const [code, setCode] = useState("");
-  const [activeNavTab, setActiveNavTab] = useState(1);
 
   useEffect(() => {
     switch (language) {
@@ -72,10 +73,25 @@ const ProblemPage = () => {
     document.removeEventListener("mouseup", handleMouseUp);
   };
 
+  let stdin = []
+  let expected_outputs = []
+   problem?.testcases.forEach((testcase)=>{
+      stdin.push(testcase.input)
+      expected_outputs.push(testcase.output)
+   })
   
-  const runCode = () => {
-    executeCode({code })
+  const sendCode = () => {
+    const language_id = getLanguageId(language)
+    console.log(codeSnippit)
+    runCode({source_code:codeSnippit, language_id, stdin, expected_outputs, problemId:problem?.id})
+    changetestCaseResultNavtabActive(2)
   }
+
+  const homeBtn = () => {
+    clearRunResult()
+    changetestCaseResultNavtabActive(1)
+  }
+  
 
   if (isProblemLoading) {
     return (
@@ -90,7 +106,7 @@ const ProblemPage = () => {
       <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4 overflow-scroll">
         {/* question details */}
         <div className="text-2xl font-black text-[#8EC5FF] flex items-center gap-2">
-          <Link to={"/"}>
+          <Link to={"/"} onClick={homeBtn} >
             <House color="#8EC5FF" size={22} />
           </Link>
           {problem?.title}
@@ -98,20 +114,20 @@ const ProblemPage = () => {
         <div className="text-[#9fb2be] flex gap-5 px-10 pt-5 text-[13px] flex-wrap">
           {
             problemSectionNavTab.map((NavTabs) => (
-              <p 
+              <button 
                 key={NavTabs.id}
-                onClick={()=>setActiveNavTab(NavTabs.id)}
-                className={`${NavTabs.id === activeNavTab? "text-[#43b5fc]":null} hover:text-[#43b5fc]`}
+                onClick={()=>changeQuestionNavtabActive(NavTabs.id)}
+                className={`${NavTabs.id === qustionNavTabsActive? "text-[#43b5fc]":null} hover:text-[#43b5fc]`}
               >
                   {NavTabs?.label}
-              </p>
+              </button>
             ))
           }
         </div>
         <div className="px-10 mt-5 text-white">
           {
             NavComponents.map((component)=>(
-              component.id === activeNavTab?(
+              component.id === qustionNavTabsActive?(
                 <component.component language={language}/>
               ):""
             ))
@@ -142,9 +158,9 @@ const ProblemPage = () => {
           </select>
           <div className="flex gap-6 text-[13px] mx-10">
 
-            <button onClick={runCode} className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all">
+            <button onClick={sendCode} className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all text-center">
               {
-                isExecuting?(
+                isRunning?(
                     <Loader className="size-6 animate-spin" />
                 ):("Run")
               }
@@ -168,7 +184,7 @@ const ProblemPage = () => {
               defaultValue={problem?.codeSnippets?.JAVASCRIPT}
               value={codeSnippit}
               options={{minimap: { enabled: false }}}
-               onChange={(value) => setCode(value || '')}
+               onChange={(value) => setCodeSnippit(value || '')}
             />
           </div>
         </div>
@@ -184,9 +200,10 @@ const ProblemPage = () => {
         </div>
         <div
           style={{ height: bottomHight }}
-          className="bg-[#1D1D1D] h-[40vh] rounded-xl p-4"
+          className="bg-[#1D1D1D] h-[40vh] rounded-xl overflow-scroll"
         >
           {/* test cases */}
+          <TestCasesSection />
         </div>
       </div>
     </div>

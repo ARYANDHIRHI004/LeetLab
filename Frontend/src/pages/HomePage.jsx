@@ -104,13 +104,7 @@ const HomePage = () => {
                   <input type="checkbox" readOnly={true} />
                   <p className="font-bold text-white">{problem.title}</p>
                 </div>
-                <div className="flex text-[10px] gap-5 ">
-                  {/* {
-                  problem.tags.map((tag, index)=>(
-                    <p className="bg-yellow-500 text-cyan-700 flex items-center px-5 rounded-4xl">{tag}</p>
-                  ))
-                } */}
-                </div>
+                
                 <div className="flex justify-end text-[10px]">
                   <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-2xl`}>
                     {problem.difficulty}
