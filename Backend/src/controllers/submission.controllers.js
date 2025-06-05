@@ -32,7 +32,11 @@ export const getSubmissionsForProblem = async (req, res) => {
          where:{
              userId,
              problemId
-         }
+         },
+         include: {
+            testCases: true,
+        },
+         
      })
  
      return res.status(200).json({

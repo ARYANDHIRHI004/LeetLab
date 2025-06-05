@@ -3,8 +3,8 @@ import { db } from "../libs/db.js"
 
 export const verifyJwt = async (req,res, next) => {
    try {
-     const token = req.cookies?.jwtToken
- 
+     const token = req.cookies?.jwtToken     
+
      if(!token){
          return res.status(400).json({
              error: "unauthorized"

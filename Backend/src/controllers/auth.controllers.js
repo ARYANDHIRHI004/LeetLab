@@ -44,6 +44,7 @@ const registerUser = async (req, res) => {
             expiresIn:"7d" 
         })
 
+        
         res.cookie("jwt", token , {
             httpOnly: true,
             sameSite: "strict",
@@ -71,6 +72,10 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const {email, password} = req.body
+
+    if(!email|| !password){
+        throw new Error("All filds are required") 
+    }
 
     try {
         const user = await db.user.findUnique({
@@ -148,6 +153,8 @@ const logoutUser = async (req, res) => {
 
 const checkUser = async (req, res) => {
     try {
+        
+        
         res.status(200).json({
             success: true,
             message: "User authorized successfully",
