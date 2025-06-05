@@ -31,6 +31,11 @@ const HomePage = () => {
       );
   });
 
+  const fetchSubmission = () => {
+    
+  }
+  
+
   return (
     <section className="bg-[#05001C] h-[100vh] flex pt-17 justify-between px-2 gap-2">
       <div className="bg-[#1d1d1d] h-[92vh] w-[20vw] rounded-2xl">
@@ -95,7 +100,7 @@ const HomePage = () => {
             
             filteredProblem.length !== 0?( 
               filteredProblem.map((problem, index) => (
-                <Link to={`/problem/${problem.id}`} 
+                <Link onClick={fetchSubmission} to={`/problem/${problem.id}`} 
                 className={`${
                   index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
                 } px-8 h-14 rounded-xl grid grid-cols-4 items-center text-xl m-4`}

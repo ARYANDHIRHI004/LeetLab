@@ -6,16 +6,24 @@ import { House, Database, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import { useExecution } from "../Store/useExecution";
-import { getLanguageId, NavComponents, problemSectionNavTab } from "../lib/utils";
+import {
+  getLanguageId,
+  NavComponents,
+  problemSectionNavTab,
+} from "../lib/utils";
 import TestCasesSection from "../components/TestCasesSection";
 import { useActions } from "../Store/useActions";
-
 
 const ProblemPage = () => {
   const { id } = useParams();
   const { getProblemId, problem, isProblemLoading } = useProblemStore();
-  const { submission, runCode, isRunning, clearRunResult } = useExecution()
-  const {qustionNavTabsActive, changeQuestionNavtabActive, changetestCaseResultNavtabActive} = useActions();
+  const { runCode, submitCode, isRunning, isSubmitting, clearRunResult } =
+    useExecution();
+  const {
+    qustionNavTabsActive,
+    changeQuestionNavtabActive,
+    changetestCaseResultNavtabActive,
+  } = useActions();
 
   useEffect(() => {
     getProblemId(id);
@@ -73,25 +81,44 @@ const ProblemPage = () => {
     document.removeEventListener("mouseup", handleMouseUp);
   };
 
-  let stdin = []
-  let expected_outputs = []
-   problem?.testcases.forEach((testcase)=>{
-      stdin.push(testcase.input)
-      expected_outputs.push(testcase.output)
-   })
-  
-  const sendCode = () => {
-    const language_id = getLanguageId(language)
-    console.log(codeSnippit)
-    runCode({source_code:codeSnippit, language_id, stdin, expected_outputs, problemId:problem?.id})
-    changetestCaseResultNavtabActive(2)
-  }
+  let stdin = [];
+  let expected_outputs = [];
+  problem?.testcases.forEach((testcase) => {
+    stdin.push(testcase.input);
+    expected_outputs.push(testcase.output);
+  });
+
+  const sendToRunCode = () => {
+    const language_id = getLanguageId(language);
+    console.log(codeSnippit);
+    runCode({
+      source_code: codeSnippit,
+      language_id,
+      stdin,
+      expected_outputs,
+      problemId: problem?.id,
+    });
+    changetestCaseResultNavtabActive(2);
+  };
+
+  const sendToSubmitCode = () => {
+    const language_id = getLanguageId(language);
+    console.log(codeSnippit);
+    submitCode({
+      source_code: codeSnippit,
+      language_id,
+      stdin,
+      expected_outputs,
+      problemId: problem?.id,
+    });
+    sendToRunCode();
+    changeQuestionNavtabActive(2);
+  };
 
   const homeBtn = () => {
-    clearRunResult()
-    changetestCaseResultNavtabActive(1)
-  }
-  
+    clearRunResult();
+    changetestCaseResultNavtabActive(1);
+  };
 
   if (isProblemLoading) {
     return (
@@ -103,35 +130,38 @@ const ProblemPage = () => {
 
   return (
     <div className=" flex bg-[#111111] h-[100vh] justify-center gap-1.5 box w-[100%] p-2">
-      <div style={{ width: leftWidth }} className="bg-[#1D1D1D] rounded-xl p-4 overflow-scroll">
+      <div
+        style={{ width: leftWidth }}
+        className="bg-[#1D1D1D] rounded-xl p-4 overflow-scroll"
+      >
         {/* question details */}
         <div className="text-2xl font-black text-[#8EC5FF] flex items-center gap-2">
-          <Link to={"/"} onClick={homeBtn} >
+          <Link to={"/"} onClick={homeBtn}>
             <House color="#8EC5FF" size={22} />
           </Link>
           {problem?.title}
         </div>
         <div className="text-[#9fb2be] flex gap-5 px-10 pt-5 text-[13px] flex-wrap">
-          {
-            problemSectionNavTab.map((NavTabs) => (
-              <button 
-                key={NavTabs.id}
-                onClick={()=>changeQuestionNavtabActive(NavTabs.id)}
-                className={`${NavTabs.id === qustionNavTabsActive? "text-[#43b5fc]":null} hover:text-[#43b5fc]`}
-              >
-                  {NavTabs?.label}
-              </button>
-            ))
-          }
+          {problemSectionNavTab.map((NavTabs) => (
+            <button
+              key={NavTabs.id}
+              onClick={() => changeQuestionNavtabActive(NavTabs.id)}
+              className={`${
+                NavTabs.id === qustionNavTabsActive ? "text-[#43b5fc]" : null
+              } hover:text-[#43b5fc]`}
+            >
+              {NavTabs?.label}
+            </button>
+          ))}
         </div>
         <div className="px-10 mt-5 text-white">
-          {
-            NavComponents.map((component)=>(
-              component.id === qustionNavTabsActive?(
-                <component.component language={language}/>
-              ):""
-            ))
-          }
+          {NavComponents.map((component) =>
+            component.id === qustionNavTabsActive ? (
+              <component.component language={language} />
+            ) : (
+              ""
+            )
+          )}
         </div>
       </div>
 
@@ -157,17 +187,23 @@ const ProblemPage = () => {
             <option value="PYTHON">PYTHON</option>
           </select>
           <div className="flex gap-6 text-[13px] mx-10">
-
-            <button onClick={sendCode} className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all text-center">
-              {
-                isRunning?(
-                    <Loader className="size-6 animate-spin" />
-                ):("Run")
-              }
+            <button
+              onClick={sendToRunCode}
+              className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all text-center"
+            >
+              {isRunning ? <Loader className="size-6 animate-spin" /> : "Run"}
             </button>
 
-            <button className="bg-green-600 w-25 rounded-full hover:bg-green-500 hover:drop-shadow-[0px_0px_10px_#00ff08] hover:scale-110 cursor-pointer transition-all">Submit</button>
-
+            <button
+              onClick={sendToSubmitCode}
+              className="bg-green-600 w-25 rounded-full hover:bg-green-500 hover:drop-shadow-[0px_0px_10px_#00ff08] hover:scale-110 cursor-pointer transition-all"
+            >
+              {isSubmitting ? (
+                <Loader className="size-6 animate-spin" />
+              ) : (
+                "Submit"
+              )}
+            </button>
           </div>
         </div>
         <div
@@ -183,8 +219,8 @@ const ProblemPage = () => {
               theme="vs-dark"
               defaultValue={problem?.codeSnippets?.JAVASCRIPT}
               value={codeSnippit}
-              options={{minimap: { enabled: false }}}
-               onChange={(value) => setCodeSnippit(value || '')}
+              options={{ minimap: { enabled: false } }}
+              onChange={(value) => setCodeSnippit(value || "")}
             />
           </div>
         </div>

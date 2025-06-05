@@ -4,7 +4,9 @@ import toast from "react-hot-toast";
 
 export const useExecution = create((set) => ({
     runResult: null,
+    submitResult: null,
     isRunning: false,
+    isSubmitting: false,
 
     clearRunResult: () => {
        set({runResult: null});
@@ -24,9 +26,22 @@ export const useExecution = create((set) => ({
             set({isRunning: false})
         }finally{
             set({isRunning: false});
-            setTimeout(() => {
-              
-            },1000)
+        }
+    },
+
+    submitCode: async ({source_code, language_id, stdin, expected_outputs, problemId}) => {
+        set({isSubmitting: true});
+        console.log(source_code);
+      try {
+          const res = await axiosInstance.post("/execute-code/submit",{source_code, language_id, stdin, expected_outputs, problemId})
+          console.log(res.data);
+          
+          set({submitResult: res.data.submissionWithTestCase})
+        } catch (error) {
+            console.log('error while fetching', error);
+            set({isSubmitting: false})
+        }finally{
+            set({isSubmitting: false});
         }
     }
 
