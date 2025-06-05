@@ -20,10 +20,10 @@ const SubmissionSection = () => {
           <div>
             {
               <div className="text-[13px]">
-                <table className="w-full text-left  ">
-                  <thead className="bg-gray-500  h-8">
-                    <tr className="">
-                      <th>Status</th>
+                <table className="w-full text-left bg-gray-600 rounded-2xl  ">
+                  <thead className=" bg-gray-700  h-10 ">
+                    <tr>
+                      <th className="p-5">Status</th>
                       <th>Language</th>
                       <th>Time</th>
                       <th>Memory</th>
@@ -37,7 +37,7 @@ const SubmissionSection = () => {
                             submission.status === "Accepted"
                               ? "text-green-400"
                               : "text-red-400"
-                          }`}
+                          } h-8 p-5 font`}
                         >
                           {submission.status}
                         </td>

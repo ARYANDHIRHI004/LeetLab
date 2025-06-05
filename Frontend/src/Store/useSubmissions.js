@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 
 export const useSubmisions = create((set) => ({
-    submissions: null,
+    submissions: [],
     isLoading: false,
 
 

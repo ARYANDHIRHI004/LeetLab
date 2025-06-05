@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 export const useActions = create((set) => ({
     qustionNavTabsActive: 1,
     testCaseResultNavTabActive: 1,
+    runbtnState: false,
 
 
     changeQuestionNavtabActive:(id) => {
@@ -14,7 +15,12 @@ export const useActions = create((set) => ({
     changetestCaseResultNavtabActive:(id) => {
         set({testCaseResultNavTabActive: id})
         
-    }
+    },
+
+    runBtnStateChange:(ChangedState) => {
+        set({runbtnState: ChangedState})
+        
+    },
     
     
 }))

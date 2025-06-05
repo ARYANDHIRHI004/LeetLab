@@ -31,11 +31,6 @@ const HomePage = () => {
       );
   });
 
-  const fetchSubmission = () => {
-    
-  }
-  
-
   return (
     <section className="bg-[#05001C] h-[100vh] flex pt-17 justify-between px-2 gap-2">
       <div className="bg-[#1d1d1d] h-[92vh] w-[20vw] rounded-2xl">
@@ -100,10 +95,10 @@ const HomePage = () => {
             
             filteredProblem.length !== 0?( 
               filteredProblem.map((problem, index) => (
-                <Link onClick={fetchSubmission} to={`/problem/${problem.id}`} 
+                <Link to={`/problem/${problem.id}`} 
                 className={`${
                   index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
-                } px-8 h-14 rounded-xl grid grid-cols-4 items-center text-xl m-4`}
+                } px-8 h-14 rounded-xl grid grid-cols-3 items-center text-xl m-4`}
               >
                 <div className="flex gap-2">
                   <input type="checkbox" readOnly={true} />
@@ -111,11 +106,11 @@ const HomePage = () => {
                 </div>
                 
                 <div className="flex justify-end text-[10px]">
-                  <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-2xl`}>
+                  <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-full`}>
                     {problem.difficulty}
                   </div>
                 </div>
-                <div className="flex gap-3  justify-end">
+                <div className="flex gap-3 justify-end">
                   <button className="bg-blue-700 w-14 h-10 rounded-xl">
                     u
                   </button>

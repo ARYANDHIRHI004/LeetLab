@@ -13,6 +13,7 @@ import {
 } from "../lib/utils";
 import TestCasesSection from "../components/TestCasesSection";
 import { useActions } from "../Store/useActions";
+import { useSubmisions } from "../Store/useSubmissions";
 
 const ProblemPage = () => {
   const { id } = useParams();
@@ -23,11 +24,17 @@ const ProblemPage = () => {
     qustionNavTabsActive,
     changeQuestionNavtabActive,
     changetestCaseResultNavtabActive,
+    runBtnStateChange
   } = useActions();
+  const {submissions, submissionRequest, isLoading} = useSubmisions()
 
   useEffect(() => {
     getProblemId(id);
   }, [getProblemId]);
+
+  useEffect(() => {
+    submissionRequest(id);
+  }, [submissionRequest]);
 
   const [rightWidth, setRightWidth] = useState("50vw");
   const [leftWidth, setLeftWidth] = useState("50vw");
@@ -51,7 +58,7 @@ const ProblemPage = () => {
       default:
         break;
     }
-  }, [language, setLanguage]);
+  }, [language, setLanguage, setCodeSnippit]);
 
   const horizontalMouseDown = () => {
     document.addEventListener("mousemove", handleMouseMove);
@@ -99,6 +106,7 @@ const ProblemPage = () => {
       problemId: problem?.id,
     });
     changetestCaseResultNavtabActive(2);
+    runBtnStateChange(true)
   };
 
   const sendToSubmitCode = () => {
@@ -111,13 +119,14 @@ const ProblemPage = () => {
       expected_outputs,
       problemId: problem?.id,
     });
-    sendToRunCode();
     changeQuestionNavtabActive(2);
+    runbtnStateTrue()
   };
 
   const homeBtn = () => {
     clearRunResult();
     changetestCaseResultNavtabActive(1);
+    runBtnStateChange(false)
   };
 
   if (isProblemLoading) {
@@ -189,14 +198,14 @@ const ProblemPage = () => {
           <div className="flex gap-6 text-[13px] mx-10">
             <button
               onClick={sendToRunCode}
-              className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all text-center"
+              className="bg-[#3d7ef7] border-2 border-blue-800 w-25 rounded-full hover:bg-[#3da3f7] hover:drop-shadow-[0px_0px_10px_#4bb7ff] hover:scale-110 cursor-pointer transition-all flex justify-center items-center"
             >
               {isRunning ? <Loader className="size-6 animate-spin" /> : "Run"}
             </button>
 
             <button
               onClick={sendToSubmitCode}
-              className="bg-green-600 w-25 rounded-full hover:bg-green-500 hover:drop-shadow-[0px_0px_10px_#00ff08] hover:scale-110 cursor-pointer transition-all"
+              className="bg-green-600 w-25 rounded-full hover:bg-green-500 hover:drop-shadow-[0px_0px_10px_#00ff08] hover:scale-110 cursor-pointer transition-all  flex justify-center items-center"
             >
               {isSubmitting ? (
                 <Loader className="size-6 animate-spin" />
@@ -213,15 +222,25 @@ const ProblemPage = () => {
           {/* code editor */}
 
           <div className="h-full ">
-            <Editor
+            {
+              !isLoading?(
+                <Editor
               className="bg-[#1E1E1E] rounded-xl p-2 "
               language={language.toLowerCase()}
               theme="vs-dark"
-              defaultValue={problem?.codeSnippets?.JAVASCRIPT}
-              value={codeSnippit}
+              defaultValue={codeSnippit}
+              value={
+                 submissions[submissions.length-1]?.sourceCode || codeSnippit
+                }
               options={{ minimap: { enabled: false } }}
               onChange={(value) => setCodeSnippit(value || "")}
             />
+              ):(
+                <div className=" flex justify-center items-center h-full">
+                  <Loader color="white" className="size-10 animate-spin" />
+                </div>
+              )
+            }
           </div>
         </div>
         <div
