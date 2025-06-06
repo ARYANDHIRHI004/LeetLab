@@ -4,11 +4,11 @@ import { usePlaylist } from "../Store/usePlaylist";
 
 const QuestionSectionDashBoard = () => {
   const { Events, EventSet } = useActions();
-  const { playlist, isPlaylistLoading, getPlaylistById } = usePlaylist();
+  const { playlist, isPlaylistLoading, getPlaylistById, } = usePlaylist();
 
   useEffect(() => {
     getPlaylistById(Events);
-  }, [getPlaylistById, EventSet]);
+  }, [getPlaylistById, EventSet, ]);
 
   return (
     <div>

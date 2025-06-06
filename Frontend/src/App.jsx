@@ -14,6 +14,8 @@ import Profile from "./components/Profile";
 import SolvedProblems from "./components/SolvedProblems";
 import OrganizationDashboard from "./pages/OrganizationDashboardPage";
 import Events from "./components/Events";
+import CreatePlaylist from "./components/CreatePlaylist";
+import Assignments from "./components/assignments";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -79,6 +81,26 @@ function App() {
               element={
                 authUser && authUser?.role === "ORGANIZATION" ? (
                   <Events />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
+            />
+            <Route
+              path="/create-event"
+              element={
+                authUser && authUser?.role === "ORGANIZATION" ? (
+                  <CreatePlaylist />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
+            />
+            <Route
+              path="/create-assignments"
+              element={
+                authUser && authUser?.role === "ORGANIZATION" ? (
+                  <Assignments />
                 ) : (
                   <Navigate to={"/"} />
                 )

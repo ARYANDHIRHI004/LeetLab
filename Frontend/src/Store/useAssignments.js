@@ -2,16 +2,10 @@ import { create} from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 
-export const usePlaylist = create((set) => ({
-    playlists: [],
-    isPlaylistsLoading: false,
-
-    playlist: null,
-    isPlaylistLoading: false,
+export const useAssignments = create((set) => ({
 
 
-
-    createPlaylist: async(data) => {
+    createAssignment: async(data) => {
         try {
           const res = await axiosInstance.post(`/playlist/create-playlist`, data)
               
@@ -20,7 +14,7 @@ export const usePlaylist = create((set) => ({
 
         }        
     },
-    getAllPlaylist: async() => {
+    getAllAssignments: async() => {
         set({isPlaylistsLoading: true})
         try {
           const res = await axiosInstance.get(`/playlist`)
@@ -34,7 +28,7 @@ export const usePlaylist = create((set) => ({
         }        
     },
 
-    getPlaylistById: async(id) => {
+    getAssignmentsById: async(id) => {
         set({isPlaylistLoading: true})
         try {
           const res = await axiosInstance.get(`/playlist/${id}`)
@@ -46,15 +40,6 @@ export const usePlaylist = create((set) => ({
         }finally{
             set({isPlaylistLoading: false});
         }        
-    },  
-
-    addProblemsInPlaylist: async(data) => {
-        try {
-          const res = await axiosInstance.get(`/playlist/${id}/add-problem`,data)
-              
-        } catch (error) {
-            console.log('error while fetching', error);
-        }   
-    },  
+    },
     
 }))

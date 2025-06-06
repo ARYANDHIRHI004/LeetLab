@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 const OrganizationDashboard = () => {
   const { authUser } = useAuthStore();
-  const { playlists, isPlaylistsLoading, getAllPlaylist } = usePlaylist();
+  const { playlists, isPlaylistsLoading, getAllPlaylist, createPlaylist } = usePlaylist();
 
   useEffect(() => {
     getAllPlaylist();
-  }, [getAllPlaylist]);
+  }, [getAllPlaylist, createPlaylist]);
 
   return (
     <div className="bg-black h-[100vh] text-white pt-19 px-5">
@@ -41,12 +41,17 @@ const OrganizationDashboard = () => {
           </div>
           <div>
             <div className="flex gap-5">
-                <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl">
+                <Link className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl" to={"/create-event"}>
+                    <div>
                     <h2 className="text-2xl">Create Events</h2>
                 </div>
-                <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl">
+                </Link>
+                <Link className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl" to={"/create-assignments"}>
+                    <div>
                     <h2 className="text-2xl">Add Users To Events</h2>
                 </div>
+                </Link>
+                
                 <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh] rounded-2xl flex flex-col gap-3">
                     <div className="bg-[#2c2c2c] p-2 rounded-2xl">
                         <h2 className="text-2xl">Create Questions</h2>
