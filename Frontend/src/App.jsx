@@ -15,7 +15,7 @@ import SolvedProblems from "./components/SolvedProblems";
 import OrganizationDashboard from "./pages/OrganizationDashboardPage";
 import Events from "./components/Events";
 import CreatePlaylist from "./components/CreatePlaylist";
-import Assignments from "./components/assignments";
+import Assignments from "./components/Assignments";
 import PreviouslyAssignedUsers from "./components/PreviouslyAssignedUsers";
 import UserEventSection from "./components/UserEventSection";
 import UserPlaylist from "./components/userPlaylist";
@@ -111,7 +111,7 @@ function App() {
               path="/create-event"
               element={
                 authUser && authUser?.role === "ORGANIZATION" ? (
-                  <CreatePlaylist />
+                  <CreateUserPlaylist />
                 ) : (
                   <Navigate to={"/"} />
                 )
