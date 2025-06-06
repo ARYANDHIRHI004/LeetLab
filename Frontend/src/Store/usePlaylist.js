@@ -14,7 +14,7 @@ export const usePlaylist = create((set) => ({
     createPlaylist: async(data) => {
         try {
           const res = await axiosInstance.post(`/playlist/create-playlist`, data)
-              
+          toast.success(res.data.message)
         } catch (error) {
             console.log('error while fetching', error);
 
@@ -48,10 +48,10 @@ export const usePlaylist = create((set) => ({
         }        
     },  
 
-    addProblemsInPlaylist: async(data) => {
+    addProblemsInPlaylist: async(data, id) => {
         try {
-          const res = await axiosInstance.get(`/playlist/${id}/add-problem`,data)
-              
+          const res = await axiosInstance.post(`/playlist/${id}/add-problem`,data)
+              toast.success(res.data.message)
         } catch (error) {
             console.log('error while fetching', error);
         }   

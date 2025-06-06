@@ -18,6 +18,9 @@ import CreatePlaylist from "./components/CreatePlaylist";
 import Assignments from "./components/assignments";
 import PreviouslyAssignedUsers from "./components/PreviouslyAssignedUsers";
 import UserEventSection from "./components/UserEventSection";
+import UserPlaylist from "./components/userPlaylist";
+import UserPlaylistQuestion from "./components/UserPlaylistQuestion";
+import CreateUserPlaylist from "./components/CreateUserPlaylist";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -59,7 +62,6 @@ function App() {
               path="/signup"
               element={!authUser ? <SignupPage /> : <Navigate to={"/"} />}
             />
-            {/* <Route path='/add-problem' element = {authUser? <AppProblem/>:<Navigate to={"/"}/>}/> */}
             <Route
               path="/profile"
               element={authUser && authUser?.role ==="USER" ? <Profile /> : <Navigate to={"/"} />}
@@ -67,6 +69,18 @@ function App() {
             <Route
               path="/solved-problems"
               element={authUser && authUser?.role ==="USER" ? <SolvedProblems /> : <Navigate to={"/"} />}
+            />
+            <Route
+              path="/playlist"
+              element={authUser && authUser?.role ==="USER" ? <UserPlaylist /> : <Navigate to={"/"} />}
+            />
+            <Route
+              path="/create-playlist"
+              element={authUser && authUser?.role ==="USER" ? <CreateUserPlaylist /> : <Navigate to={"/"} />}
+            />
+            <Route
+              path="/playlist/problems/:playlistId"
+              element={authUser && authUser?.role ==="USER" ? <UserPlaylistQuestion /> : <Navigate to={"/"} />}
             />
 
             <Route

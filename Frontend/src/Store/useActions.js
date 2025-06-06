@@ -10,6 +10,7 @@ export const useActions = create((set) => ({
     DashboardEventSectionNavtabActive: 1,
     selectEvent: false,
     selectParticipants: false,
+    selectWhichQustion: null,
 
 
     changeQuestionNavtabActive:(id) => {
@@ -40,6 +41,11 @@ export const useActions = create((set) => ({
     setselectParticipants:() => {
         set({selectEvent: false})
       set({selectParticipants: true})
+    },
+
+    setselectWhichQustion :(whichQuestion) => {
+        set({selectWhichQustion: whichQuestion})
+
     }
     
     

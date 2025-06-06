@@ -91,6 +91,10 @@ const HomePage = () => {
             )}
           </select>
         </div>
+        <div className="mt-7 mb-5 text-right px-5">
+          <Link to={"/create-playlist"}
+          className="bg-blue-800 p-2 rounded-[5px] text-white">Create PlayList</Link>
+        </div>
         <div>
           {!isProblemsLoading ? (
             filteredProblem.length !== 0 ? (
