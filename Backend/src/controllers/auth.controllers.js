@@ -86,14 +86,14 @@ const loginUser = async (req, res) => {
         eventAssignedTo: {
           include: {
             event: {
-                include:{
-                    problems:{
-                        include:{
-                            problems:true
-                        }
-                    }
-                }
-            }
+              include: {
+                problems: {
+                  include: {
+                    problems: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -163,14 +163,73 @@ const logoutUser = async (req, res) => {
 
 const checkUser = async (req, res) => {
   try {
+    const user = await db.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+      include: {
+        eventAssignedTo: {
+          include: {
+            event: {
+              include: {
+                problems: {
+                  include: {
+                    problems: {
+                      include: {
+                        description: false,
+                        tags: false,
+                        examples: false,
+                        constraints: false,
+                        hints: false,
+                        editoral: false,
+                        testcases: false,
+                        codeSnippets: false,
+                        refrenceSolution: false,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        password: false,
+      },
+    });
+
     res.status(200).json({
       success: true,
       message: "User authorized successfully",
-      user: req.user,
+      user: user,
     });
   } catch (error) {
     console.log(error);
   }
 };
 
-export { registerUser, loginUser, logoutUser, checkUser };
+const getAllUsers = async (req, res) => {
+  try {
+    if (req.user.role !== "ORGANIZATION") {
+      return res.status(409).json({
+        message: "Unauthorized Request",
+      });
+    }
+
+    const allExistingUser = await db.user.findMany();
+
+    if (!allExistingUser) {
+      return res.status(500).json({
+        message: "no any user exist",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "users fetched successfully",
+      allExistingUser,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { registerUser, loginUser, logoutUser, checkUser, getAllUsers };
