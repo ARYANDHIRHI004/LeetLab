@@ -48,6 +48,11 @@ export type Playlist = $Result.DefaultSelection<Prisma.$PlaylistPayload>
  * 
  */
 export type ProblemInPlaylist = $Result.DefaultSelection<Prisma.$ProblemInPlaylistPayload>
+/**
+ * Model EventAssignedTo
+ * 
+ */
+export type EventAssignedTo = $Result.DefaultSelection<Prisma.$EventAssignedToPayload>
 
 /**
  * Enums
@@ -55,7 +60,8 @@ export type ProblemInPlaylist = $Result.DefaultSelection<Prisma.$ProblemInPlayli
 export namespace $Enums {
   export const UserRole: {
   ADMIN: 'ADMIN',
-  USER: 'USER'
+  USER: 'USER',
+  ORGANIZATION: 'ORGANIZATION'
 };
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
@@ -69,6 +75,14 @@ export const Difficulty: {
 
 export type Difficulty = (typeof Difficulty)[keyof typeof Difficulty]
 
+
+export const Mode: {
+  ONLINE: 'ONLINE',
+  OFLINE: 'OFLINE'
+};
+
+export type Mode = (typeof Mode)[keyof typeof Mode]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -78,6 +92,10 @@ export const UserRole: typeof $Enums.UserRole
 export type Difficulty = $Enums.Difficulty
 
 export const Difficulty: typeof $Enums.Difficulty
+
+export type Mode = $Enums.Mode
+
+export const Mode: typeof $Enums.Mode
 
 /**
  * ##  Prisma Client ʲˢ
@@ -273,6 +291,16 @@ export class PrismaClient<
     * ```
     */
   get problemInPlaylist(): Prisma.ProblemInPlaylistDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.eventAssignedTo`: Exposes CRUD operations for the **EventAssignedTo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EventAssignedTos
+    * const eventAssignedTos = await prisma.eventAssignedTo.findMany()
+    * ```
+    */
+  get eventAssignedTo(): Prisma.EventAssignedToDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -719,7 +747,8 @@ export namespace Prisma {
     TestCaseResult: 'TestCaseResult',
     ProblemSolved: 'ProblemSolved',
     Playlist: 'Playlist',
-    ProblemInPlaylist: 'ProblemInPlaylist'
+    ProblemInPlaylist: 'ProblemInPlaylist',
+    EventAssignedTo: 'EventAssignedTo'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -738,7 +767,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "problem" | "submission" | "testCaseResult" | "problemSolved" | "playlist" | "problemInPlaylist"
+      modelProps: "user" | "problem" | "submission" | "testCaseResult" | "problemSolved" | "playlist" | "problemInPlaylist" | "eventAssignedTo"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1260,6 +1289,80 @@ export namespace Prisma {
           }
         }
       }
+      EventAssignedTo: {
+        payload: Prisma.$EventAssignedToPayload<ExtArgs>
+        fields: Prisma.EventAssignedToFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventAssignedToFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventAssignedToFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          findFirst: {
+            args: Prisma.EventAssignedToFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventAssignedToFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          findMany: {
+            args: Prisma.EventAssignedToFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>[]
+          }
+          create: {
+            args: Prisma.EventAssignedToCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          createMany: {
+            args: Prisma.EventAssignedToCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventAssignedToCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>[]
+          }
+          delete: {
+            args: Prisma.EventAssignedToDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          update: {
+            args: Prisma.EventAssignedToUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventAssignedToDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventAssignedToUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventAssignedToUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventAssignedToUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventAssignedToPayload>
+          }
+          aggregate: {
+            args: Prisma.EventAssignedToAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEventAssignedTo>
+          }
+          groupBy: {
+            args: Prisma.EventAssignedToGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventAssignedToGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventAssignedToCountArgs<ExtArgs>
+            result: $Utils.Optional<EventAssignedToCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1351,6 +1454,7 @@ export namespace Prisma {
     problemSolved?: ProblemSolvedOmit
     playlist?: PlaylistOmit
     problemInPlaylist?: ProblemInPlaylistOmit
+    eventAssignedTo?: EventAssignedToOmit
   }
 
   /* Types for Logging */
@@ -1449,6 +1553,7 @@ export namespace Prisma {
     submission: number
     ProblemSolved: number
     Playlist: number
+    eventAssignedTo: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1456,6 +1561,7 @@ export namespace Prisma {
     submission?: boolean | UserCountOutputTypeCountSubmissionArgs
     ProblemSolved?: boolean | UserCountOutputTypeCountProblemSolvedArgs
     Playlist?: boolean | UserCountOutputTypeCountPlaylistArgs
+    eventAssignedTo?: boolean | UserCountOutputTypeCountEventAssignedToArgs
   }
 
   // Custom InputTypes
@@ -1495,6 +1601,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPlaylistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlaylistWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEventAssignedToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventAssignedToWhereInput
   }
 
 
@@ -1584,10 +1697,12 @@ export namespace Prisma {
 
   export type PlaylistCountOutputType = {
     problems: number
+    assignedTo: number
   }
 
   export type PlaylistCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     problems?: boolean | PlaylistCountOutputTypeCountProblemsArgs
+    assignedTo?: boolean | PlaylistCountOutputTypeCountAssignedToArgs
   }
 
   // Custom InputTypes
@@ -1606,6 +1721,13 @@ export namespace Prisma {
    */
   export type PlaylistCountOutputTypeCountProblemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProblemInPlaylistWhereInput
+  }
+
+  /**
+   * PlaylistCountOutputType without action
+   */
+  export type PlaylistCountOutputTypeCountAssignedToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventAssignedToWhereInput
   }
 
 
@@ -1805,6 +1927,7 @@ export namespace Prisma {
     submission?: boolean | User$submissionArgs<ExtArgs>
     ProblemSolved?: boolean | User$ProblemSolvedArgs<ExtArgs>
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
+    eventAssignedTo?: boolean | User$eventAssignedToArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1847,6 +1970,7 @@ export namespace Prisma {
     submission?: boolean | User$submissionArgs<ExtArgs>
     ProblemSolved?: boolean | User$ProblemSolvedArgs<ExtArgs>
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
+    eventAssignedTo?: boolean | User$eventAssignedToArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1859,6 +1983,7 @@ export namespace Prisma {
       submission: Prisma.$SubmissionPayload<ExtArgs>[]
       ProblemSolved: Prisma.$ProblemSolvedPayload<ExtArgs>[]
       Playlist: Prisma.$PlaylistPayload<ExtArgs>[]
+      eventAssignedTo: Prisma.$EventAssignedToPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2267,6 +2392,7 @@ export namespace Prisma {
     submission<T extends User$submissionArgs<ExtArgs> = {}>(args?: Subset<T, User$submissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProblemSolved<T extends User$ProblemSolvedArgs<ExtArgs> = {}>(args?: Subset<T, User$ProblemSolvedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProblemSolvedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Playlist<T extends User$PlaylistArgs<ExtArgs> = {}>(args?: Subset<T, User$PlaylistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaylistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    eventAssignedTo<T extends User$eventAssignedToArgs<ExtArgs> = {}>(args?: Subset<T, User$eventAssignedToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2785,6 +2911,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PlaylistScalarFieldEnum | PlaylistScalarFieldEnum[]
+  }
+
+  /**
+   * User.eventAssignedTo
+   */
+  export type User$eventAssignedToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    where?: EventAssignedToWhereInput
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    cursor?: EventAssignedToWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventAssignedToScalarFieldEnum | EventAssignedToScalarFieldEnum[]
   }
 
   /**
@@ -7546,6 +7696,10 @@ export namespace Prisma {
     name: string | null
     description: string | null
     userId: string | null
+    eventDate: Date | null
+    eventTime: Date | null
+    iaActive: boolean | null
+    mode: $Enums.Mode | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7555,6 +7709,10 @@ export namespace Prisma {
     name: string | null
     description: string | null
     userId: string | null
+    eventDate: Date | null
+    eventTime: Date | null
+    iaActive: boolean | null
+    mode: $Enums.Mode | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7564,6 +7722,10 @@ export namespace Prisma {
     name: number
     description: number
     userId: number
+    eventDate: number
+    eventTime: number
+    iaActive: number
+    mode: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7575,6 +7737,10 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    eventDate?: true
+    eventTime?: true
+    iaActive?: true
+    mode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7584,6 +7750,10 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    eventDate?: true
+    eventTime?: true
+    iaActive?: true
+    mode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7593,6 +7763,10 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    eventDate?: true
+    eventTime?: true
+    iaActive?: true
+    mode?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7675,6 +7849,10 @@ export namespace Prisma {
     name: string
     description: string | null
     userId: string
+    eventDate: Date | null
+    eventTime: Date | null
+    iaActive: boolean | null
+    mode: $Enums.Mode | null
     createdAt: Date
     updatedAt: Date
     _count: PlaylistCountAggregateOutputType | null
@@ -7701,9 +7879,14 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    iaActive?: boolean
+    mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     problems?: boolean | Playlist$problemsArgs<ExtArgs>
+    assignedTo?: boolean | Playlist$assignedToArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PlaylistCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["playlist"]>
@@ -7713,6 +7896,10 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    iaActive?: boolean
+    mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7723,6 +7910,10 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    iaActive?: boolean
+    mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7733,13 +7924,18 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    iaActive?: boolean
+    mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PlaylistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["playlist"]>
+  export type PlaylistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "eventDate" | "eventTime" | "iaActive" | "mode" | "createdAt" | "updatedAt", ExtArgs["result"]["playlist"]>
   export type PlaylistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     problems?: boolean | Playlist$problemsArgs<ExtArgs>
+    assignedTo?: boolean | Playlist$assignedToArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PlaylistCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -7754,6 +7950,7 @@ export namespace Prisma {
     name: "Playlist"
     objects: {
       problems: Prisma.$ProblemInPlaylistPayload<ExtArgs>[]
+      assignedTo: Prisma.$EventAssignedToPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7761,6 +7958,10 @@ export namespace Prisma {
       name: string
       description: string | null
       userId: string
+      eventDate: Date | null
+      eventTime: Date | null
+      iaActive: boolean | null
+      mode: $Enums.Mode | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["playlist"]>
@@ -8158,6 +8359,7 @@ export namespace Prisma {
   export interface Prisma__PlaylistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     problems<T extends Playlist$problemsArgs<ExtArgs> = {}>(args?: Subset<T, Playlist$problemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProblemInPlaylistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    assignedTo<T extends Playlist$assignedToArgs<ExtArgs> = {}>(args?: Subset<T, Playlist$assignedToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8192,6 +8394,10 @@ export namespace Prisma {
     readonly name: FieldRef<"Playlist", 'String'>
     readonly description: FieldRef<"Playlist", 'String'>
     readonly userId: FieldRef<"Playlist", 'String'>
+    readonly eventDate: FieldRef<"Playlist", 'DateTime'>
+    readonly eventTime: FieldRef<"Playlist", 'DateTime'>
+    readonly iaActive: FieldRef<"Playlist", 'Boolean'>
+    readonly mode: FieldRef<"Playlist", 'Mode'>
     readonly createdAt: FieldRef<"Playlist", 'DateTime'>
     readonly updatedAt: FieldRef<"Playlist", 'DateTime'>
   }
@@ -8611,6 +8817,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProblemInPlaylistScalarFieldEnum | ProblemInPlaylistScalarFieldEnum[]
+  }
+
+  /**
+   * Playlist.assignedTo
+   */
+  export type Playlist$assignedToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    where?: EventAssignedToWhereInput
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    cursor?: EventAssignedToWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventAssignedToScalarFieldEnum | EventAssignedToScalarFieldEnum[]
   }
 
   /**
@@ -9699,6 +9929,1085 @@ export namespace Prisma {
 
 
   /**
+   * Model EventAssignedTo
+   */
+
+  export type AggregateEventAssignedTo = {
+    _count: EventAssignedToCountAggregateOutputType | null
+    _min: EventAssignedToMinAggregateOutputType | null
+    _max: EventAssignedToMaxAggregateOutputType | null
+  }
+
+  export type EventAssignedToMinAggregateOutputType = {
+    id: string | null
+    OrganizationId: string | null
+    userId: string | null
+    eventId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EventAssignedToMaxAggregateOutputType = {
+    id: string | null
+    OrganizationId: string | null
+    userId: string | null
+    eventId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EventAssignedToCountAggregateOutputType = {
+    id: number
+    OrganizationId: number
+    userId: number
+    eventId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EventAssignedToMinAggregateInputType = {
+    id?: true
+    OrganizationId?: true
+    userId?: true
+    eventId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EventAssignedToMaxAggregateInputType = {
+    id?: true
+    OrganizationId?: true
+    userId?: true
+    eventId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EventAssignedToCountAggregateInputType = {
+    id?: true
+    OrganizationId?: true
+    userId?: true
+    eventId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EventAssignedToAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventAssignedTo to aggregate.
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventAssignedTos to fetch.
+     */
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventAssignedToWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventAssignedTos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventAssignedTos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EventAssignedTos
+    **/
+    _count?: true | EventAssignedToCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventAssignedToMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventAssignedToMaxAggregateInputType
+  }
+
+  export type GetEventAssignedToAggregateType<T extends EventAssignedToAggregateArgs> = {
+        [P in keyof T & keyof AggregateEventAssignedTo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEventAssignedTo[P]>
+      : GetScalarType<T[P], AggregateEventAssignedTo[P]>
+  }
+
+
+
+
+  export type EventAssignedToGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventAssignedToWhereInput
+    orderBy?: EventAssignedToOrderByWithAggregationInput | EventAssignedToOrderByWithAggregationInput[]
+    by: EventAssignedToScalarFieldEnum[] | EventAssignedToScalarFieldEnum
+    having?: EventAssignedToScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventAssignedToCountAggregateInputType | true
+    _min?: EventAssignedToMinAggregateInputType
+    _max?: EventAssignedToMaxAggregateInputType
+  }
+
+  export type EventAssignedToGroupByOutputType = {
+    id: string
+    OrganizationId: string
+    userId: string
+    eventId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: EventAssignedToCountAggregateOutputType | null
+    _min: EventAssignedToMinAggregateOutputType | null
+    _max: EventAssignedToMaxAggregateOutputType | null
+  }
+
+  type GetEventAssignedToGroupByPayload<T extends EventAssignedToGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventAssignedToGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventAssignedToGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventAssignedToGroupByOutputType[P]>
+            : GetScalarType<T[P], EventAssignedToGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventAssignedToSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    OrganizationId?: boolean
+    userId?: boolean
+    eventId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventAssignedTo"]>
+
+  export type EventAssignedToSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    OrganizationId?: boolean
+    userId?: boolean
+    eventId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventAssignedTo"]>
+
+  export type EventAssignedToSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    OrganizationId?: boolean
+    userId?: boolean
+    eventId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventAssignedTo"]>
+
+  export type EventAssignedToSelectScalar = {
+    id?: boolean
+    OrganizationId?: boolean
+    userId?: boolean
+    eventId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EventAssignedToOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "OrganizationId" | "userId" | "eventId" | "createdAt" | "updatedAt", ExtArgs["result"]["eventAssignedTo"]>
+  export type EventAssignedToInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }
+  export type EventAssignedToIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }
+  export type EventAssignedToIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    event?: boolean | PlaylistDefaultArgs<ExtArgs>
+  }
+
+  export type $EventAssignedToPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EventAssignedTo"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      event: Prisma.$PlaylistPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      OrganizationId: string
+      userId: string
+      eventId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["eventAssignedTo"]>
+    composites: {}
+  }
+
+  type EventAssignedToGetPayload<S extends boolean | null | undefined | EventAssignedToDefaultArgs> = $Result.GetResult<Prisma.$EventAssignedToPayload, S>
+
+  type EventAssignedToCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventAssignedToFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventAssignedToCountAggregateInputType | true
+    }
+
+  export interface EventAssignedToDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EventAssignedTo'], meta: { name: 'EventAssignedTo' } }
+    /**
+     * Find zero or one EventAssignedTo that matches the filter.
+     * @param {EventAssignedToFindUniqueArgs} args - Arguments to find a EventAssignedTo
+     * @example
+     * // Get one EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventAssignedToFindUniqueArgs>(args: SelectSubset<T, EventAssignedToFindUniqueArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EventAssignedTo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventAssignedToFindUniqueOrThrowArgs} args - Arguments to find a EventAssignedTo
+     * @example
+     * // Get one EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventAssignedToFindUniqueOrThrowArgs>(args: SelectSubset<T, EventAssignedToFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventAssignedTo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToFindFirstArgs} args - Arguments to find a EventAssignedTo
+     * @example
+     * // Get one EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventAssignedToFindFirstArgs>(args?: SelectSubset<T, EventAssignedToFindFirstArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventAssignedTo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToFindFirstOrThrowArgs} args - Arguments to find a EventAssignedTo
+     * @example
+     * // Get one EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventAssignedToFindFirstOrThrowArgs>(args?: SelectSubset<T, EventAssignedToFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EventAssignedTos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EventAssignedTos
+     * const eventAssignedTos = await prisma.eventAssignedTo.findMany()
+     * 
+     * // Get first 10 EventAssignedTos
+     * const eventAssignedTos = await prisma.eventAssignedTo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventAssignedToWithIdOnly = await prisma.eventAssignedTo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventAssignedToFindManyArgs>(args?: SelectSubset<T, EventAssignedToFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EventAssignedTo.
+     * @param {EventAssignedToCreateArgs} args - Arguments to create a EventAssignedTo.
+     * @example
+     * // Create one EventAssignedTo
+     * const EventAssignedTo = await prisma.eventAssignedTo.create({
+     *   data: {
+     *     // ... data to create a EventAssignedTo
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventAssignedToCreateArgs>(args: SelectSubset<T, EventAssignedToCreateArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EventAssignedTos.
+     * @param {EventAssignedToCreateManyArgs} args - Arguments to create many EventAssignedTos.
+     * @example
+     * // Create many EventAssignedTos
+     * const eventAssignedTo = await prisma.eventAssignedTo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventAssignedToCreateManyArgs>(args?: SelectSubset<T, EventAssignedToCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EventAssignedTos and returns the data saved in the database.
+     * @param {EventAssignedToCreateManyAndReturnArgs} args - Arguments to create many EventAssignedTos.
+     * @example
+     * // Create many EventAssignedTos
+     * const eventAssignedTo = await prisma.eventAssignedTo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EventAssignedTos and only return the `id`
+     * const eventAssignedToWithIdOnly = await prisma.eventAssignedTo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventAssignedToCreateManyAndReturnArgs>(args?: SelectSubset<T, EventAssignedToCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EventAssignedTo.
+     * @param {EventAssignedToDeleteArgs} args - Arguments to delete one EventAssignedTo.
+     * @example
+     * // Delete one EventAssignedTo
+     * const EventAssignedTo = await prisma.eventAssignedTo.delete({
+     *   where: {
+     *     // ... filter to delete one EventAssignedTo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventAssignedToDeleteArgs>(args: SelectSubset<T, EventAssignedToDeleteArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EventAssignedTo.
+     * @param {EventAssignedToUpdateArgs} args - Arguments to update one EventAssignedTo.
+     * @example
+     * // Update one EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventAssignedToUpdateArgs>(args: SelectSubset<T, EventAssignedToUpdateArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EventAssignedTos.
+     * @param {EventAssignedToDeleteManyArgs} args - Arguments to filter EventAssignedTos to delete.
+     * @example
+     * // Delete a few EventAssignedTos
+     * const { count } = await prisma.eventAssignedTo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventAssignedToDeleteManyArgs>(args?: SelectSubset<T, EventAssignedToDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventAssignedTos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EventAssignedTos
+     * const eventAssignedTo = await prisma.eventAssignedTo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventAssignedToUpdateManyArgs>(args: SelectSubset<T, EventAssignedToUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventAssignedTos and returns the data updated in the database.
+     * @param {EventAssignedToUpdateManyAndReturnArgs} args - Arguments to update many EventAssignedTos.
+     * @example
+     * // Update many EventAssignedTos
+     * const eventAssignedTo = await prisma.eventAssignedTo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EventAssignedTos and only return the `id`
+     * const eventAssignedToWithIdOnly = await prisma.eventAssignedTo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventAssignedToUpdateManyAndReturnArgs>(args: SelectSubset<T, EventAssignedToUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EventAssignedTo.
+     * @param {EventAssignedToUpsertArgs} args - Arguments to update or create a EventAssignedTo.
+     * @example
+     * // Update or create a EventAssignedTo
+     * const eventAssignedTo = await prisma.eventAssignedTo.upsert({
+     *   create: {
+     *     // ... data to create a EventAssignedTo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EventAssignedTo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventAssignedToUpsertArgs>(args: SelectSubset<T, EventAssignedToUpsertArgs<ExtArgs>>): Prisma__EventAssignedToClient<$Result.GetResult<Prisma.$EventAssignedToPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EventAssignedTos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToCountArgs} args - Arguments to filter EventAssignedTos to count.
+     * @example
+     * // Count the number of EventAssignedTos
+     * const count = await prisma.eventAssignedTo.count({
+     *   where: {
+     *     // ... the filter for the EventAssignedTos we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventAssignedToCountArgs>(
+      args?: Subset<T, EventAssignedToCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventAssignedToCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EventAssignedTo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventAssignedToAggregateArgs>(args: Subset<T, EventAssignedToAggregateArgs>): Prisma.PrismaPromise<GetEventAssignedToAggregateType<T>>
+
+    /**
+     * Group by EventAssignedTo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAssignedToGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventAssignedToGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventAssignedToGroupByArgs['orderBy'] }
+        : { orderBy?: EventAssignedToGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventAssignedToGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventAssignedToGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EventAssignedTo model
+   */
+  readonly fields: EventAssignedToFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EventAssignedTo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventAssignedToClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    event<T extends PlaylistDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlaylistDefaultArgs<ExtArgs>>): Prisma__PlaylistClient<$Result.GetResult<Prisma.$PlaylistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EventAssignedTo model
+   */
+  interface EventAssignedToFieldRefs {
+    readonly id: FieldRef<"EventAssignedTo", 'String'>
+    readonly OrganizationId: FieldRef<"EventAssignedTo", 'String'>
+    readonly userId: FieldRef<"EventAssignedTo", 'String'>
+    readonly eventId: FieldRef<"EventAssignedTo", 'String'>
+    readonly createdAt: FieldRef<"EventAssignedTo", 'DateTime'>
+    readonly updatedAt: FieldRef<"EventAssignedTo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EventAssignedTo findUnique
+   */
+  export type EventAssignedToFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter, which EventAssignedTo to fetch.
+     */
+    where: EventAssignedToWhereUniqueInput
+  }
+
+  /**
+   * EventAssignedTo findUniqueOrThrow
+   */
+  export type EventAssignedToFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter, which EventAssignedTo to fetch.
+     */
+    where: EventAssignedToWhereUniqueInput
+  }
+
+  /**
+   * EventAssignedTo findFirst
+   */
+  export type EventAssignedToFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter, which EventAssignedTo to fetch.
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventAssignedTos to fetch.
+     */
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventAssignedTos.
+     */
+    cursor?: EventAssignedToWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventAssignedTos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventAssignedTos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventAssignedTos.
+     */
+    distinct?: EventAssignedToScalarFieldEnum | EventAssignedToScalarFieldEnum[]
+  }
+
+  /**
+   * EventAssignedTo findFirstOrThrow
+   */
+  export type EventAssignedToFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter, which EventAssignedTo to fetch.
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventAssignedTos to fetch.
+     */
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventAssignedTos.
+     */
+    cursor?: EventAssignedToWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventAssignedTos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventAssignedTos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventAssignedTos.
+     */
+    distinct?: EventAssignedToScalarFieldEnum | EventAssignedToScalarFieldEnum[]
+  }
+
+  /**
+   * EventAssignedTo findMany
+   */
+  export type EventAssignedToFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter, which EventAssignedTos to fetch.
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventAssignedTos to fetch.
+     */
+    orderBy?: EventAssignedToOrderByWithRelationInput | EventAssignedToOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EventAssignedTos.
+     */
+    cursor?: EventAssignedToWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventAssignedTos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventAssignedTos.
+     */
+    skip?: number
+    distinct?: EventAssignedToScalarFieldEnum | EventAssignedToScalarFieldEnum[]
+  }
+
+  /**
+   * EventAssignedTo create
+   */
+  export type EventAssignedToCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EventAssignedTo.
+     */
+    data: XOR<EventAssignedToCreateInput, EventAssignedToUncheckedCreateInput>
+  }
+
+  /**
+   * EventAssignedTo createMany
+   */
+  export type EventAssignedToCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EventAssignedTos.
+     */
+    data: EventAssignedToCreateManyInput | EventAssignedToCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventAssignedTo createManyAndReturn
+   */
+  export type EventAssignedToCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * The data used to create many EventAssignedTos.
+     */
+    data: EventAssignedToCreateManyInput | EventAssignedToCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventAssignedTo update
+   */
+  export type EventAssignedToUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EventAssignedTo.
+     */
+    data: XOR<EventAssignedToUpdateInput, EventAssignedToUncheckedUpdateInput>
+    /**
+     * Choose, which EventAssignedTo to update.
+     */
+    where: EventAssignedToWhereUniqueInput
+  }
+
+  /**
+   * EventAssignedTo updateMany
+   */
+  export type EventAssignedToUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EventAssignedTos.
+     */
+    data: XOR<EventAssignedToUpdateManyMutationInput, EventAssignedToUncheckedUpdateManyInput>
+    /**
+     * Filter which EventAssignedTos to update
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * Limit how many EventAssignedTos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventAssignedTo updateManyAndReturn
+   */
+  export type EventAssignedToUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * The data used to update EventAssignedTos.
+     */
+    data: XOR<EventAssignedToUpdateManyMutationInput, EventAssignedToUncheckedUpdateManyInput>
+    /**
+     * Filter which EventAssignedTos to update
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * Limit how many EventAssignedTos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventAssignedTo upsert
+   */
+  export type EventAssignedToUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EventAssignedTo to update in case it exists.
+     */
+    where: EventAssignedToWhereUniqueInput
+    /**
+     * In case the EventAssignedTo found by the `where` argument doesn't exist, create a new EventAssignedTo with this data.
+     */
+    create: XOR<EventAssignedToCreateInput, EventAssignedToUncheckedCreateInput>
+    /**
+     * In case the EventAssignedTo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventAssignedToUpdateInput, EventAssignedToUncheckedUpdateInput>
+  }
+
+  /**
+   * EventAssignedTo delete
+   */
+  export type EventAssignedToDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+    /**
+     * Filter which EventAssignedTo to delete.
+     */
+    where: EventAssignedToWhereUniqueInput
+  }
+
+  /**
+   * EventAssignedTo deleteMany
+   */
+  export type EventAssignedToDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventAssignedTos to delete
+     */
+    where?: EventAssignedToWhereInput
+    /**
+     * Limit how many EventAssignedTos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventAssignedTo without action
+   */
+  export type EventAssignedToDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventAssignedTo
+     */
+    select?: EventAssignedToSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventAssignedTo
+     */
+    omit?: EventAssignedToOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventAssignedToInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9802,6 +11111,10 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     userId: 'userId',
+    eventDate: 'eventDate',
+    eventTime: 'eventTime',
+    iaActive: 'iaActive',
+    mode: 'mode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9818,6 +11131,18 @@ export namespace Prisma {
   };
 
   export type ProblemInPlaylistScalarFieldEnum = (typeof ProblemInPlaylistScalarFieldEnum)[keyof typeof ProblemInPlaylistScalarFieldEnum]
+
+
+  export const EventAssignedToScalarFieldEnum: {
+    id: 'id',
+    OrganizationId: 'OrganizationId',
+    userId: 'userId',
+    eventId: 'eventId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EventAssignedToScalarFieldEnum = (typeof EventAssignedToScalarFieldEnum)[keyof typeof EventAssignedToScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9957,6 +11282,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Mode'
+   */
+  export type EnumModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Mode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Mode[]'
+   */
+  export type ListEnumModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Mode[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -9989,6 +11328,7 @@ export namespace Prisma {
     submission?: SubmissionListRelationFilter
     ProblemSolved?: ProblemSolvedListRelationFilter
     Playlist?: PlaylistListRelationFilter
+    eventAssignedTo?: EventAssignedToListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -10004,6 +11344,7 @@ export namespace Prisma {
     submission?: SubmissionOrderByRelationAggregateInput
     ProblemSolved?: ProblemSolvedOrderByRelationAggregateInput
     Playlist?: PlaylistOrderByRelationAggregateInput
+    eventAssignedTo?: EventAssignedToOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -10022,6 +11363,7 @@ export namespace Prisma {
     submission?: SubmissionListRelationFilter
     ProblemSolved?: ProblemSolvedListRelationFilter
     Playlist?: PlaylistListRelationFilter
+    eventAssignedTo?: EventAssignedToListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -10436,9 +11778,14 @@ export namespace Prisma {
     name?: StringFilter<"Playlist"> | string
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
+    eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    iaActive?: BoolNullableFilter<"Playlist"> | boolean | null
+    mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
     problems?: ProblemInPlaylistListRelationFilter
+    assignedTo?: EventAssignedToListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -10447,9 +11794,14 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
+    eventDate?: SortOrderInput | SortOrder
+    eventTime?: SortOrderInput | SortOrder
+    iaActive?: SortOrderInput | SortOrder
+    mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     problems?: ProblemInPlaylistOrderByRelationAggregateInput
+    assignedTo?: EventAssignedToOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -10462,9 +11814,14 @@ export namespace Prisma {
     name?: StringFilter<"Playlist"> | string
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
+    eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    iaActive?: BoolNullableFilter<"Playlist"> | boolean | null
+    mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
     problems?: ProblemInPlaylistListRelationFilter
+    assignedTo?: EventAssignedToListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "name_userId">
 
@@ -10473,6 +11830,10 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
+    eventDate?: SortOrderInput | SortOrder
+    eventTime?: SortOrderInput | SortOrder
+    iaActive?: SortOrderInput | SortOrder
+    mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PlaylistCountOrderByAggregateInput
@@ -10488,6 +11849,10 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Playlist"> | string
     description?: StringNullableWithAggregatesFilter<"Playlist"> | string | null
     userId?: StringWithAggregatesFilter<"Playlist"> | string
+    eventDate?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
+    eventTime?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
+    iaActive?: BoolNullableWithAggregatesFilter<"Playlist"> | boolean | null
+    mode?: EnumModeNullableWithAggregatesFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeWithAggregatesFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Playlist"> | Date | string
   }
@@ -10551,6 +11916,69 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ProblemInPlaylist"> | Date | string
   }
 
+  export type EventAssignedToWhereInput = {
+    AND?: EventAssignedToWhereInput | EventAssignedToWhereInput[]
+    OR?: EventAssignedToWhereInput[]
+    NOT?: EventAssignedToWhereInput | EventAssignedToWhereInput[]
+    id?: StringFilter<"EventAssignedTo"> | string
+    OrganizationId?: StringFilter<"EventAssignedTo"> | string
+    userId?: StringFilter<"EventAssignedTo"> | string
+    eventId?: StringFilter<"EventAssignedTo"> | string
+    createdAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
+    updatedAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    event?: XOR<PlaylistScalarRelationFilter, PlaylistWhereInput>
+  }
+
+  export type EventAssignedToOrderByWithRelationInput = {
+    id?: SortOrder
+    OrganizationId?: SortOrder
+    userId?: SortOrder
+    eventId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    event?: PlaylistOrderByWithRelationInput
+  }
+
+  export type EventAssignedToWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EventAssignedToWhereInput | EventAssignedToWhereInput[]
+    OR?: EventAssignedToWhereInput[]
+    NOT?: EventAssignedToWhereInput | EventAssignedToWhereInput[]
+    OrganizationId?: StringFilter<"EventAssignedTo"> | string
+    userId?: StringFilter<"EventAssignedTo"> | string
+    eventId?: StringFilter<"EventAssignedTo"> | string
+    createdAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
+    updatedAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    event?: XOR<PlaylistScalarRelationFilter, PlaylistWhereInput>
+  }, "id">
+
+  export type EventAssignedToOrderByWithAggregationInput = {
+    id?: SortOrder
+    OrganizationId?: SortOrder
+    userId?: SortOrder
+    eventId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EventAssignedToCountOrderByAggregateInput
+    _max?: EventAssignedToMaxOrderByAggregateInput
+    _min?: EventAssignedToMinOrderByAggregateInput
+  }
+
+  export type EventAssignedToScalarWhereWithAggregatesInput = {
+    AND?: EventAssignedToScalarWhereWithAggregatesInput | EventAssignedToScalarWhereWithAggregatesInput[]
+    OR?: EventAssignedToScalarWhereWithAggregatesInput[]
+    NOT?: EventAssignedToScalarWhereWithAggregatesInput | EventAssignedToScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EventAssignedTo"> | string
+    OrganizationId?: StringWithAggregatesFilter<"EventAssignedTo"> | string
+    userId?: StringWithAggregatesFilter<"EventAssignedTo"> | string
+    eventId?: StringWithAggregatesFilter<"EventAssignedTo"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"EventAssignedTo"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EventAssignedTo"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -10564,6 +11992,7 @@ export namespace Prisma {
     submission?: SubmissionCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -10579,6 +12008,7 @@ export namespace Prisma {
     submission?: SubmissionUncheckedCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -10594,6 +12024,7 @@ export namespace Prisma {
     submission?: SubmissionUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -10609,6 +12040,7 @@ export namespace Prisma {
     submission?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11071,9 +12503,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
     problems?: ProblemInPlaylistCreateNestedManyWithoutPlaylistInput
+    assignedTo?: EventAssignedToCreateNestedManyWithoutEventInput
     user: UserCreateNestedOneWithoutPlaylistInput
   }
 
@@ -11082,18 +12519,28 @@ export namespace Prisma {
     name: string
     description?: string | null
     userId: string
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
     problems?: ProblemInPlaylistUncheckedCreateNestedManyWithoutPlaylistInput
+    assignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutEventInput
   }
 
   export type PlaylistUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     problems?: ProblemInPlaylistUpdateManyWithoutPlaylistNestedInput
+    assignedTo?: EventAssignedToUpdateManyWithoutEventNestedInput
     user?: UserUpdateOneRequiredWithoutPlaylistNestedInput
   }
 
@@ -11102,9 +12549,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     problems?: ProblemInPlaylistUncheckedUpdateManyWithoutPlaylistNestedInput
+    assignedTo?: EventAssignedToUncheckedUpdateManyWithoutEventNestedInput
   }
 
   export type PlaylistCreateManyInput = {
@@ -11112,6 +12564,10 @@ export namespace Prisma {
     name: string
     description?: string | null
     userId: string
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11120,6 +12576,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11129,6 +12589,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11183,6 +12647,67 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     playListId?: StringFieldUpdateOperationsInput | string
     problemId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToCreateInput = {
+    id?: string
+    OrganizationId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutEventAssignedToInput
+    event: PlaylistCreateNestedOneWithoutAssignedToInput
+  }
+
+  export type EventAssignedToUncheckedCreateInput = {
+    id?: string
+    OrganizationId: string
+    userId: string
+    eventId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventAssignedToUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEventAssignedToNestedInput
+    event?: PlaylistUpdateOneRequiredWithoutAssignedToNestedInput
+  }
+
+  export type EventAssignedToUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToCreateManyInput = {
+    id?: string
+    OrganizationId: string
+    userId: string
+    eventId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventAssignedToUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11259,6 +12784,12 @@ export namespace Prisma {
     none?: PlaylistWhereInput
   }
 
+  export type EventAssignedToListRelationFilter = {
+    every?: EventAssignedToWhereInput
+    some?: EventAssignedToWhereInput
+    none?: EventAssignedToWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -11277,6 +12808,10 @@ export namespace Prisma {
   }
 
   export type PlaylistOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EventAssignedToOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11700,6 +13235,29 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type EnumModeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Mode | EnumModeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumModeNullableFilter<$PrismaModel> | $Enums.Mode | null
+  }
+
   export type PlaylistNameUserIdCompoundUniqueInput = {
     name: string
     userId: string
@@ -11710,6 +13268,10 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    iaActive?: SortOrder
+    mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11719,6 +13281,10 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    iaActive?: SortOrder
+    mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11728,8 +13294,44 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    iaActive?: SortOrder
+    mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type EnumModeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Mode | EnumModeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumModeNullableWithAggregatesFilter<$PrismaModel> | $Enums.Mode | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumModeNullableFilter<$PrismaModel>
+    _max?: NestedEnumModeNullableFilter<$PrismaModel>
   }
 
   export type PlaylistScalarRelationFilter = {
@@ -11766,6 +13368,33 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EventAssignedToCountOrderByAggregateInput = {
+    id?: SortOrder
+    OrganizationId?: SortOrder
+    userId?: SortOrder
+    eventId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventAssignedToMaxOrderByAggregateInput = {
+    id?: SortOrder
+    OrganizationId?: SortOrder
+    userId?: SortOrder
+    eventId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventAssignedToMinOrderByAggregateInput = {
+    id?: SortOrder
+    OrganizationId?: SortOrder
+    userId?: SortOrder
+    eventId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type ProblemCreateNestedManyWithoutUserInput = {
     create?: XOR<ProblemCreateWithoutUserInput, ProblemUncheckedCreateWithoutUserInput> | ProblemCreateWithoutUserInput[] | ProblemUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProblemCreateOrConnectWithoutUserInput | ProblemCreateOrConnectWithoutUserInput[]
@@ -11794,6 +13423,13 @@ export namespace Prisma {
     connect?: PlaylistWhereUniqueInput | PlaylistWhereUniqueInput[]
   }
 
+  export type EventAssignedToCreateNestedManyWithoutUserInput = {
+    create?: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput> | EventAssignedToCreateWithoutUserInput[] | EventAssignedToUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutUserInput | EventAssignedToCreateOrConnectWithoutUserInput[]
+    createMany?: EventAssignedToCreateManyUserInputEnvelope
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+  }
+
   export type ProblemUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProblemCreateWithoutUserInput, ProblemUncheckedCreateWithoutUserInput> | ProblemCreateWithoutUserInput[] | ProblemUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProblemCreateOrConnectWithoutUserInput | ProblemCreateOrConnectWithoutUserInput[]
@@ -11820,6 +13456,13 @@ export namespace Prisma {
     connectOrCreate?: PlaylistCreateOrConnectWithoutUserInput | PlaylistCreateOrConnectWithoutUserInput[]
     createMany?: PlaylistCreateManyUserInputEnvelope
     connect?: PlaylistWhereUniqueInput | PlaylistWhereUniqueInput[]
+  }
+
+  export type EventAssignedToUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput> | EventAssignedToCreateWithoutUserInput[] | EventAssignedToUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutUserInput | EventAssignedToCreateOrConnectWithoutUserInput[]
+    createMany?: EventAssignedToCreateManyUserInputEnvelope
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11894,6 +13537,20 @@ export namespace Prisma {
     deleteMany?: PlaylistScalarWhereInput | PlaylistScalarWhereInput[]
   }
 
+  export type EventAssignedToUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput> | EventAssignedToCreateWithoutUserInput[] | EventAssignedToUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutUserInput | EventAssignedToCreateOrConnectWithoutUserInput[]
+    upsert?: EventAssignedToUpsertWithWhereUniqueWithoutUserInput | EventAssignedToUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EventAssignedToCreateManyUserInputEnvelope
+    set?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    disconnect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    delete?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    update?: EventAssignedToUpdateWithWhereUniqueWithoutUserInput | EventAssignedToUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EventAssignedToUpdateManyWithWhereWithoutUserInput | EventAssignedToUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
+  }
+
   export type ProblemUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProblemCreateWithoutUserInput, ProblemUncheckedCreateWithoutUserInput> | ProblemCreateWithoutUserInput[] | ProblemUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProblemCreateOrConnectWithoutUserInput | ProblemCreateOrConnectWithoutUserInput[]
@@ -11948,6 +13605,20 @@ export namespace Prisma {
     update?: PlaylistUpdateWithWhereUniqueWithoutUserInput | PlaylistUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PlaylistUpdateManyWithWhereWithoutUserInput | PlaylistUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PlaylistScalarWhereInput | PlaylistScalarWhereInput[]
+  }
+
+  export type EventAssignedToUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput> | EventAssignedToCreateWithoutUserInput[] | EventAssignedToUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutUserInput | EventAssignedToCreateOrConnectWithoutUserInput[]
+    upsert?: EventAssignedToUpsertWithWhereUniqueWithoutUserInput | EventAssignedToUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EventAssignedToCreateManyUserInputEnvelope
+    set?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    disconnect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    delete?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    update?: EventAssignedToUpdateWithWhereUniqueWithoutUserInput | EventAssignedToUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EventAssignedToUpdateManyWithWhereWithoutUserInput | EventAssignedToUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
   }
 
   export type ProblemCreatetagsInput = {
@@ -12234,6 +13905,13 @@ export namespace Prisma {
     connect?: ProblemInPlaylistWhereUniqueInput | ProblemInPlaylistWhereUniqueInput[]
   }
 
+  export type EventAssignedToCreateNestedManyWithoutEventInput = {
+    create?: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput> | EventAssignedToCreateWithoutEventInput[] | EventAssignedToUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutEventInput | EventAssignedToCreateOrConnectWithoutEventInput[]
+    createMany?: EventAssignedToCreateManyEventInputEnvelope
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutPlaylistInput = {
     create?: XOR<UserCreateWithoutPlaylistInput, UserUncheckedCreateWithoutPlaylistInput>
     connectOrCreate?: UserCreateOrConnectWithoutPlaylistInput
@@ -12245,6 +13923,25 @@ export namespace Prisma {
     connectOrCreate?: ProblemInPlaylistCreateOrConnectWithoutPlaylistInput | ProblemInPlaylistCreateOrConnectWithoutPlaylistInput[]
     createMany?: ProblemInPlaylistCreateManyPlaylistInputEnvelope
     connect?: ProblemInPlaylistWhereUniqueInput | ProblemInPlaylistWhereUniqueInput[]
+  }
+
+  export type EventAssignedToUncheckedCreateNestedManyWithoutEventInput = {
+    create?: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput> | EventAssignedToCreateWithoutEventInput[] | EventAssignedToUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutEventInput | EventAssignedToCreateOrConnectWithoutEventInput[]
+    createMany?: EventAssignedToCreateManyEventInputEnvelope
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type NullableEnumModeFieldUpdateOperationsInput = {
+    set?: $Enums.Mode | null
   }
 
   export type ProblemInPlaylistUpdateManyWithoutPlaylistNestedInput = {
@@ -12259,6 +13956,20 @@ export namespace Prisma {
     update?: ProblemInPlaylistUpdateWithWhereUniqueWithoutPlaylistInput | ProblemInPlaylistUpdateWithWhereUniqueWithoutPlaylistInput[]
     updateMany?: ProblemInPlaylistUpdateManyWithWhereWithoutPlaylistInput | ProblemInPlaylistUpdateManyWithWhereWithoutPlaylistInput[]
     deleteMany?: ProblemInPlaylistScalarWhereInput | ProblemInPlaylistScalarWhereInput[]
+  }
+
+  export type EventAssignedToUpdateManyWithoutEventNestedInput = {
+    create?: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput> | EventAssignedToCreateWithoutEventInput[] | EventAssignedToUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutEventInput | EventAssignedToCreateOrConnectWithoutEventInput[]
+    upsert?: EventAssignedToUpsertWithWhereUniqueWithoutEventInput | EventAssignedToUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: EventAssignedToCreateManyEventInputEnvelope
+    set?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    disconnect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    delete?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    update?: EventAssignedToUpdateWithWhereUniqueWithoutEventInput | EventAssignedToUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: EventAssignedToUpdateManyWithWhereWithoutEventInput | EventAssignedToUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPlaylistNestedInput = {
@@ -12281,6 +13992,20 @@ export namespace Prisma {
     update?: ProblemInPlaylistUpdateWithWhereUniqueWithoutPlaylistInput | ProblemInPlaylistUpdateWithWhereUniqueWithoutPlaylistInput[]
     updateMany?: ProblemInPlaylistUpdateManyWithWhereWithoutPlaylistInput | ProblemInPlaylistUpdateManyWithWhereWithoutPlaylistInput[]
     deleteMany?: ProblemInPlaylistScalarWhereInput | ProblemInPlaylistScalarWhereInput[]
+  }
+
+  export type EventAssignedToUncheckedUpdateManyWithoutEventNestedInput = {
+    create?: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput> | EventAssignedToCreateWithoutEventInput[] | EventAssignedToUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventAssignedToCreateOrConnectWithoutEventInput | EventAssignedToCreateOrConnectWithoutEventInput[]
+    upsert?: EventAssignedToUpsertWithWhereUniqueWithoutEventInput | EventAssignedToUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: EventAssignedToCreateManyEventInputEnvelope
+    set?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    disconnect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    delete?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    connect?: EventAssignedToWhereUniqueInput | EventAssignedToWhereUniqueInput[]
+    update?: EventAssignedToUpdateWithWhereUniqueWithoutEventInput | EventAssignedToUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: EventAssignedToUpdateManyWithWhereWithoutEventInput | EventAssignedToUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
   }
 
   export type PlaylistCreateNestedOneWithoutProblemsInput = {
@@ -12309,6 +14034,34 @@ export namespace Prisma {
     upsert?: ProblemUpsertWithoutPlaylistInput
     connect?: ProblemWhereUniqueInput
     update?: XOR<XOR<ProblemUpdateToOneWithWhereWithoutPlaylistInput, ProblemUpdateWithoutPlaylistInput>, ProblemUncheckedUpdateWithoutPlaylistInput>
+  }
+
+  export type UserCreateNestedOneWithoutEventAssignedToInput = {
+    create?: XOR<UserCreateWithoutEventAssignedToInput, UserUncheckedCreateWithoutEventAssignedToInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEventAssignedToInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PlaylistCreateNestedOneWithoutAssignedToInput = {
+    create?: XOR<PlaylistCreateWithoutAssignedToInput, PlaylistUncheckedCreateWithoutAssignedToInput>
+    connectOrCreate?: PlaylistCreateOrConnectWithoutAssignedToInput
+    connect?: PlaylistWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutEventAssignedToNestedInput = {
+    create?: XOR<UserCreateWithoutEventAssignedToInput, UserUncheckedCreateWithoutEventAssignedToInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEventAssignedToInput
+    upsert?: UserUpsertWithoutEventAssignedToInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEventAssignedToInput, UserUpdateWithoutEventAssignedToInput>, UserUncheckedUpdateWithoutEventAssignedToInput>
+  }
+
+  export type PlaylistUpdateOneRequiredWithoutAssignedToNestedInput = {
+    create?: XOR<PlaylistCreateWithoutAssignedToInput, PlaylistUncheckedCreateWithoutAssignedToInput>
+    connectOrCreate?: PlaylistCreateOrConnectWithoutAssignedToInput
+    upsert?: PlaylistUpsertWithoutAssignedToInput
+    connect?: PlaylistWhereUniqueInput
+    update?: XOR<XOR<PlaylistUpdateToOneWithWhereWithoutAssignedToInput, PlaylistUpdateWithoutAssignedToInput>, PlaylistUncheckedUpdateWithoutAssignedToInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12517,6 +14270,61 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedEnumModeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Mode | EnumModeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumModeNullableFilter<$PrismaModel> | $Enums.Mode | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumModeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Mode | EnumModeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Mode[] | ListEnumModeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumModeNullableWithAggregatesFilter<$PrismaModel> | $Enums.Mode | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumModeNullableFilter<$PrismaModel>
+    _max?: NestedEnumModeNullableFilter<$PrismaModel>
+  }
+
   export type ProblemCreateWithoutUserInput = {
     id?: string
     title: string
@@ -12639,18 +14447,28 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
     problems?: ProblemInPlaylistCreateNestedManyWithoutPlaylistInput
+    assignedTo?: EventAssignedToCreateNestedManyWithoutEventInput
   }
 
   export type PlaylistUncheckedCreateWithoutUserInput = {
     id?: string
     name: string
     description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
     problems?: ProblemInPlaylistUncheckedCreateNestedManyWithoutPlaylistInput
+    assignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutEventInput
   }
 
   export type PlaylistCreateOrConnectWithoutUserInput = {
@@ -12660,6 +14478,32 @@ export namespace Prisma {
 
   export type PlaylistCreateManyUserInputEnvelope = {
     data: PlaylistCreateManyUserInput | PlaylistCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventAssignedToCreateWithoutUserInput = {
+    id?: string
+    OrganizationId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    event: PlaylistCreateNestedOneWithoutAssignedToInput
+  }
+
+  export type EventAssignedToUncheckedCreateWithoutUserInput = {
+    id?: string
+    OrganizationId: string
+    eventId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventAssignedToCreateOrConnectWithoutUserInput = {
+    where: EventAssignedToWhereUniqueInput
+    create: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput>
+  }
+
+  export type EventAssignedToCreateManyUserInputEnvelope = {
+    data: EventAssignedToCreateManyUserInput | EventAssignedToCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -12787,8 +14631,40 @@ export namespace Prisma {
     name?: StringFilter<"Playlist"> | string
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
+    eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    iaActive?: BoolNullableFilter<"Playlist"> | boolean | null
+    mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
+  }
+
+  export type EventAssignedToUpsertWithWhereUniqueWithoutUserInput = {
+    where: EventAssignedToWhereUniqueInput
+    update: XOR<EventAssignedToUpdateWithoutUserInput, EventAssignedToUncheckedUpdateWithoutUserInput>
+    create: XOR<EventAssignedToCreateWithoutUserInput, EventAssignedToUncheckedCreateWithoutUserInput>
+  }
+
+  export type EventAssignedToUpdateWithWhereUniqueWithoutUserInput = {
+    where: EventAssignedToWhereUniqueInput
+    data: XOR<EventAssignedToUpdateWithoutUserInput, EventAssignedToUncheckedUpdateWithoutUserInput>
+  }
+
+  export type EventAssignedToUpdateManyWithWhereWithoutUserInput = {
+    where: EventAssignedToScalarWhereInput
+    data: XOR<EventAssignedToUpdateManyMutationInput, EventAssignedToUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type EventAssignedToScalarWhereInput = {
+    AND?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
+    OR?: EventAssignedToScalarWhereInput[]
+    NOT?: EventAssignedToScalarWhereInput | EventAssignedToScalarWhereInput[]
+    id?: StringFilter<"EventAssignedTo"> | string
+    OrganizationId?: StringFilter<"EventAssignedTo"> | string
+    userId?: StringFilter<"EventAssignedTo"> | string
+    eventId?: StringFilter<"EventAssignedTo"> | string
+    createdAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
+    updatedAt?: DateTimeFilter<"EventAssignedTo"> | Date | string
   }
 
   export type UserCreateWithoutProblemsInput = {
@@ -12803,6 +14679,7 @@ export namespace Prisma {
     submission?: SubmissionCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProblemsInput = {
@@ -12817,6 +14694,7 @@ export namespace Prisma {
     submission?: SubmissionUncheckedCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProblemsInput = {
@@ -12939,6 +14817,7 @@ export namespace Prisma {
     submission?: SubmissionUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProblemsInput = {
@@ -12953,6 +14832,7 @@ export namespace Prisma {
     submission?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SubmissionUpsertWithWhereUniqueWithoutProblemInput = {
@@ -13026,6 +14906,7 @@ export namespace Prisma {
     problems?: ProblemCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubmissionInput = {
@@ -13040,6 +14921,7 @@ export namespace Prisma {
     problems?: ProblemUncheckedCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubmissionInput = {
@@ -13155,6 +15037,7 @@ export namespace Prisma {
     problems?: ProblemUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubmissionInput = {
@@ -13169,6 +15052,7 @@ export namespace Prisma {
     problems?: ProblemUncheckedUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProblemUpsertWithoutSubmissionInput = {
@@ -13353,6 +15237,7 @@ export namespace Prisma {
     problems?: ProblemCreateNestedManyWithoutUserInput
     submission?: SubmissionCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProblemSolvedInput = {
@@ -13367,6 +15252,7 @@ export namespace Prisma {
     problems?: ProblemUncheckedCreateNestedManyWithoutUserInput
     submission?: SubmissionUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProblemSolvedInput = {
@@ -13442,6 +15328,7 @@ export namespace Prisma {
     problems?: ProblemUpdateManyWithoutUserNestedInput
     submission?: SubmissionUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProblemSolvedInput = {
@@ -13456,6 +15343,7 @@ export namespace Prisma {
     problems?: ProblemUncheckedUpdateManyWithoutUserNestedInput
     submission?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProblemUpsertWithoutSolvedByInput = {
@@ -13533,6 +15421,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EventAssignedToCreateWithoutEventInput = {
+    id?: string
+    OrganizationId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutEventAssignedToInput
+  }
+
+  export type EventAssignedToUncheckedCreateWithoutEventInput = {
+    id?: string
+    OrganizationId: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventAssignedToCreateOrConnectWithoutEventInput = {
+    where: EventAssignedToWhereUniqueInput
+    create: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput>
+  }
+
+  export type EventAssignedToCreateManyEventInputEnvelope = {
+    data: EventAssignedToCreateManyEventInput | EventAssignedToCreateManyEventInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserCreateWithoutPlaylistInput = {
     id?: string
     name?: string | null
@@ -13545,6 +15459,7 @@ export namespace Prisma {
     problems?: ProblemCreateNestedManyWithoutUserInput
     submission?: SubmissionCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlaylistInput = {
@@ -13559,6 +15474,7 @@ export namespace Prisma {
     problems?: ProblemUncheckedCreateNestedManyWithoutUserInput
     submission?: SubmissionUncheckedCreateNestedManyWithoutUserInput
     ProblemSolved?: ProblemSolvedUncheckedCreateNestedManyWithoutUserInput
+    eventAssignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlaylistInput = {
@@ -13580,6 +15496,22 @@ export namespace Prisma {
   export type ProblemInPlaylistUpdateManyWithWhereWithoutPlaylistInput = {
     where: ProblemInPlaylistScalarWhereInput
     data: XOR<ProblemInPlaylistUpdateManyMutationInput, ProblemInPlaylistUncheckedUpdateManyWithoutPlaylistInput>
+  }
+
+  export type EventAssignedToUpsertWithWhereUniqueWithoutEventInput = {
+    where: EventAssignedToWhereUniqueInput
+    update: XOR<EventAssignedToUpdateWithoutEventInput, EventAssignedToUncheckedUpdateWithoutEventInput>
+    create: XOR<EventAssignedToCreateWithoutEventInput, EventAssignedToUncheckedCreateWithoutEventInput>
+  }
+
+  export type EventAssignedToUpdateWithWhereUniqueWithoutEventInput = {
+    where: EventAssignedToWhereUniqueInput
+    data: XOR<EventAssignedToUpdateWithoutEventInput, EventAssignedToUncheckedUpdateWithoutEventInput>
+  }
+
+  export type EventAssignedToUpdateManyWithWhereWithoutEventInput = {
+    where: EventAssignedToScalarWhereInput
+    data: XOR<EventAssignedToUpdateManyMutationInput, EventAssignedToUncheckedUpdateManyWithoutEventInput>
   }
 
   export type UserUpsertWithoutPlaylistInput = {
@@ -13605,6 +15537,7 @@ export namespace Prisma {
     problems?: ProblemUpdateManyWithoutUserNestedInput
     submission?: SubmissionUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlaylistInput = {
@@ -13619,14 +15552,20 @@ export namespace Prisma {
     problems?: ProblemUncheckedUpdateManyWithoutUserNestedInput
     submission?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
     ProblemSolved?: ProblemSolvedUncheckedUpdateManyWithoutUserNestedInput
+    eventAssignedTo?: EventAssignedToUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PlaylistCreateWithoutProblemsInput = {
     id?: string
     name: string
     description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    assignedTo?: EventAssignedToCreateNestedManyWithoutEventInput
     user: UserCreateNestedOneWithoutPlaylistInput
   }
 
@@ -13635,8 +15574,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     userId: string
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    assignedTo?: EventAssignedToUncheckedCreateNestedManyWithoutEventInput
   }
 
   export type PlaylistCreateOrConnectWithoutProblemsInput = {
@@ -13704,8 +15648,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedTo?: EventAssignedToUpdateManyWithoutEventNestedInput
     user?: UserUpdateOneRequiredWithoutPlaylistNestedInput
   }
 
@@ -13714,8 +15663,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedTo?: EventAssignedToUncheckedUpdateManyWithoutEventNestedInput
   }
 
   export type ProblemUpsertWithoutPlaylistInput = {
@@ -13769,6 +15723,154 @@ export namespace Prisma {
     solvedBy?: ProblemSolvedUncheckedUpdateManyWithoutProblemNestedInput
   }
 
+  export type UserCreateWithoutEventAssignedToInput = {
+    id?: string
+    name?: string | null
+    email: string
+    image?: string | null
+    role?: $Enums.UserRole
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    problems?: ProblemCreateNestedManyWithoutUserInput
+    submission?: SubmissionCreateNestedManyWithoutUserInput
+    ProblemSolved?: ProblemSolvedCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEventAssignedToInput = {
+    id?: string
+    name?: string | null
+    email: string
+    image?: string | null
+    role?: $Enums.UserRole
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    problems?: ProblemUncheckedCreateNestedManyWithoutUserInput
+    submission?: SubmissionUncheckedCreateNestedManyWithoutUserInput
+    ProblemSolved?: ProblemSolvedUncheckedCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEventAssignedToInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEventAssignedToInput, UserUncheckedCreateWithoutEventAssignedToInput>
+  }
+
+  export type PlaylistCreateWithoutAssignedToInput = {
+    id?: string
+    name: string
+    description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    problems?: ProblemInPlaylistCreateNestedManyWithoutPlaylistInput
+    user: UserCreateNestedOneWithoutPlaylistInput
+  }
+
+  export type PlaylistUncheckedCreateWithoutAssignedToInput = {
+    id?: string
+    name: string
+    description?: string | null
+    userId: string
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    problems?: ProblemInPlaylistUncheckedCreateNestedManyWithoutPlaylistInput
+  }
+
+  export type PlaylistCreateOrConnectWithoutAssignedToInput = {
+    where: PlaylistWhereUniqueInput
+    create: XOR<PlaylistCreateWithoutAssignedToInput, PlaylistUncheckedCreateWithoutAssignedToInput>
+  }
+
+  export type UserUpsertWithoutEventAssignedToInput = {
+    update: XOR<UserUpdateWithoutEventAssignedToInput, UserUncheckedUpdateWithoutEventAssignedToInput>
+    create: XOR<UserCreateWithoutEventAssignedToInput, UserUncheckedCreateWithoutEventAssignedToInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEventAssignedToInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEventAssignedToInput, UserUncheckedUpdateWithoutEventAssignedToInput>
+  }
+
+  export type UserUpdateWithoutEventAssignedToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    problems?: ProblemUpdateManyWithoutUserNestedInput
+    submission?: SubmissionUpdateManyWithoutUserNestedInput
+    ProblemSolved?: ProblemSolvedUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEventAssignedToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    problems?: ProblemUncheckedUpdateManyWithoutUserNestedInput
+    submission?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
+    ProblemSolved?: ProblemSolvedUncheckedUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PlaylistUpsertWithoutAssignedToInput = {
+    update: XOR<PlaylistUpdateWithoutAssignedToInput, PlaylistUncheckedUpdateWithoutAssignedToInput>
+    create: XOR<PlaylistCreateWithoutAssignedToInput, PlaylistUncheckedCreateWithoutAssignedToInput>
+    where?: PlaylistWhereInput
+  }
+
+  export type PlaylistUpdateToOneWithWhereWithoutAssignedToInput = {
+    where?: PlaylistWhereInput
+    data: XOR<PlaylistUpdateWithoutAssignedToInput, PlaylistUncheckedUpdateWithoutAssignedToInput>
+  }
+
+  export type PlaylistUpdateWithoutAssignedToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    problems?: ProblemInPlaylistUpdateManyWithoutPlaylistNestedInput
+    user?: UserUpdateOneRequiredWithoutPlaylistNestedInput
+  }
+
+  export type PlaylistUncheckedUpdateWithoutAssignedToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    problems?: ProblemInPlaylistUncheckedUpdateManyWithoutPlaylistNestedInput
+  }
+
   export type ProblemCreateManyUserInput = {
     id?: string
     title: string
@@ -13813,6 +15915,18 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    eventDate?: Date | string | null
+    eventTime?: Date | string | null
+    iaActive?: boolean | null
+    mode?: $Enums.Mode | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventAssignedToCreateManyUserInput = {
+    id?: string
+    OrganizationId: string
+    eventId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13949,24 +16063,62 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     problems?: ProblemInPlaylistUpdateManyWithoutPlaylistNestedInput
+    assignedTo?: EventAssignedToUpdateManyWithoutEventNestedInput
   }
 
   export type PlaylistUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     problems?: ProblemInPlaylistUncheckedUpdateManyWithoutPlaylistNestedInput
+    assignedTo?: EventAssignedToUncheckedUpdateManyWithoutEventNestedInput
   }
 
   export type PlaylistUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    iaActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    event?: PlaylistUpdateOneRequiredWithoutAssignedToNestedInput
+  }
+
+  export type EventAssignedToUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14160,6 +16312,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type EventAssignedToCreateManyEventInput = {
+    id?: string
+    OrganizationId: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProblemInPlaylistUpdateWithoutPlaylistInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14177,6 +16337,30 @@ export namespace Prisma {
   export type ProblemInPlaylistUncheckedUpdateManyWithoutPlaylistInput = {
     id?: StringFieldUpdateOperationsInput | string
     problemId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEventAssignedToNestedInput
+  }
+
+  export type EventAssignedToUncheckedUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventAssignedToUncheckedUpdateManyWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    OrganizationId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

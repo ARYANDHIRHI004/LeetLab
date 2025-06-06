@@ -192,6 +192,10 @@ exports.Prisma.PlaylistScalarFieldEnum = {
   name: 'name',
   description: 'description',
   userId: 'userId',
+  eventDate: 'eventDate',
+  eventTime: 'eventTime',
+  iaActive: 'iaActive',
+  mode: 'mode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -200,6 +204,15 @@ exports.Prisma.ProblemInPlaylistScalarFieldEnum = {
   id: 'id',
   playListId: 'playListId',
   problemId: 'problemId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EventAssignedToScalarFieldEnum = {
+  id: 'id',
+  OrganizationId: 'OrganizationId',
+  userId: 'userId',
+  eventId: 'eventId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -230,13 +243,19 @@ exports.Prisma.JsonNullValueFilter = {
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
-  USER: 'USER'
+  USER: 'USER',
+  ORGANIZATION: 'ORGANIZATION'
 };
 
 exports.Difficulty = exports.$Enums.Difficulty = {
   EASY: 'EASY',
   MEDIUM: 'MEDIUM',
   HARD: 'HARD'
+};
+
+exports.Mode = exports.$Enums.Mode = {
+  ONLINE: 'ONLINE',
+  OFLINE: 'OFLINE'
 };
 
 exports.Prisma.ModelName = {
@@ -246,7 +265,8 @@ exports.Prisma.ModelName = {
   TestCaseResult: 'TestCaseResult',
   ProblemSolved: 'ProblemSolved',
   Playlist: 'Playlist',
-  ProblemInPlaylist: 'ProblemInPlaylist'
+  ProblemInPlaylist: 'ProblemInPlaylist',
+  EventAssignedTo: 'EventAssignedTo'
 };
 
 /**
