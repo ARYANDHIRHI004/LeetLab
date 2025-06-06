@@ -30,7 +30,7 @@ export const usePlaylist = create((set) => ({
         try {
           const res = await axiosInstance.get(`/playlist/${id}`)
               
-          set({playlist: res.data.playLists})
+          set({playlist: res.data.playlist})
         } catch (error) {
             console.log('error while fetching', error);
             set({isPlaylistLoading: false})
@@ -39,7 +39,7 @@ export const usePlaylist = create((set) => ({
         }        
     },  
 
-    getPlaylistById: async(data) => {
+    addProblemsInPlaylist: async(data) => {
         try {
           const res = await axiosInstance.get(`/playlist/${id}/add-problem`,data)
               

@@ -7,19 +7,29 @@ export const useActions = create((set) => ({
     testCaseResultNavTabActive: 1,
     runbtnState: false,
 
+    Events: null,
+
+    DashboardEventSectionNavtabActive: 1,
+
 
     changeQuestionNavtabActive:(id) => {
         set({qustionNavTabsActive: id})
     },
 
     changetestCaseResultNavtabActive:(id) => {
-        set({testCaseResultNavTabActive: id})
-        
+        set({testCaseResultNavTabActive: id})    
     },
-
+    
     runBtnStateChange:(ChangedState) => {
-        set({runbtnState: ChangedState})
-        
+        set({runbtnState: ChangedState})      
+    },
+    
+    DashboardEventSectionNavtabActiveChange:(id) => {
+        set({DashboardEventSectionNavtabActive: id})    
+    },
+    
+    EventSet:(id) => {
+        set({Events: id})    
     },
     
     

@@ -1,6 +1,9 @@
 import DescriptionSection from "../components/DescriptionSection";
+import DetailsSectionDashBoard from "../components/DetailsSectionDashBoard";
 import DiscussionSection from "../components/DiscussionSection";
 import HintSection from "../components/HintSection";
+import ParticipantsSectionDashBoard from "../components/ParticipantsSectionDashBoard";
+import QuestionSectionDashBoard from "../components/QuestionSectionDashBoard";
 import SolutionSection from "../components/SolutionSection";
 import SubmissionSection from "../components/SubmissionSection";
 
@@ -41,5 +44,17 @@ export const NavComponents = [
     {id:3, component:DiscussionSection},
     {id:4, component:HintSection},
     {id:5, component:SolutionSection},
+]
+
+export const DashboardEventSectionNavtab = [
+    {id:1, component:"Question"},
+    {id:2, component:"Details"},
+    {id:3, component:"Participents"},
+]
+
+export const DashboardEventSectionNavtabComponents = [
+    {id:1, component:QuestionSectionDashBoard},
+    {id:2, component:DetailsSectionDashBoard},
+    {id:3, component:ParticipantsSectionDashBoard},
 ]
     
