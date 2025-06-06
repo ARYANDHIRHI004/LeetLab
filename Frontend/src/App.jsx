@@ -70,7 +70,7 @@ function App() {
             />
 
             <Route
-              path="/assigned-event"
+              path="/assigned-event/:assignmentId"
               element={authUser && authUser?.role ==="USER" ? <UserEventSection /> : <Navigate to={"/"} />}
             />
             <Route

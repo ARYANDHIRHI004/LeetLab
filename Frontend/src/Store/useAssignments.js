@@ -9,7 +9,9 @@ export const useAssignments = create((set) => ({
 
     allAssignments: [],
     isLoadingAllAssignments: false,
-
+    
+    Assignment: null,
+    isLoadingAssignment: false,
 
     createAssignment: async(data) => {
         set({isCreatingAssignment: true})
@@ -36,16 +38,16 @@ export const useAssignments = create((set) => ({
     },
 
     getAssignmentsById: async(id) => {
-        set({isPlaylistLoading: true})
+        set({isLoadingAssignment: true})
         try {
-          const res = await axiosInstance.get(`/assignment/${id}`)
+          const res = await axiosInstance.get(`/assignment/get-assignment/${id}`)
               
-          set({playlist: res.data.playlist})
+          set({Assignment: res.data.assignment})
         } catch (error) {
             console.log('error while fetching', error);
-            set({isPlaylistLoading: false})
+            set({isLoadingAssignment: false})
         }finally{
-            set({isPlaylistLoading: false});
+            set({isLoadingAssignment: false});
         }        
     },
     

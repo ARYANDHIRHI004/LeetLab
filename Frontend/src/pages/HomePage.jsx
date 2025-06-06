@@ -145,7 +145,7 @@ const HomePage = () => {
         <div className="bg-[#282828] h-[37vh] w-[20vw] rounded-2xl text-white p-5">
           {/* Calander */}
           {authUser?.eventAssignedTo.map((assignment) => (
-            <Link to={"/assigned-event"}>
+            <Link to={`/assigned-event/${assignment.id}`}>
               <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">
                 <div className="flex justify-between">
                   <p>Event: {assignment.event.name}</p>
