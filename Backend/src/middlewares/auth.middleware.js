@@ -63,7 +63,7 @@ export const checkAdmin = async (req, res, next) => {
     })
 
     if(!user || user.role !== "ADMIN"){
-        return res.status(403).JSON({
+        return res.status(403).json({
             message: "You are not authorized"
         })
     }
@@ -90,7 +90,7 @@ export const checkOrganization = async (req, res, next) => {
     })
 
     if(!user || user.role !== "ORGANIZATION"){
-        return res.status(403).JSON({
+        return res.status(403).json({
             message: "You are not authorized"
         })
     }

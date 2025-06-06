@@ -2,6 +2,7 @@ import { db } from "../libs/db.js";
 
 export const createAssignment = async (req, res) => {
   const {eventId, userIds} = req.body
+  const OrganizationId = req.user.id
 
   try {
     
@@ -15,12 +16,14 @@ export const createAssignment = async (req, res) => {
     const assinments = await db.eventAssignedTo.createMany({
       data:userIds.map((userId)=>({
           eventId,
-          userId
+          userId,
+          OrganizationId
       }))
     })
 
     return res.status(200).json({
-      message:"assignments created"
+      message:"assignments created",
+      assinments
     })
 
   } catch (error) {
@@ -32,20 +35,32 @@ export const createAssignment = async (req, res) => {
 };
 
 export const getAllAssignments = async (req, res) => {
-  const userId = req.user.id
   try {
-    
-    if(!userId){
-      return res.status(400).jsaon({
-        message:"Unauthorized request"
+    let allAssignments 
+
+    if(req.user.role === "ORGANIZATION"){
+      const OrganizationId = req.user.id
+      allAssignments = await db.eventAssignedTo.findMany({
+        where:{
+          OrganizationId,
+        },
+        include:{
+          user:{
+            include:{
+              password:false
+            }
+          }
+        }
+      })
+    }else{
+      const userId = req.user.id
+      allAssignments = await db.eventAssignedTo.findMany({
+        where:{
+          userId,
+        }
       })
     }
 
-    const allAssignments = await db.eventAssignedTo.findMany({
-      where:{
-        userId
-      }
-    })
 
     return res.status(200).json({
       success:true,
@@ -64,11 +79,23 @@ export const getAssignmentById = async (req, res) => {
     const {assignmentId} = req.params
     try {
       
-      const assignment = await db.eventAssignedTo.findUnique({
-        where:{
-          id: assignmentId 
-        }
-      })
+      let assignment 
+
+      if(req.user.role === "ORGANIZATION"){
+        assignment = await db.eventAssignedTo.findUnique({
+          where:{
+            id: assignmentId,
+            OrganizationId: req.user.id
+          }
+        })
+      }else{
+        assignment = await db.eventAssignedTo.findUnique({
+          where:{
+            id: assignmentId,
+            user: req.user.id
+          }
+        })
+      }
 
     return res.status(200).json({
       success: true,

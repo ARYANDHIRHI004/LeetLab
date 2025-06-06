@@ -29,7 +29,7 @@ export const getPlayListDetails = async (req, res) => {
   const { playlistId } = req.params;
   const userId = req.user.id;
 
-  console.log(playlistId);
+  console.log(playlistId);user:true
   
   try {
     const playlist = await db.playlist.findUnique({
@@ -43,6 +43,15 @@ export const getPlayListDetails = async (req, res) => {
             problems: true,
           },
         },
+        assignedTo:{
+          include:{
+            user:{
+              include:{
+                password:false
+              }
+            }
+          }
+        }
       },
     });
     res.status(200).json({
