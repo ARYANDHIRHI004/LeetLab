@@ -22,7 +22,7 @@ const CreatePlaylist = () => {
         <div className="flex flex-col">
           <label className="text-[15px]"  htmlFor="">Name :</label>
           <input 
-          className="bg-white p-2"
+          className="bg-white text-black p-2"
           type="text"
           {...register("name")}
            />
@@ -30,7 +30,7 @@ const CreatePlaylist = () => {
         <div className="flex flex-col">
           <label className="text-[15px]"  htmlFor="">Description :</label>
           <input 
-          className="bg-white p-2" 
+          className="bg-white text-black p-2" 
           type="text"
           {...register("description")}
            />

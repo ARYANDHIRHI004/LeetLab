@@ -4,41 +4,50 @@ import toast from "react-hot-toast";
 
 export const useAssignments = create((set) => ({
 
+    assignmentCreated: null,
+    isCreatingAssignment: false,
+
+    allAssignments: [],
+    isLoadingAllAssignments: false,
+    
+    Assignment: null,
+    isLoadingAssignment: false,
 
     createAssignment: async(data) => {
+        set({isCreatingAssignment: true})
         try {
-          const res = await axiosInstance.post(`/playlist/create-playlist`, data)
-              
+          const res = await axiosInstance.post(`/assignment/create-assignment`, data)
+         set({assignmentCreated: res.data.message})
         } catch (error) {
             console.log('error while fetching', error);
 
         }        
     },
     getAllAssignments: async() => {
-        set({isPlaylistsLoading: true})
+        set({isLoadingAllAssignments: true})
         try {
-          const res = await axiosInstance.get(`/playlist`)
+          const res = await axiosInstance.get(`/assignment/get-all-assignments`)
               
-          set({playlists: res.data.playLists})
+          set({allAssignments: res.data.allAssignments})
         } catch (error) {
             console.log('error while fetching', error);
-            set({isPlaylistsLoading: false})
+            set({isLoadingAllAssignments: false})
         }finally{
-            set({isPlaylistsLoading: false});
+            set({isLoadingAllAssignments: false});
         }        
     },
 
     getAssignmentsById: async(id) => {
-        set({isPlaylistLoading: true})
+        set({isLoadingAssignment: true})
         try {
-          const res = await axiosInstance.get(`/playlist/${id}`)
+          const res = await axiosInstance.get(`/assignment/get-assignment/${id}`)
               
-          set({playlist: res.data.playlist})
+          set({Assignment: res.data.assignment})
         } catch (error) {
             console.log('error while fetching', error);
-            set({isPlaylistLoading: false})
+            set({isLoadingAssignment: false})
         }finally{
-            set({isPlaylistLoading: false});
+            set({isLoadingAssignment: false});
         }        
     },
     

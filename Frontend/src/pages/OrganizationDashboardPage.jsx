@@ -59,9 +59,11 @@ const OrganizationDashboard = () => {
                     <div className="bg-[#2c2c2c] p-2 rounded-2xl">
                         <h2 className="text-2xl">Questions Created</h2>
                     </div>
-                    <div className="bg-[#2c2c2c] p-2 rounded-2xl">
-                        <h2 className="text-2xl">Previously Added Users</h2>
-                    </div>
+                    <Link to={"/all-previously-assigned-users"}>
+                        <div className="bg-[#2c2c2c] p-2 rounded-2xl">
+                            <h2 className="text-2xl">Previously Added Users</h2>
+                        </div>
+                    </Link>
                 </div>
             </div>
           </div>

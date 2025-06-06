@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
-  const {authUser} = useAuthStore();
-
+  const { authUser } = useAuthStore();
 
   useEffect(() => {
     getAllProblems();
@@ -44,13 +43,15 @@ const HomePage = () => {
         </div>
         <div className="flex p-5 justify-between text-xl text-white">
           <div className="bg-[linear-gradient(140deg,#FFD000,#BE6C00)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
-            30 Days DSA<div className="font-bold" > CHALLANGE </div>question package
+            30 Days DSA<div className="font-bold"> CHALLANGE </div>question
+            package
           </div>
           <div className="bg-[linear-gradient(140deg,#95FF00,#009A0F)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
-            100 Days DSA <div className="font-bold" >CHALLANGE</div> question package
+            100 Days DSA <div className="font-bold">CHALLANGE</div> question
+            package
           </div>
           <div className="bg-[linear-gradient(140deg,#FF0000,#6B0000)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
-            <div className="font-bold" >Company</div > Specific questions
+            <div className="font-bold">Company</div> Specific questions
           </div>
         </div>
 
@@ -90,38 +91,52 @@ const HomePage = () => {
             )}
           </select>
         </div>
+        <div className="mt-7 mb-5 text-right px-5">
+          <Link to={"/create-playlist"}
+          className="bg-blue-800 p-2 rounded-[5px] text-white">Create PlayList</Link>
+        </div>
         <div>
           {!isProblemsLoading ? (
-            
-            filteredProblem.length !== 0?( 
+            filteredProblem.length !== 0 ? (
               filteredProblem.map((problem, index) => (
-                <Link to={`/problem/${problem.id}`} 
-                className={`${
-                  index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
-                } px-8 h-14 rounded-xl grid grid-cols-3 items-center text-xl m-4`}
-              >
-                <div className="flex gap-2">
-                  <input type="checkbox" readOnly={true} />
-                  <p className="font-bold text-white">{problem.title}</p>
-                </div>
-                
-                <div className="flex justify-end text-[10px]">
-                  <div className={`${problem.difficulty==="EASY"?"bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] ":problem.difficulty==="MEDIUM"?"bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] ":"bg-red-500 drop-shadow-[0px_0px_5px_#f56565] " } text-white  px-3 rounded-full`}>
-                    {problem.difficulty}
+                <Link
+                  to={`/problem/${problem.id}`}
+                  className={`${
+                    index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
+                  } px-8 h-14 rounded-xl grid grid-cols-3 items-center text-xl m-4`}
+                >
+                  <div className="flex gap-2">
+                    <input type="checkbox" readOnly={true} />
+                    <p className="font-bold text-white">{problem.title}</p>
                   </div>
-                </div>
-                <div className="flex gap-3 justify-end">
-                  <button className="bg-blue-700 w-14 h-10 rounded-xl">
-                    u
-                  </button>
-                  <button className="bg-blue-700 w-14 h-10 rounded-xl">
-                    p
-                  </button>
-                </div>
-              </Link>
-            ))
-            ):(
-              <div className="text-3xl text-gray-500 h-50 flex items-center justify-center ">No Problem Found</div>
+
+                  <div className="flex justify-end text-[10px]">
+                    <div
+                      className={`${
+                        problem.difficulty === "EASY"
+                          ? "bg-emerald-400 drop-shadow-[0px_0px_5px_#00D492] "
+                          : problem.difficulty === "MEDIUM"
+                          ? "bg-cyan-500 drop-shadow-[0px_0px_5px_#00BCD4] "
+                          : "bg-red-500 drop-shadow-[0px_0px_5px_#f56565] "
+                      } text-white  px-3 rounded-full`}
+                    >
+                      {problem.difficulty}
+                    </div>
+                  </div>
+                  <div className="flex gap-3 justify-end">
+                    <button className="bg-blue-700 w-14 h-10 rounded-xl">
+                      u
+                    </button>
+                    <button className="bg-blue-700 w-14 h-10 rounded-xl">
+                      p
+                    </button>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="text-3xl text-gray-500 h-50 flex items-center justify-center ">
+                No Problem Found
+              </div>
             )
           ) : (
             <div className="text-3xl text-gray-500 h-50 flex items-center justify-center ">
@@ -131,8 +146,33 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="bg-[#282828] h-[37vh] w-[20vw] rounded-2xl">
+        <div className="bg-[#282828] h-[37vh] w-[20vw] rounded-2xl text-white p-5">
           {/* Calander */}
+          {authUser?.eventAssignedTo.map((assignment) => (
+            <Link to={`/assigned-event/${assignment.id}`}>
+              <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">
+                <div className="flex justify-between">
+                  <p>Event: {assignment.event.name}</p>
+                  <p>{assignment.event.createdAt.split("T")}</p>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <p>Mode: {assignment.event.mode}</p>
+                  <p>
+                    Date:
+                    {assignment.event.eventDate !== null
+                      ? assignment.event.eventDate
+                      : " Null"}
+                  </p>
+                  <p>
+                    Time:{" "}
+                    {assignment.event.eventTime !== null
+                      ? assignment.event.eventTime
+                      : " Null"}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
         <div className="bg-[#282828] h-[54vh] w-[20vw] rounded-2xl">
           {/* todays question */}
