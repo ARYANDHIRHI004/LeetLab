@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
-import { useAuthStore } from "../Store/useAuthStore";
 import { useParams } from "react-router-dom";
 import { House, Database, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
