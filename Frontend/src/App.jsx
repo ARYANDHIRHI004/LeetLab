@@ -18,7 +18,7 @@ import CreatePlaylist from "./components/CreatePlaylist";
 import Assignments from "./components/Assignments";
 import PreviouslyAssignedUsers from "./components/PreviouslyAssignedUsers";
 import UserEventSection from "./components/UserEventSection";
-import UserPlaylist from "./components/userPlaylist";
+import UserPlaylist from "./components/UserPlaylist";
 import UserPlaylistQuestion from "./components/UserPlaylistQuestion";
 import CreateUserPlaylist from "./components/CreateUserPlaylist";
 
