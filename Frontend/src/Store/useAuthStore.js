@@ -8,6 +8,8 @@ export const useAuthStore = create((set) => ({
     isLoggingIn: false,
     isLoggingOut: false,
     isCheckingAuth: false,
+    Allusers:[],
+    isLoadingAllusers:false,
 
     checkAuth: async () => {
       set({isCheckingAuth: true});
@@ -62,6 +64,19 @@ export const useAuthStore = create((set) => ({
             toast.error("error signing up")
         }
         set({isLoggingOut: false})
+    },
+
+    getAllUsers: async () => {
+        set({isLoadingAllusers: true})
+        try {
+            const res = await axiosInstance.get("/auth/getAllUser")
+            
+            set({Allusers: res.data.allExistingUser})
+            toast.success(res.data.message)
+        } catch (error) {
+            toast.error("error signing up")
+        }
+        set({isLoadingAllusers: false})
     }
     
 }))

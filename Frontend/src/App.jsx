@@ -16,6 +16,8 @@ import OrganizationDashboard from "./pages/OrganizationDashboardPage";
 import Events from "./components/Events";
 import CreatePlaylist from "./components/CreatePlaylist";
 import Assignments from "./components/assignments";
+import PreviouslyAssignedUsers from "./components/PreviouslyAssignedUsers";
+import UserEventSection from "./components/UserEventSection";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -66,6 +68,11 @@ function App() {
               path="/solved-problems"
               element={authUser && authUser?.role ==="USER" ? <SolvedProblems /> : <Navigate to={"/"} />}
             />
+
+            <Route
+              path="/assigned-event"
+              element={authUser && authUser?.role ==="USER" ? <UserEventSection /> : <Navigate to={"/"} />}
+            />
             <Route
               path="/dashboard"
               element={
@@ -101,6 +108,16 @@ function App() {
               element={
                 authUser && authUser?.role === "ORGANIZATION" ? (
                   <Assignments />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
+            />
+            <Route
+              path="/all-previously-assigned-users"
+              element={
+                authUser && authUser?.role === "ORGANIZATION" ? (
+                  <PreviouslyAssignedUsers />
                 ) : (
                   <Navigate to={"/"} />
                 )

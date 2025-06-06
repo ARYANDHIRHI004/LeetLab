@@ -6,10 +6,10 @@ export const useActions = create((set) => ({
     qustionNavTabsActive: 1,
     testCaseResultNavTabActive: 1,
     runbtnState: false,
-
     Events: null,
-
     DashboardEventSectionNavtabActive: 1,
+    selectEvent: false,
+    selectParticipants: false,
 
 
     changeQuestionNavtabActive:(id) => {
@@ -31,6 +31,17 @@ export const useActions = create((set) => ({
     EventSet:(id) => {
         set({Events: id})    
     },
+
+    setEventSelect:() => {
+      set({selectEvent: true})
+      set({selectParticipants: false})
+    },
+    
+    setselectParticipants:() => {
+        set({selectEvent: false})
+      set({selectParticipants: true})
+    }
+    
     
     
 }))
