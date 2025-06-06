@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAuthStore } from "../Store/useAuthStore";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAssignments } from "../Store/useAssignments";
 import { Loader } from "lucide-react";
 
@@ -81,18 +81,20 @@ const UserEventSection = () => {
             {!isLoadingAssignment ? (
               <div>
                 {Assignment?.event.problems.map((problem) => (
-                  <div className="bg-gray-700 p-3 rounded-[5px]">
-                    {
-                      <div className="flex justify-between ">
-                        <h3 className="text-[15px]">
-                          {problem.problems.title}
-                        </h3>
-                        <p className="text-[13px]">
-                          Difficulty: {problem.problems.difficulty}
-                        </p>
-                      </div>
-                    }
-                  </div>
+                  <Link to={`/problem/${problem.problems.id}`}>
+                    <div className="bg-gray-700 p-3 rounded-[5px]">
+                      {
+                        <div className="flex justify-between ">
+                          <h3 className="text-[15px]">
+                            {problem.problems.title}
+                          </h3>
+                          <p className="text-[13px]">
+                            Difficulty: {problem.problems.difficulty}
+                          </p>
+                        </div>
+                      }
+                    </div>
+                  </Link>
                 ))}
               </div>
             ) : (
