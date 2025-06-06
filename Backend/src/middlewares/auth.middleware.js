@@ -75,3 +75,30 @@ export const checkAdmin = async (req, res, next) => {
 
   }
 }
+
+export const checkOrganization = async (req, res, next) => {
+  try {
+    const userID = req.user.id
+
+    const user = await db.user.findUnique({
+        where:{
+            id: userID
+        },
+        select:{
+            role: true
+        }
+    })
+
+    if(!user || user.role !== "ORGANIZATION"){
+        return res.status(403).JSON({
+            message: "You are not authorized"
+        })
+    }
+
+    next()
+
+  } catch (error) {
+    console.log('error');
+
+  }
+}

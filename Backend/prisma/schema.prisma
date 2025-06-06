@@ -17,12 +17,17 @@ datasource db {
 enum UserRole {
   ADMIN
   USER
+  ORGANIZATION
 }
 
 enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+enum Mode {
+  ONLINE
+  OFLINE
 }
 
 model User {
@@ -39,6 +44,7 @@ model User {
   submission    Submission[]
   ProblemSolved ProblemSolved[]
   Playlist      Playlist[]
+  eventAssignedTo EventAssignedTo[]
 }
 
 model Problem {
@@ -47,7 +53,7 @@ model Problem {
   description String
   difficulty  Difficulty
   tags        String[]
-  userId      String
+  userId      String 
   examples    Json
   constraints String
   hints       String?
@@ -66,6 +72,7 @@ model Problem {
   submission    Submission[]
   solvedBy ProblemSolved[]
   Playlist ProblemInPlaylist[]
+
 }
 
 model Submission {
@@ -73,7 +80,7 @@ model Submission {
   userId        String
   problemId     String
   sourceCode    Json
-  language      String
+  language      String 
   stdin         String?
   stdout        String?
   stderr        String?
@@ -127,9 +134,16 @@ model Playlist {
   name        String
   description String?
   userId      String
+
+  eventDate DateTime?
+  eventTime DateTime?
+  iaActive Boolean?
+  mode Mode? @default(ONLINE)
+
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
   problems    ProblemInPlaylist[]
+  assignedTo EventAssignedTo[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -147,4 +161,17 @@ model ProblemInPlaylist {
   problems Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
 
   @@unique([playListId, problemId])
+}
+
+model EventAssignedTo {
+  id String @id @default(uuid())
+  OrganizationId String
+  userId String  
+  eventId String
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event Playlist @relation(fields: [eventId], references: [id], onDelete: Cascade)
 }

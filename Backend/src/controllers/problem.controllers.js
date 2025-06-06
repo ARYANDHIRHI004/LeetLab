@@ -24,7 +24,7 @@ export const createProblems = async (req, res) => {
 
 
     
-    // try {
+    try {
       console.log("aryan");
       for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
         const languageId = getJudge0LanguageId(language);
@@ -83,12 +83,12 @@ export const createProblems = async (req, res) => {
           message:"Message Created Successfully",
           problem:newProblem
         });
-      // } catch (error) {
-      //   console.log(error);
-      //   return res.status(500).json({
-      //     error: "Error While Creating Problem",
-      //   });
-      // }
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: "Error While Creating Problem",
+        });
+      }
 
 }
 
@@ -261,24 +261,25 @@ export const deleteProblem = async (req, res) => {
 
 export const getAllProblemSolvedByUser = async (req, res) => {
   try {
-    const problems = await db.user.findMany({
-      where:{
-        ProblemSolved:{
-          some:{
-            userId: req.user.id
-          }
-        }
+    const problems = await db.problem.findMany({
+      where: {
+        solvedBy: {
+          some: {
+            userId: req.user.id,
+          },
+        },
       },
-      include:{
-        ProblemSolved:{
-          where:{
-            userId: req.user.id
-          }
-        }
-      }
-    })
+      include: {
+        solvedBy: {
+          where: {
+            userId: req.user.id,
+          },
+        },
+      },
+      
+    });
 
-    res.status(200).jsos({
+    res.status(200).json({
       success: true,
       message: "Problem fetched successfully",
       problems

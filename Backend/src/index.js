@@ -7,6 +7,7 @@ import executionRoute from "./routes/executeCode.routes.js"
 import playlistRoute from "./routes/playlist.routes.js"
 import submissionRoute from "./routes/submission.routes.js"
 import cors from "cors"
+import assignmetnRoute from "./routes/assignments.routes.js"
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ app.use("/api/v1/problems", problemsRoute)
 app.use("/api/v1/execute-code", executionRoute)
 app.use("/api/v1/submisstion", submissionRoute)
 app.use("/api/v1/playlist", playlistRoute)
+app.use("/api/v1/assignment", assignmetnRoute)
 
 app.get('/', (req, res) => {
   res.send("Hello Guys welcome to LeetLeb...")
