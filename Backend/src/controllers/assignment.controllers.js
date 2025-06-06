@@ -1,120 +1,140 @@
 import { db } from "../libs/db.js";
 
 export const createAssignment = async (req, res) => {
-  const {eventId, userIds} = req.body
-  const OrganizationId = req.user.id
+  const { eventId, userIds } = req.body;
+  const OrganizationId = req.user.id;
 
   try {
-    
-
-    if(!Array.isArray(userIds) || !eventId){
-        return res.status(400).json({
-            error: "Invalid or missging problemsId"
-        })
+    if (!Array.isArray(userIds) || !eventId) {
+      return res.status(400).json({
+        error: "Invalid or missging problemsId",
+      });
     }
 
     const assinments = await db.eventAssignedTo.createMany({
-      data:userIds.map((userId)=>({
-          eventId,
-          userId,
-          OrganizationId
-      }))
-    })
+      data: userIds.map((userId) => ({
+        eventId,
+        userId,
+        OrganizationId,
+      })),
+    });
 
     return res.status(200).json({
-      message:"assignments created",
-      assinments
-    })
-
+      message: "assignments created",
+      assinments,
+    });
   } catch (error) {
     return res.status(500).json({
-        message:"Internal Server Error"
-    })
+      message: "Internal Server Error",
+    });
   }
-
 };
 
 export const getAllAssignments = async (req, res) => {
   try {
-    let allAssignments 
+    let allAssignments;
 
-    if(req.user.role === "ORGANIZATION"){
-      const OrganizationId = req.user.id
+    if (req.user.role === "ORGANIZATION") {
+      const OrganizationId = req.user.id;
       allAssignments = await db.eventAssignedTo.findMany({
-        where:{
+        where: {
           OrganizationId,
         },
-        include:{
-          user:{
-            include:{
-              password:false
-            }
-          }
-        }
-      })
-    }else{
-      const userId = req.user.id
+        include: {
+          user: {
+            include: {
+              password: false,
+            },
+          },
+          event: true,
+        },
+      });
+    } else {
+      const userId = req.user.id;
       allAssignments = await db.eventAssignedTo.findMany({
-        where:{
+        where: {
           userId,
-        }
-      })
+        },
+      });
     }
 
-
     return res.status(200).json({
-      success:true,
+      success: true,
       message: "all assignments fatched successfully",
-      allAssignments
-    })
-
+      allAssignments,
+    });
   } catch (error) {
     return res.status(500).json({
-        message:"Internal Server Error"
-    })
+      message: "Internal Server Error",
+    });
   }
 };
 
 export const getAssignmentById = async (req, res) => {
-    const {assignmentId} = req.params
-    try {
-      
-      let assignment 
+  const { assignmentId } = req.params;
+  // try {
 
-      if(req.user.role === "ORGANIZATION"){
-        assignment = await db.eventAssignedTo.findUnique({
-          where:{
-            id: assignmentId,
-            OrganizationId: req.user.id
-          }
-        })
-      }else{
-        assignment = await db.eventAssignedTo.findUnique({
-          where:{
-            id: assignmentId,
-            user: req.user.id
-          }
-        })
-      }
+  let assignment;
 
-    return res.status(200).json({
-      success: true,
-      message: "assignment fetched successfully",
-      assignment
-    })
-
-
-    } catch (error) {
-    return res.status(500).json({
-        message:"Internal Server Error"
-    })
+  if (req.user.role === "ORGANIZATION") {
+    assignment = await db.eventAssignedTo.findUnique({
+      where: {
+        id: assignmentId,
+        OrganizationId: req.user.id,
+      },
+    });
+  } else {
+    assignment = await db.eventAssignedTo.findUnique({
+      where: {
+        id: assignmentId,
+        userId: req.user.id,
+      },
+      include: {
+        event: {
+          include: {
+            user: {
+              include: {
+                password: false,
+                createdAt: false,
+                updatedAt: false,
+              },
+            },
+            problems: {
+              include:{
+                problems:{
+                  include: {
+                    description: false,
+                    tags: false,
+                    examples: false,
+                    constraints: false,
+                    hints: false,
+                    editoral: false,
+                    testcases: false,
+                    codeSnippets: false,
+                    refrenceSolution: false,
+                  },
+                },
+              }
+            }
+          },
+        },
+      },
+    });
   }
+
+  return res.status(200).json({
+    success: true,
+    message: "assignment fetched successfully",
+    assignment,
+  });
+
+  // } catch (error) {
+  // return res.status(500).json({
+  //     message:"Internal Server Error"
+  // })
+  // }
 };
 
-export const updateAssignment = async (req, res) => {
+export const updateAssignment = async (req, res) => {};
 
-};
-
-export const deleteAssignment = async (req, res) => {
-
-};
+export const deleteAssignment = async (req, res) => {};
