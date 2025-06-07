@@ -104,9 +104,11 @@ const OrganizationDashboard = () => {
           </Link>
 
           <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[35vh] rounded-2xl flex flex-col gap-3">
-            <div className="bg-[#2c2c2c] p-2 h-15 text-center rounded-2xl">
-              <h2 className="text-[13px]">Create Questions</h2>
-            </div>
+            <Link to={"/create-problem"}>
+                  <div className="bg-[#2c2c2c] p-2 h-15 text-center rounded-2xl">
+                    <h2 className="text-[13px]">Create Questions</h2>
+                  </div>
+            </Link>
             <Link to={"/all-created-questions"}>
               <div className="bg-[#2c2c2c] p-2 h-15 text-center rounded-2xl">
                 <h2 className="text-[13px]">Questions Created</h2>

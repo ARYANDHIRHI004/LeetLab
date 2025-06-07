@@ -36,21 +36,21 @@ const HomePage = () => {
         {/* play list */}
         {/* recent visit */}
       </div>
-      <div className="bg-[#111111] h-[92vh] w-[60vw] rounded-2xl p-2">
+      <div className="bg-[#050505] h-[92vh] w-[60vw] rounded-2xl p-2">
         {/* question list */}
         <div className="text-white text-[2vw] px-6 pt-4">
           Hi, <span className="font-bold">{authUser.name.toUpperCase()}</span>
         </div>
         <div className="flex p-5 justify-between text-[1vw] text-white">
-          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             30 Days DSA<div className="font-bold"> CHALLANGE </div>question
             package
           </div>
-          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             100 Days DSA <div className="font-bold">CHALLANGE</div> question
             package
           </div>
-          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             <div className="font-bold">Company</div> Specific questions
           </div>
         </div>
