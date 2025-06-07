@@ -138,7 +138,7 @@ model Playlist {
 
   eventDate DateTime?
   eventTime DateTime?
-  iaActive  Boolean?  @default(true)
+  isActive  Boolean?  @default(true)
   mode      Mode?     @default(ONLINE)
 
   createdAt  DateTime            @default(now())
