@@ -2,6 +2,7 @@ import express from "express"
 import { checkAdmin, verifyJwt } from "../middlewares/auth.middleware.js"
 import { createProblems, 
     deleteProblem, 
+    getAllProblemCreatedByMe, 
     getAllProblems, 
     getAllProblemSolvedByUser, 
     getProblemId, 
@@ -12,6 +13,7 @@ const problemsRoute = express.Router()
 problemsRoute.post("/create-problem", verifyJwt, createProblems)
 problemsRoute.get("/get-all-problems", verifyJwt, getAllProblems)
 problemsRoute.get("/get-problem/:id", verifyJwt, getProblemId)
+problemsRoute.get("/get-all-problems-created-by-me", verifyJwt, getAllProblemCreatedByMe)
 problemsRoute.put("/update-problem/:id", verifyJwt, checkAdmin, updateProblem)
 problemsRoute.delete("/delete-problem/:id", verifyJwt, checkAdmin, deleteProblem)
 problemsRoute.get("/get-solved-problems", verifyJwt, getAllProblemSolvedByUser)

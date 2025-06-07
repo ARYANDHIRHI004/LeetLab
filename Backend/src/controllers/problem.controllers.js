@@ -123,7 +123,7 @@ export const getAllProblems = async (req, res) => {
 
 export const getProblemId = async (req, res) => {
   const { id } = req.params;
-  // try {
+  try {
   const problem = await db.problem.findUnique({
     where: {
       id,
@@ -175,11 +175,39 @@ export const getProblemId = async (req, res) => {
     message: "problem fetched",
     problem,
   });
-  // } catch (error) {
-  //   return res.status(500).json({
-  //     message: "kuch bhi....",
-  //   });
-  // }
+  } catch (error) {
+    return res.status(500).json({
+      message: "kuch bhi....",
+    });
+  }
+};
+
+export const getAllProblemCreatedByMe = async (req, res) => {
+  const userId  = req.user.id  
+
+  try {
+  const problems = await db.problem.findMany({
+    where:{
+      userId
+    }
+  });
+
+  if (!problems) {
+    return res.status(400).json({
+      message: "problem not found",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "problem fetched",
+    problems,
+  });
+  } catch (error) {
+    return res.status(500).json({
+      message: "kuch bhi....",
+    });
+  }
 };
 
 export const updateProblem = async (req, res) => {
