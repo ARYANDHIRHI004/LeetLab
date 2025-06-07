@@ -73,8 +73,9 @@ export const getPlayListDetails = async (req, res) => {
 };
 
 export const createPlaylist = async (req, res) => {
-  const { name, description, eventDate, eventTime, mode } = req.body;
+  const { name, description, eventDate, eventTime, endDate, endTime, mode } = req.body;
   const userId = req.user.id;
+
 
   try {
     if (!name || !description) {
@@ -85,7 +86,7 @@ export const createPlaylist = async (req, res) => {
 
     let playList;
 
-    if (req.user.role === "ORGANIZATIONS") {
+    if (req.user.role === "ORGANIZATION") {
       playList = await db.Playlist.create({
         data: {
           name,
@@ -93,18 +94,22 @@ export const createPlaylist = async (req, res) => {
           userId,
           eventDate,
           eventTime,
+          endDate,
+          endTime,
           mode,
         },
       });
     }
 
-    playList = await db.Playlist.create({
+    if(req.user.role !== "ORGANIZATION"){
+      playList = await db.Playlist.create({
       data: {
         name,
         description,
         userId,
       },
     });
+    }
 
     if (!playList) {
       return res.status(400).json({
