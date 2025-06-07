@@ -33,8 +33,8 @@ const AddQuestionsToPlayListForm = () => {
   return (
     <div>
       <form action={handleSubmit(addQuestions)}>
-        <div className="flex justify-between">
-          <button className="bg-black p-3 mb-3" type="submit">
+        <div className="flex justify-between text-[12px]">
+          <button className="bg-[#ffffff] text-black rounded-[5px] p-3 mb-3" type="submit">
             Add Questions
           </button>
           <div className="flex gap-5 justify-end w-[30vw] mr-10">

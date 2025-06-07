@@ -68,24 +68,24 @@ function App() {
             />
             <Route
               path="/solved-problems"
-              element={authUser && authUser?.role ==="USER" ? <SolvedProblems /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION" ? <SolvedProblems /> : <Navigate to={"/"} />}
             />
             <Route
               path="/playlist"
-              element={authUser && authUser?.role ==="USER" ? <UserPlaylist /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION" ? <UserPlaylist /> : <Navigate to={"/"} />}
             />
             <Route
               path="/create-playlist"
-              element={authUser && authUser?.role ==="USER" ? <CreateUserPlaylist /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION" ? <CreateUserPlaylist /> : <Navigate to={"/"} />}
             />
             <Route
               path="/playlist/problems/:playlistId"
-              element={authUser && authUser?.role ==="USER" ? <UserPlaylistQuestion /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION" ? <UserPlaylistQuestion /> : <Navigate to={"/"} />}
             />
 
             <Route
               path="/assigned-event/:assignmentId"
-              element={authUser && authUser?.role ==="USER" ? <UserEventSection /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION"? <UserEventSection /> : <Navigate to={"/"} />}
             />
             <Route
               path="/dashboard"

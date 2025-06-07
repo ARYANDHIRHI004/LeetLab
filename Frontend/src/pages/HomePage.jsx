@@ -31,41 +31,41 @@ const HomePage = () => {
   });
 
   return (
-    <section className="bg-[#05001C] h-[100vh] flex pt-17 justify-between px-2 gap-2">
-      <div className="bg-[#1d1d1d] h-[92vh] w-[20vw] rounded-2xl">
+    <section className="bg-[#050505] h-[100vh] flex pt-17 justify-between px-2 gap-2 overflow-scroll">
+      <div className="bg-[#111111] h-[92vh] w-[20vw] rounded-2xl">
         {/* play list */}
         {/* recent visit */}
       </div>
       <div className="bg-[#111111] h-[92vh] w-[60vw] rounded-2xl p-2">
         {/* question list */}
-        <div className="text-white text-3xl px-6 pt-4">
+        <div className="text-white text-[2vw] px-6 pt-4">
           Hi, <span className="font-bold">{authUser.name.toUpperCase()}</span>
         </div>
-        <div className="flex p-5 justify-between text-xl text-white">
-          <div className="bg-[linear-gradient(140deg,#FFD000,#BE6C00)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
+        <div className="flex p-5 justify-between text-[1vw] text-white">
+          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             30 Days DSA<div className="font-bold"> CHALLANGE </div>question
             package
           </div>
-          <div className="bg-[linear-gradient(140deg,#95FF00,#009A0F)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             100 Days DSA <div className="font-bold">CHALLANGE</div> question
             package
           </div>
-          <div className="bg-[linear-gradient(140deg,#FF0000,#6B0000)] h-30 w-80 rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#FFD000,#6B0000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             <div className="font-bold">Company</div> Specific questions
           </div>
         </div>
 
         {/* filteration */}
-        <div className="flex justify-between  px-5 text-gray-300">
+        <div className="flex justify-between  px-5 text-gray-300 h-[5vh]">
           <input
-            className="bg-[#5B5B5B] w-80 h-10 rounded-xl p-5 "
+            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl p-5 "
             type="text"
             placeholder="Problem Name"
             value={problemName}
             onChange={(e) => setProblemName(e.target.value)}
           />
           <select
-            className="bg-[#5B5B5B] w-80 h-10 rounded-xl px-5"
+            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl px-5"
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
           >
@@ -79,7 +79,7 @@ const HomePage = () => {
           <select
             value={tagName}
             onChange={(e) => setTagName(e.target.value)}
-            className="bg-[#5B5B5B] w-80 h-10 rounded-xl px-5"
+            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl px-5"
           >
             <option value="All">All</option>
             {problems.map((problem) =>
@@ -102,12 +102,12 @@ const HomePage = () => {
                 <Link
                   to={`/problem/${problem.id}`}
                   className={`${
-                    index % 2 === 0 ? "bg-[#555151]" : "bg-[#272727]"
-                  } px-8 h-14 rounded-xl grid grid-cols-3 items-center text-xl m-4`}
+                    index % 2 === 0 ? "bg-[#272727]" : ""
+                  } px-8 h-[2.5vw] rounded-xl grid grid-cols-3 items-center text-xl m-4`}
                 >
                   <div className="flex gap-2">
                     <input type="checkbox" readOnly={true} />
-                    <p className="font-bold text-white">{problem.title}</p>
+                    <p className="font-bold text-white text-[1.1vw]">{problem.title}</p>
                   </div>
 
                   <div className="flex justify-end text-[10px]">
@@ -146,24 +146,24 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="bg-[#282828] h-[37vh] w-[20vw] rounded-2xl text-white p-5">
+        <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white p-5 overflow-scroll">
           {/* Calander */}
           {authUser?.eventAssignedTo.map((assignment) => (
             <Link to={`/assigned-event/${assignment.id}`}>
               <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">
                 <div className="flex justify-between">
-                  <p>Event: {assignment.event.name}</p>
-                  <p>{assignment.event.createdAt.split("T")}</p>
+                  <p className="text-[0.8vw]">Event: {assignment.event.name}</p>
+                  <p className="text-[0.6vw]">{assignment.event.createdAt.split("T")}</p>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <p>Mode: {assignment.event.mode}</p>
-                  <p>
+                  <p className="text-[0.6vw]">Mode: {assignment.event.mode}</p>
+                  <p className="text-[0.6vw]">
                     Date:
                     {assignment.event.eventDate !== null
                       ? assignment.event.eventDate
                       : " Null"}
                   </p>
-                  <p>
+                  <p className="text-[0.6vw]">
                     Time:{" "}
                     {assignment.event.eventTime !== null
                       ? assignment.event.eventTime
@@ -174,7 +174,7 @@ const HomePage = () => {
             </Link>
           ))}
         </div>
-        <div className="bg-[#282828] h-[54vh] w-[20vw] rounded-2xl">
+        <div className="bg-[#0c0c0c] h-[54vh] w-[20vw] rounded-2xl">
           {/* todays question */}
         </div>
       </div>

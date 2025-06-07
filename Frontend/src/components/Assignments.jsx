@@ -47,40 +47,53 @@ const Assignments = () => {
   };
 
   return (
-    <div className="bg-black h-[100vh] text-white pt-19 px-5">
+    <div className="bg-black h-[100vh]  pt-19 px-5">
       <div className="flex gap-5">
-        <div className="bg-gray-500 h-[90vh] w-[50vw] rounded-[5px] p-5 flex flex-col gap-5 ">
-          <div onClick={setEventSelect} className="bg-gray-800 p-2 rounded-[5px] flex justify-between px-5">
+        <div className="bg-[#161616] h-[90vh] w-[30vw] rounded-[5px] p-5 flex flex-col gap-5 ">
+          <div onClick={setEventSelect} className="bg-white p-2 rounded-[5px] flex justify-between px-5">
             <button className="text-[15px]">Select Event: </button>
             <span className="text-[15px]"> {eventName}</span>
           </div>
-          <div onClick={setselectParticipants} className="bg-gray-800 p-2 rounded-[5px] text-center">
+          <div onClick={setselectParticipants} className="bg-white p-2 rounded-[5px] text-center">
             <button className="text-[15px]">
               Select Participants
             </button>
           </div>
-          <button onClick={createAssignmentBtn} className="bg-gray-800 p-2 rounded-[5px]">
-            <div className="text-[15px]">Create Assignment</div>
-          </button>
+  
         </div>
-        <div className="bg-gray-500  h-[90vh] w-[50vw] rounded-[5px] p-5 flex flex-col gap-2">
+        <div className="bg-[#161616]  h-[90vh] w-[70vw] rounded-[5px] p-5 flex flex-col gap-2">
+          <div className="bg-white p-3 rounded-[5px] flex gap-10">
+             <p className="w-47 ">Event Name</p>
+             <p className="w-47 "> Description</p>
+             <p className="w-47 "> Event Date</p>
+             <p className="w-47 "> Event Time</p>
+             <p className="w-47 "> Event End Date</p>
+             <p className="w-47 "> Event End Time</p>
+          </div>
           {selectEvent ? (
             playlists?.map((playlist) => (
               <div
                 onClick={() => selectPlaylist(playlist.id, playlist.name)}
-                className="bg-gray-800 p-3 rounded-[5px]"
+                className="bg-white p-3 rounded-[5px]"
               >
-                <p>{playlist.name}</p>
+                <div className="flex gap-10 overflow-ellipsis">
+                  <p className="w-47 overflow-clip">{playlist.name}</p>
+                <p  className="w-47 overflow-clip">{playlist.description}</p>
+                <p className="w-47 overflow-clip">{playlist.eventDate}</p>
+                <p className="w-47 overflow-clip">{playlist.eventTime}</p>
+                <p className="w-47 overflow-clip">{playlist.endDate}</p>
+                <p className="w-47 overflow-clip">{playlist.endTime}</p>
+                </div>
               </div>
             ))
           ) : selectParticipants ? (
             <div>
               <form className=" flex flex-col gap-2" action={handleSubmit(onSubmitUsers)}>
-                  <button className="bg-gray-800 p-3 rounded-[5px] " type="submit">Add Users</button>
+                  <button className="bg-white p-3 rounded-[5px] " type="submit">Add Participants</button>
                 {!isLoadingAllusers
                   ? Allusers?.map((user) => (
                       <div
-                        className="bg-gray-800 p-3 rounded-[5px] flex gap-2"
+                        className="bg-white p-3 rounded-[5px] flex gap-2"
                       >
                         <input
                         {...register("id")}
