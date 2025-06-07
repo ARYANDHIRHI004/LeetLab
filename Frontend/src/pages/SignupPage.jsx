@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../Store/useAuthStore";
+import { Navigate } from "react-router-dom";
 
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
@@ -9,6 +10,7 @@ const SignupPage = () => {
   const onSubmit = async (data) => {
     try {
       await signup(data);
+      Navigate("/")
     } catch (error) {
       console.log(error)
     }

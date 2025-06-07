@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 const OrganizationDashboard = () => {
   const { authUser } = useAuthStore();
-  const { playlists, isPlaylistsLoading, getAllPlaylist, createPlaylist } = usePlaylist();
+  const { playlists, isPlaylistsLoading, getAllPlaylist, createPlaylist } =
+    usePlaylist();
 
   useEffect(() => {
     getAllPlaylist();
@@ -20,51 +21,82 @@ const OrganizationDashboard = () => {
             <div className="w-[50%]">
               <h3 className="text-[20px] mb-3">Previous Events</h3>
               <div className="flex flex-col gap-2">
-                {playlists?.map((playlist, i) => (
-                  <Link to={"/previous-event"}>
-                    <div>
-                      <p
-                        className={`text-[15px] ${
-                          i % 2 == 0 ? "bg-[#181818]" : "bg-[#0c0c0c]"
-                        } p-2 rounded-[3px]`}
-                      >
-                        {playlist.name}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+                {playlists?.map((playlist, i) =>
+                  playlist.isActive !== true ? (
+                    <Link to={"/previous-event"}>
+                      <div>
+                        <p
+                          className={`text-[15px] ${
+                            i % 2 == 0 ? "bg-[#181818]" : "bg-[#0c0c0c]"
+                          } p-2 rounded-[3px]`}
+                        >
+                          {playlist.name}
+                        </p>
+                      </div>
+                    </Link>
+                  ) : (
+                    ""
+                  )
+                )}
               </div>
             </div>
             <div className="w-[50%]">
-                <h3 className="text-[20px] mb-3">Ongoing Events</h3>
+              <h3 className="text-[20px] mb-3">Ongoing Events</h3>
+              <div className="flex flex-col gap-2">
+                {playlists?.map((playlist, i) =>
+                  playlist.isActive === true ? (
+                    <Link to={"/previous-event"}>
+                      <div>
+                        <p
+                          className={`text-[15px] ${
+                            i % 2 == 0 ? "bg-[#181818]" : "bg-[#0c0c0c]"
+                          } p-2 rounded-[3px]`}
+                        >
+                          {playlist.name}
+                        </p>
+                      </div>
+                    </Link>
+                  ) : (
+                    ""
+                  )
+                )}
+              </div>
             </div>
           </div>
           <div>
             <div className="flex gap-5">
-                <Link className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl" to={"/create-event"}>
-                    <div>
-                    <h2 className="text-2xl">Create Events</h2>
+              <Link
+                className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl"
+                to={"/create-event"}
+              >
+                <div>
+                  <h2 className="text-2xl">Create Events</h2>
+                </div>
+              </Link>
+              <Link
+                className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl"
+                to={"/create-assignments"}
+              >
+                <div>
+                  <h2 className="text-2xl">Add Users To Events</h2>
+                </div>
+              </Link>
+
+              <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh] rounded-2xl flex flex-col gap-3">
+                <div className="bg-[#2c2c2c] p-2 rounded-2xl">
+                  <h2 className="text-[13px]">Create Questions</h2>
+                </div>
+                <Link to={"/all-created-questions"}>
+                    <div className="bg-[#2c2c2c] p-2 rounded-2xl">
+                  <h2 className="text-[13px]">Questions Created</h2>
                 </div>
                 </Link>
-                <Link className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh]  rounded-2xl" to={"/create-assignments"}>
-                    <div>
-                    <h2 className="text-2xl">Add Users To Events</h2>
-                </div>
+                <Link to={"/all-previously-assigned-users"}>
+                  <div className="bg-[#2c2c2c] p-2 rounded-2xl">
+                    <h2 className="text-[13px]">Previously Added Users</h2>
+                  </div>
                 </Link>
-                
-                <div className="w-[33%] bg-[#161616] px-5 pt-5 h-[30vh] rounded-2xl flex flex-col gap-3">
-                    <div className="bg-[#2c2c2c] p-2 rounded-2xl">
-                        <h2 className="text-2xl">Create Questions</h2>
-                    </div>
-                    <div className="bg-[#2c2c2c] p-2 rounded-2xl">
-                        <h2 className="text-2xl">Questions Created</h2>
-                    </div>
-                    <Link to={"/all-previously-assigned-users"}>
-                        <div className="bg-[#2c2c2c] p-2 rounded-2xl">
-                            <h2 className="text-2xl">Previously Added Users</h2>
-                        </div>
-                    </Link>
-                </div>
+              </div>
             </div>
           </div>
         </div>

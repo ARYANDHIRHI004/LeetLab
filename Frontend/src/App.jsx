@@ -14,7 +14,7 @@ import Profile from "./components/Profile";
 import SolvedProblems from "./components/SolvedProblems";
 import OrganizationDashboard from "./pages/OrganizationDashboardPage";
 import Events from "./components/Events";
-import CreatePlaylist from "./components/CreatePlaylist";
+import CreatedQuestions from "./components/CreatedQuestions";
 import Assignments from "./components/Assignments";
 import PreviouslyAssignedUsers from "./components/PreviouslyAssignedUsers";
 import UserEventSection from "./components/UserEventSection";
@@ -132,6 +132,16 @@ function App() {
               element={
                 authUser && authUser?.role === "ORGANIZATION" ? (
                   <PreviouslyAssignedUsers />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
+            />
+            <Route
+              path="/all-created-questions"
+              element={
+                authUser && authUser?.role === "ORGANIZATION" ? (
+                  <CreatedQuestions />
                 ) : (
                   <Navigate to={"/"} />
                 )

@@ -9,7 +9,9 @@ export const useProblemStore = create((set) => ({
     isProblemsLoading: false,
     isProblemLoading: false,
     isSolvedProblemLoading: false,
-
+    problemsCreatedByme:[],
+    isproblemsCreatedBymeLoading: false,
+    
     getAllProblems: async () => {
       try {
         
@@ -52,6 +54,19 @@ export const useProblemStore = create((set) => ({
         console.log("error", error);
       }finally{
         set({isSolvedProblemLoading: false})
+      }
+    },
+
+    getAllProblemsCreatedByMe: async () => {
+      try {
+        set({isproblemsCreatedBymeLoading: true})
+        const res = await axiosInstance.get("/problems/get-all-problems-created-by-me")
+        set({problemsCreatedByme: res.data.problems})
+      } catch (error) {
+        set({isproblemsCreatedBymeLoading: false})
+        console.log("error", error);
+      }finally{
+        set({isproblemsCreatedBymeLoading: false})
       }
     },
     

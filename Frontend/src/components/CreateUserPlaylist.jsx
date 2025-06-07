@@ -13,7 +13,6 @@ const CreateUserPlaylist = () => {
 
   const { getAllProblems, problems, isProblemsLoading, } = useProblemStore();
 
-  const [selectPlayList, setSelectPlaylist] = useState("")
 
   const submitPlaylistData = (data) => {
     createPlaylist(data);
@@ -75,7 +74,7 @@ const CreateUserPlaylist = () => {
           </div>
         </div>
         <div className="bg-gray-800 h-[90vh] w-[60vw] rounded-[5px] p-5">
-          <AddQuestionsToPlayListForm selectPlayList = {selectPlayList}/>
+          <AddQuestionsToPlayListForm />
         </div>
       </div>
     </div>
