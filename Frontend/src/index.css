@@ -10,7 +10,9 @@
   ::-webkit-scrollbar {
       display: none;
     }
-}
+  }
+  
+
 
 .clip-semicircle {
   clip-path: path("M 0 100 A 100 100 0 0 1 200 100 L 200 0 L 0 0 Z");

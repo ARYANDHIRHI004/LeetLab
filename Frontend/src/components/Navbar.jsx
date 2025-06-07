@@ -20,33 +20,33 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-black text-white w-full h-15 font-medium gap-60 z-50">
-      <Link to={"/"} className="text-3xl flex gap-2 items-center">
-        <img src={Neurocodium} className="w-16 h-6" />
+    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-black text-white w-full h-[6vh] font-medium gap-60 z-50">
+      <Link to={"/"} className="text-[3.5vh] flex gap-2 items-center">
+        <img src={Neurocodium} className="w-[4.5vw] h-[3.5vh]" />
         <span>Neurocodium</span>
       </Link>
       {
         !authUser?(
           <div>
-        <ul className="flex gap-14">
+        <ul className="flex gap-14 text-[2vh]">
           {NavbarMenu.map((navMenu) => (
             <li key={navMenu.id}>{navMenu.label}</li>
           ))}
         </ul>
       </div>
-        ):(<ProfileMenu />)
+        ):("")
       }
       <div className="flex gap-5 items-center">
         {!authUser ? (
           <Link
-            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-35 text-center hover:drop-shadow-[0px_0px_10px_#0090FF]"
+            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] text-center hover:drop-shadow-[0px_0px_10px_#0090FF] text-[1.8vh] "
             to={"/login"}
           >
             Login
           </Link>
         ) : (
           <button
-            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-35 h-10 text-center hover:bg-blue-900"
+            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] h-10 text-center hover:bg-blue-900 text-[1.8vh] "
             onClick={handleLogout}
           >
             {
@@ -54,19 +54,19 @@ const Navbar = () => {
                 <div className='flex justify-center items-center gap-2'>
                 <Loader className="size-6 animate-spin" />
                 </div>
-            ):"Login" 
+            ):"Logout" 
             }
           </button>
         )}
         {!authUser ? (
           <Link
-            className=" bg-white  text-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-35 text-center"
+            className=" bg-white  text-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] text-center text-[1.8vh] h-10"
             to={"/Signup"}
           >
             sign Up
           </Link>
         ) : (
-          ""
+          <ProfileMenu />
         )}
       </div>
     </nav>

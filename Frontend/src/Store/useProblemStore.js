@@ -11,7 +11,27 @@ export const useProblemStore = create((set) => ({
     isSolvedProblemLoading: false,
     problemsCreatedByme:[],
     isproblemsCreatedBymeLoading: false,
+    isCreating: false,
     
+    createProblem: async (data) => {
+      try {
+        
+        set({isCreating: true})
+        const res = await axiosInstance.post("/problems/create-problem", data)
+        
+        // set({problems: res.data.problems})
+        toast.success(res.data.message)
+        
+      } catch (error) {
+        console.log("error", error);
+        set({isCreating: false})
+        
+      }
+      finally{
+        set({isCreating: false})
+      }
+    },
+
     getAllProblems: async () => {
       try {
         

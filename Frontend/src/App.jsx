@@ -21,6 +21,7 @@ import UserEventSection from "./components/UserEventSection";
 import UserPlaylist from "./components/UserPlaylist";
 import UserPlaylistQuestion from "./components/UserPlaylistQuestion";
 import CreateUserPlaylist from "./components/CreateUserPlaylist";
+import CreateProblem from "./components/CreateProblem";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -64,7 +65,7 @@ function App() {
             />
             <Route
               path="/profile"
-              element={authUser && authUser?.role ==="USER" ? <Profile /> : <Navigate to={"/"} />}
+              element={authUser && authUser?.role !=="ORGANIZATION" ? <Profile /> : <Navigate to={"/"} />}
             />
             <Route
               path="/solved-problems"
@@ -97,6 +98,10 @@ function App() {
                 )
               }
             />
+              <Route
+                path="/create-problem"
+                element={authUser && authUser?.role !=="USER"? <CreateProblem /> : <Navigate to={"/"} />}
+              />
             <Route
               path="/previous-event"
               element={
