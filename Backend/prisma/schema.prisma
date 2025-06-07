@@ -137,7 +137,10 @@ model Playlist {
   userId      String
 
   eventDate DateTime?
+  endDate DateTime?
   eventTime DateTime?
+  endTime DateTime?
+  
   isActive Boolean? @default(true)
   mode Mode? @default(ONLINE)
 

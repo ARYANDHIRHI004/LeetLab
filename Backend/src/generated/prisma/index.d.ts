@@ -7710,7 +7710,9 @@ export namespace Prisma {
     description: string | null
     userId: string | null
     eventDate: Date | null
+    endDate: Date | null
     eventTime: Date | null
+    endTime: Date | null
     isActive: boolean | null
     mode: $Enums.Mode | null
     createdAt: Date | null
@@ -7723,7 +7725,9 @@ export namespace Prisma {
     description: string | null
     userId: string | null
     eventDate: Date | null
+    endDate: Date | null
     eventTime: Date | null
+    endTime: Date | null
     isActive: boolean | null
     mode: $Enums.Mode | null
     createdAt: Date | null
@@ -7736,7 +7740,9 @@ export namespace Prisma {
     description: number
     userId: number
     eventDate: number
+    endDate: number
     eventTime: number
+    endTime: number
     isActive: number
     mode: number
     createdAt: number
@@ -7751,7 +7757,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     eventDate?: true
+    endDate?: true
     eventTime?: true
+    endTime?: true
     isActive?: true
     mode?: true
     createdAt?: true
@@ -7764,7 +7772,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     eventDate?: true
+    endDate?: true
     eventTime?: true
+    endTime?: true
     isActive?: true
     mode?: true
     createdAt?: true
@@ -7777,7 +7787,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     eventDate?: true
+    endDate?: true
     eventTime?: true
+    endTime?: true
     isActive?: true
     mode?: true
     createdAt?: true
@@ -7863,7 +7875,9 @@ export namespace Prisma {
     description: string | null
     userId: string
     eventDate: Date | null
+    endDate: Date | null
     eventTime: Date | null
+    endTime: Date | null
     isActive: boolean | null
     mode: $Enums.Mode | null
     createdAt: Date
@@ -7893,7 +7907,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     eventDate?: boolean
+    endDate?: boolean
     eventTime?: boolean
+    endTime?: boolean
     isActive?: boolean
     mode?: boolean
     createdAt?: boolean
@@ -7910,7 +7926,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     eventDate?: boolean
+    endDate?: boolean
     eventTime?: boolean
+    endTime?: boolean
     isActive?: boolean
     mode?: boolean
     createdAt?: boolean
@@ -7924,7 +7942,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     eventDate?: boolean
+    endDate?: boolean
     eventTime?: boolean
+    endTime?: boolean
     isActive?: boolean
     mode?: boolean
     createdAt?: boolean
@@ -7938,14 +7958,16 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     eventDate?: boolean
+    endDate?: boolean
     eventTime?: boolean
+    endTime?: boolean
     isActive?: boolean
     mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PlaylistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "eventDate" | "eventTime" | "isActive" | "mode" | "createdAt" | "updatedAt", ExtArgs["result"]["playlist"]>
+  export type PlaylistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "eventDate" | "endDate" | "eventTime" | "endTime" | "isActive" | "mode" | "createdAt" | "updatedAt", ExtArgs["result"]["playlist"]>
   export type PlaylistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     problems?: boolean | Playlist$problemsArgs<ExtArgs>
     assignedTo?: boolean | Playlist$assignedToArgs<ExtArgs>
@@ -7972,7 +7994,9 @@ export namespace Prisma {
       description: string | null
       userId: string
       eventDate: Date | null
+      endDate: Date | null
       eventTime: Date | null
+      endTime: Date | null
       isActive: boolean | null
       mode: $Enums.Mode | null
       createdAt: Date
@@ -8408,7 +8432,9 @@ export namespace Prisma {
     readonly description: FieldRef<"Playlist", 'String'>
     readonly userId: FieldRef<"Playlist", 'String'>
     readonly eventDate: FieldRef<"Playlist", 'DateTime'>
+    readonly endDate: FieldRef<"Playlist", 'DateTime'>
     readonly eventTime: FieldRef<"Playlist", 'DateTime'>
+    readonly endTime: FieldRef<"Playlist", 'DateTime'>
     readonly isActive: FieldRef<"Playlist", 'Boolean'>
     readonly mode: FieldRef<"Playlist", 'Mode'>
     readonly createdAt: FieldRef<"Playlist", 'DateTime'>
@@ -11126,7 +11152,9 @@ export namespace Prisma {
     description: 'description',
     userId: 'userId',
     eventDate: 'eventDate',
+    endDate: 'endDate',
     eventTime: 'eventTime',
+    endTime: 'endTime',
     isActive: 'isActive',
     mode: 'mode',
     createdAt: 'createdAt',
@@ -11798,7 +11826,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
     eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     isActive?: BoolNullableFilter<"Playlist"> | boolean | null
     mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -11814,7 +11844,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
     eventDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     eventTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
     isActive?: SortOrderInput | SortOrder
     mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -11834,7 +11866,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
     eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     isActive?: BoolNullableFilter<"Playlist"> | boolean | null
     mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -11850,7 +11884,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
     eventDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     eventTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
     isActive?: SortOrderInput | SortOrder
     mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -11869,7 +11905,9 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Playlist"> | string | null
     userId?: StringWithAggregatesFilter<"Playlist"> | string
     eventDate?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
     eventTime?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
+    endTime?: DateTimeNullableWithAggregatesFilter<"Playlist"> | Date | string | null
     isActive?: BoolNullableWithAggregatesFilter<"Playlist"> | boolean | null
     mode?: EnumModeNullableWithAggregatesFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeWithAggregatesFilter<"Playlist"> | Date | string
@@ -12530,7 +12568,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -12546,7 +12586,9 @@ export namespace Prisma {
     description?: string | null
     userId: string
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -12560,7 +12602,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12576,7 +12620,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12591,7 +12637,9 @@ export namespace Prisma {
     description?: string | null
     userId: string
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -12603,7 +12651,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12616,7 +12666,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13298,7 +13350,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     eventDate?: SortOrder
+    endDate?: SortOrder
     eventTime?: SortOrder
+    endTime?: SortOrder
     isActive?: SortOrder
     mode?: SortOrder
     createdAt?: SortOrder
@@ -13311,7 +13365,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     eventDate?: SortOrder
+    endDate?: SortOrder
     eventTime?: SortOrder
+    endTime?: SortOrder
     isActive?: SortOrder
     mode?: SortOrder
     createdAt?: SortOrder
@@ -13324,7 +13380,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     eventDate?: SortOrder
+    endDate?: SortOrder
     eventTime?: SortOrder
+    endTime?: SortOrder
     isActive?: SortOrder
     mode?: SortOrder
     createdAt?: SortOrder
@@ -14479,7 +14537,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -14493,7 +14553,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -14664,7 +14726,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Playlist"> | string | null
     userId?: StringFilter<"Playlist"> | string
     eventDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     eventTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Playlist"> | Date | string | null
     isActive?: BoolNullableFilter<"Playlist"> | boolean | null
     mode?: EnumModeNullableFilter<"Playlist"> | $Enums.Mode | null
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -15600,7 +15664,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -15615,7 +15681,9 @@ export namespace Prisma {
     description?: string | null
     userId: string
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -15691,7 +15759,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15706,7 +15776,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15807,7 +15879,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -15822,7 +15896,9 @@ export namespace Prisma {
     description?: string | null
     userId: string
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -15892,7 +15968,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15907,7 +15985,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15961,7 +16041,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     eventDate?: Date | string | null
+    endDate?: Date | string | null
     eventTime?: Date | string | null
+    endTime?: Date | string | null
     isActive?: boolean | null
     mode?: $Enums.Mode | null
     createdAt?: Date | string
@@ -16112,7 +16194,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16126,7 +16210,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16140,7 +16226,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     eventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     eventTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mode?: NullableEnumModeFieldUpdateOperationsInput | $Enums.Mode | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
