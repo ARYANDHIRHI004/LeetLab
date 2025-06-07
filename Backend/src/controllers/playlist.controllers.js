@@ -29,7 +29,6 @@ export const getPlayListDetails = async (req, res) => {
   const { playlistId } = req.params;
   const userId = req.user.id;
 
-  
   try {
     const playlist = await db.playlist.findUnique({
       where: {
@@ -40,29 +39,29 @@ export const getPlayListDetails = async (req, res) => {
         problems: {
           include: {
             problems: {
-              include:{
-                description:false,
-                tags:false,
-                examples:false,
-                constraints:false,
-                hints:false,
-                editoral:false,
-                testcases:false,
-                codeSnippets:false,
-                refrenceSolution:false,
-              }
+              include: {
+                description: false,
+                tags: false,
+                examples: false,
+                constraints: false,
+                hints: false,
+                editoral: false,
+                testcases: false,
+                codeSnippets: false,
+                refrenceSolution: false,
+              },
             },
           },
         },
-        assignedTo:{
-          include:{
-            user:{
-              include:{
-                password:false
-              }
-            }
-          }
-        }
+        assignedTo: {
+          include: {
+            user: {
+              include: {
+                password: false,
+              },
+            },
+          },
+        },
       },
     });
     res.status(200).json({
@@ -74,11 +73,32 @@ export const getPlayListDetails = async (req, res) => {
 };
 
 export const createPlaylist = async (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, eventDate, eventTime, mode } = req.body;
   const userId = req.user.id;
 
   try {
-    const playList = await db.Playlist.create({
+    if (!name || !description) {
+      return res.status(400).json({
+        message: "all fields are required",
+      });
+    }
+
+    let playList;
+
+    if (req.user.role === "ORGANIZATIONS") {
+      playList = await db.Playlist.create({
+        data: {
+          name,
+          description,
+          userId,
+          eventDate,
+          eventTime,
+          mode,
+        },
+      });
+    }
+
+    playList = await db.Playlist.create({
       data: {
         name,
         description,
@@ -107,15 +127,13 @@ export const addProblemToPlaylist = async (req, res) => {
   const { problemIds } = req.body;
 
   console.log(problemIds);
-  
 
-try {
+  try {
     // Ensure problemIds is an array
     if (!Array.isArray(problemIds) || problemIds.length === 0) {
-      return res.status(400).json({ error: 'Invalid or missing problemIds' });
+      return res.status(400).json({ error: "Invalid or missing problemIds" });
     }
 
-    
     // Create records for each problem in the playlist
     const problemsInPlaylist = await db.problemInPlaylist.createMany({
       data: problemIds.map((problemId) => ({
@@ -126,14 +144,13 @@ try {
 
     res.status(201).json({
       success: true,
-      message: 'Problems added to playlist successfully',
+      message: "Problems added to playlist successfully",
       problemsInPlaylist,
     });
   } catch (error) {
-    console.error('Error adding problems to playlist:', error.message);
-    res.status(500).json({ error: 'Failed to add problems to playlist' });
+    console.error("Error adding problems to playlist:", error.message);
+    res.status(500).json({ error: "Failed to add problems to playlist" });
   }
-
 };
 
 export const deletePlaylist = async (req, res) => {
@@ -164,4 +181,45 @@ export const removeProblemsFromPlaylist = async (req, res) => {
     if (!Array.isArray(problemIds) || problemIds.length === 0) {
     }
   } catch (error) {}
+};
+
+export const UpdateIsActiveOfPlaylist = async (req, res) => {
+  const userId = req.user.id;
+  const { isActive, mode } = req.body;
+
+  try {
+    if (req.user.role !== "ORGANIZATON") {
+      return res.status(401).json({
+        message: "Unauthorized Request",
+      });
+    }
+    let updatedIsActive
+    
+    if (!isActive) {
+       updatedIsActive = await db.Playlist.update({
+        where: {
+          userId,
+        },
+        data: {
+          mode,
+        },
+      });
+    }
+    if (!mode) {
+      updatedIsActive = await db.Playlist.update({
+        where: {
+          userId,
+        },
+        data: {
+          isActive,
+        },
+      });
+    }
+
+    return res.status(200).json({
+      message: "modefied successfully"
+    })
+  } catch (error) {
+    console.log("error", error);
+  }
 };

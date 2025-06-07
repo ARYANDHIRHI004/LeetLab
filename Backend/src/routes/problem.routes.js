@@ -9,7 +9,7 @@ import { createProblems,
 
 const problemsRoute = express.Router()
 
-problemsRoute.post("/create-problem", verifyJwt, checkAdmin, createProblems)
+problemsRoute.post("/create-problem", verifyJwt, createProblems)
 problemsRoute.get("/get-all-problems", verifyJwt, getAllProblems)
 problemsRoute.get("/get-problem/:id", verifyJwt, getProblemId)
 problemsRoute.put("/update-problem/:id", verifyJwt, checkAdmin, updateProblem)

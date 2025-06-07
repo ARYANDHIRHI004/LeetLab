@@ -55,6 +55,7 @@ model Problem {
   difficulty  Difficulty
   tags        String[]
   userId      String
+  userRole    UserRole   @default(ADMIN)
   examples    Json
   constraints String
   hints       String?
@@ -137,7 +138,7 @@ model Playlist {
 
   eventDate DateTime?
   eventTime DateTime?
-  iaActive  Boolean?
+  iaActive  Boolean?  @default(true)
   mode      Mode?     @default(ONLINE)
 
   createdAt  DateTime            @default(now())

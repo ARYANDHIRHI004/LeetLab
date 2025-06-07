@@ -53,6 +53,7 @@ export const usePlaylist = create((set) => ({
           const res = await axiosInstance.post(`/playlist/${id}/add-problem`,data)
               toast.success(res.data.message)
         } catch (error) {
+            toast.error(res.data.message)
             console.log('error while fetching', error);
         }   
     },  
