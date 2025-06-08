@@ -24,12 +24,18 @@ const Profile = () => {
  
 
   return (
-    <div className="bg-[#03030e] h-[100vh] pt-20 px-5 flex gap-5">
-      <div className="bg-[#1d1d1d]  w-[22vw] h-[89vh] rounded-2xl">
+    <div className="bg-[#000000] h-[100vh] pt-20 md:px-5 px-10 md:flex gap-5 overflow-auto pb-8">
+      <div className="bg-[#080614]  lg:w-[22vw] h-[89vh] rounded-2xl md:mb-0 mb-5 overflow-auto">
         <div className="flex flex-col items-center mt-10">
-          <div className="bg-gray-300 w-60 h-60 rounded-full"></div>
-          <p className="text-white px-5 text-[20px] mt-5">{authUser?.name}</p>
+          <div className="bg-gray-300 w-[25vh] h-[25vh] rounded-full"></div>
+          <p className="text-white px-5 text-[25px] mt-5">{authUser?.name}</p>
         </div>
+          <div className="px-8 text-white ">
+            <p className="flex justify-between border-b-1 border-[#424242] mb-5"><span>Email: </span>{authUser?.email}</p>
+            <p className="flex justify-between border-b-1 border-[#424242] mb-5"><span>Role: </span>{authUser?.role}</p>
+            <p className="flex justify-between border-b-1 border-[#424242] mb-5"><span>Joine Date: </span>{authUser?.createdAt}</p>
+            <p className="flex justify-between border-b-1 border-[#424242] mb-5"><span>Participated in: </span>{authUser?.eventAssignedTo.length} Events</p>
+          </div>
         <div>
           {!isAllSubmissionsLoading ? (
             <div className="text-white ">
@@ -50,7 +56,7 @@ const Profile = () => {
           )}
         </div>
       </div>
-      <div className="bg-[#5B5B5B] w-[78vw] h-[89vh] rounded-2xl">dhirhi</div>
+      <div className="bg-[#0e0e0e]  md:w-[78vw] h-[89vh] rounded-2xl">dhirhi</div>
     </div>
   );
 };

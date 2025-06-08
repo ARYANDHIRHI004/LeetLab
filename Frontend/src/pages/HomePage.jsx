@@ -32,17 +32,17 @@ const HomePage = () => {
 
   return (
     <section className="bg-[#050505] h-[100vh] flex pt-17 justify-between px-2 gap-2 overflow-scroll">
-      <div className="bg-[#111111] h-[92vh] w-[20vw] rounded-2xl">
+      <div className="bg-[#111111] h-[92vh] w-[20vw] rounded-2xl  max-xl:absolute max-xl:left-[-100%] transition-all">
         {/* play list */}
         {/* recent visit */}
       </div>
-      <div className="bg-[#050505] h-[92vh] w-[60vw] rounded-2xl p-2">
+      <div className="bg-[#050505] h-[92vh] w-[60vw] max-sm:w-full rounded-2xl p-2 max-xl:w-full">
         {/* question list */}
-        <div className="text-white text-[2vw] px-6 pt-4">
+        <div className="text-white sm:text-2xl md:text-[25px] lg:text-[32px] px-6 pt-4">
           Hi, <span className="font-bold">{authUser.name.toUpperCase()}</span>
         </div>
         <div className="flex p-5 justify-between text-[1vw] text-white">
-          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center ">
             30 Days DSA<div className="font-bold"> CHALLANGE </div>question
             package
           </div>
@@ -56,16 +56,16 @@ const HomePage = () => {
         </div>
 
         {/* filteration */}
-        <div className="flex justify-between  px-5 text-gray-300 h-[5vh]">
+        <div className="flex justify-between max-xl:flex-col max-xl:gap-4 px-5 text-gray-300 h-[5vh] gap-10">
           <input
-            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl p-5 "
+            className="bg-[#222222]  max-2xl:w-60 w-full max-xl:w-full  h-12 rounded-xl p-5 "
             type="text"
             placeholder="Problem Name"
             value={problemName}
             onChange={(e) => setProblemName(e.target.value)}
           />
           <select
-            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl px-5"
+            className="bg-[#222222] max-2xl:w-60 w-full max-xl:w-full  h-12 max-sm:h-60 rounded-xl px-5"
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
           >
@@ -79,7 +79,7 @@ const HomePage = () => {
           <select
             value={tagName}
             onChange={(e) => setTagName(e.target.value)}
-            className="bg-[#222222] w-[18vw] h-[5vh] rounded-xl px-5"
+            className="bg-[#222222]  max-2xl:w-60 w-full max-xl:w-full  h-12 rounded-xl px-5"
           >
             <option value="All">All</option>
             {problems.map((problem) =>
@@ -145,7 +145,7 @@ const HomePage = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 max-sm:absolute">
         <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white p-5 overflow-scroll">
           {/* Calander */}
           {authUser?.eventAssignedTo.map((assignment) => (

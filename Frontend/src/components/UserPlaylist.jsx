@@ -21,17 +21,17 @@ const UserPlaylist = () => {
   }, [getAllPlaylist]);
 
   return (
-    <div className="bg-black h-[100vh] pt-20 text-white px-5">
-      <div className="flex gap-5">
+    <div className="bg-black h-[100vh] pt-20 text-white px-8 pb-20 ">
+      <div>
         <div>          
         </div>
-        <div className="bg-gray-800 h-[90vh] w-[100vw] rounded-[5px] p-5">
+        <div className="bg-gray-800 h-[90vh] rounded-[5px] overflow-auto">
           <h1 className="text-center text-[18px] bg-gray-700 rounded-[5px] p-2 mb-5">
             Your Playlist
           </h1>
           <div>
             {!isPlaylistsLoading ? (
-              <div className="">
+              <div className="p-5">
                 {playlists?.map((playlist) => (
                   <Link to={`/playlist/problems/${playlist.id}`}>
                     <div className="bg-gray-900 p-5 mb-5 rounded-[5px]">
