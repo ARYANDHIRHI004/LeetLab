@@ -8,7 +8,7 @@ playlistRoute.get("/", verifyJwt, getAllListDetails)
 playlistRoute.get("/:playlistId", verifyJwt, getPlayListDetails)
 playlistRoute.post("/create-playlist", verifyJwt, createPlaylist)
 playlistRoute.post("/:playlistId/add-problem", verifyJwt, addProblemToPlaylist)
-playlistRoute.delete("/:playlistId", verifyJwt, deletePlaylist)
+playlistRoute.delete("/delete/:playlistId", verifyJwt, deletePlaylist)
 playlistRoute.delete("/:playlistId/remove-problem", verifyJwt, removeProblemsFromPlaylist)
 
 

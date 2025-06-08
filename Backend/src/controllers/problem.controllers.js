@@ -20,7 +20,11 @@ export const createProblems = async (req, res) => {
     testCases,
     codeSnippets,
     referenceSolutions,
+    hints
   } = req.body;
+
+
+  
 
   if (req.user.role !== "ADMIN" && req.user.role !== "ORGANIZATION") {
     return res.status(401).json({
@@ -29,7 +33,7 @@ export const createProblems = async (req, res) => {
   }
 
   try {
-    console.log("aryan");
+
     for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
       const languageId = getJudge0LanguageId(language);
 
@@ -72,6 +76,7 @@ export const createProblems = async (req, res) => {
         title,
         description,
         difficulty,
+        hints,
         tags,
         examples,
         constraints,

@@ -28,6 +28,9 @@ const registerUser = async (req, res) => {
         name,
         role: UserRole.USER,
       },
+      include:{
+        eventAssignedTo:true
+      }
     });
 
     if (!newUser) {
