@@ -2,20 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
 import { useAuthStore } from "../Store/useAuthStore";
 import { Link } from "react-router-dom";
-import { CalendarFold, ListPlus, Paperclip } from "lucide-react";
+import { CalendarFold, ListPlus, Paperclip, RefreshCw } from "lucide-react";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
-  const { authUser, checkAuth} = useAuthStore();
-  console.log(authUser)
+  const { authUser, checkAuth } = useAuthStore();
+  console.log(authUser);
 
   useEffect(() => {
     getAllProblems();
   }, [getAllProblems]);
 
-  // useEffect(() => {
-  //   checkAuth()
-  // },[checkAuth])
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const [problemName, setProblemName] = useState("");
   const [tagName, setTagName] = useState("All");
@@ -42,13 +42,13 @@ const HomePage = () => {
         {/* play list */}
         {/* recent visit */}
       </div>
-      <div className="bg-[#050505] h-[92vh] w-[60vw] max-sm:w-full rounded-2xl p-2 max-xl:w-full">
+      <div className="bg-[#050505] h-[92vh] w-[60vw] max-sm:w-full rounded-2xl p-2 max-xl:w-full overflow-auto">
         {/* question list */}
         <div className="text-white sm:text-2xl md:text-[25px] lg:text-[32px] px-6 pt-4">
           Hi, <span className="font-bold">{authUser?.name.toUpperCase()}</span>
         </div>
         <div className="flex p-5 justify-between text-[1vw] text-white">
-          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center ">
+          <div className="bg-[linear-gradient(120deg,#090033,#000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center ">
             30 Days DSA<div className="font-bold"> CHALLANGE </div>question
             package
           </div>
@@ -56,7 +56,7 @@ const HomePage = () => {
             100 Days DSA <div className="font-bold">CHALLANGE</div> question
             package
           </div>
-          <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
+          <div className="bg-[linear-gradient(120deg,#090033,#000)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center">
             <div className="font-bold">Company</div> Specific questions
           </div>
         </div>
@@ -98,24 +98,33 @@ const HomePage = () => {
           </select>
         </div>
         <div className="mt-7 mb-5 text-right px-5 flex justify-end">
-          <Link to={"/create-playlist"}
-          className="bg-blue-800 p-2 rounded-[5px] text-white flex justify-center items-center gap-2 w-40"> <ListPlus size={15} />Create PlayList</Link>
+          <Link
+            to={"/create-playlist"}
+            className="bg-blue-800 p-2 rounded-[5px] text-white flex justify-center items-center gap-2 w-40"
+          >
+            {" "}
+            <ListPlus size={15} />
+            Create PlayList
+          </Link>
         </div>
         <div>
           {!isProblemsLoading ? (
             filteredProblem.length !== 0 ? (
               filteredProblem.map((problem, index) => (
-                <Link
-                  to={`/problem/${problem.id}`}
+                <div
                   className={`${
                     index % 2 === 0 ? "bg-[#272727]" : ""
-                  } px-8 h-[2.5vw] rounded-xl grid grid-cols-3 items-center text-xl m-4`}
+                  } px-8 h-[2.5vw] rounded-xl grid grid-cols-9 gap-7 items-center text-xl m-4`}
                 >
-                  <div className="flex gap-2">
-                    <input type="checkbox" readOnly={true} />
-                    <p className="font-bold text-white text-[1.1vw] flex items-center gap-2"><Paperclip size={15} />{problem.title}</p>
-                  </div>
-
+                  <input className="w-10" type="checkbox" readOnly={true} />
+                  <Link className="col-span-6 " to={`/problem/${problem.id}`}>
+                    <div className="flex gap-2">
+                      <p className="font-bold text-white text-[1.1vw] flex items-center gap-2 ">
+                        <Paperclip size={15} />
+                        {problem.title}
+                      </p>
+                    </div>
+                  </Link>
                   <div className="flex justify-end text-[10px]">
                     <div
                       className={`${
@@ -130,14 +139,18 @@ const HomePage = () => {
                     </div>
                   </div>
                   <div className="flex gap-3 justify-end">
-                    <button className="bg-blue-700 w-14 h-10 rounded-xl">
-                      u
-                    </button>
+                    {authUser?.role === "ADMIN" ? (
+                      <button className="bg-green-700 w-14 h-10 rounded-xl flex justify-center items-center">
+                        <RefreshCw size={20} color="white" />
+                      </button>
+                    ) : (
+                      ""
+                    )}
                     <button className="bg-blue-700 w-14 h-10 rounded-xl">
                       p
                     </button>
                   </div>
-                </Link>
+                </div>
               ))
             ) : (
               <div className="text-3xl max-sm:text-[20px] text-gray-500 h-50 flex items-center justify-center ">
@@ -154,13 +167,19 @@ const HomePage = () => {
       <div className="flex flex-col gap-2 max-sm:absolute">
         <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white px-5 pt-2 overflow-scroll">
           {/* Calander */}
-          <h2 className=" text-[18px] flex justify-center items-center gap-2"> <CalendarFold size={20}/><p>Events</p></h2>
+          <h2 className=" text-[18px] flex justify-center items-center gap-2">
+            {" "}
+            <CalendarFold size={20} />
+            <p>Events</p>
+          </h2>
           {authUser?.eventAssignedTo?.map((assignment) => (
             <Link to={`/assigned-event/${assignment.id}`}>
               <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">
                 <div className="flex justify-between">
                   <p className="text-[0.8vw]">Event: {assignment.event.name}</p>
-                  <p className="text-[0.6vw]">{assignment.event.createdAt.split("T")}</p>
+                  <p className="text-[0.6vw]">
+                    {assignment.event.createdAt.split("T")}
+                  </p>
                 </div>
                 <div className="flex justify-between mt-2">
                   <p className="text-[0.6vw]">Mode: {assignment.event.mode}</p>
