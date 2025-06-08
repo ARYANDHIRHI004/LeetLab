@@ -23,10 +23,10 @@ const OrganizationDashboard = () => {
             </h2>
           </div>
           <div>
-            <h2 className="text-[12px] flex justify-between mb-0.5">
+            <h2 className="text-[12px] flex justify-between mb-0.5 underline underline-offset-2">
               Email: <span>{authUser?.email}</span>
             </h2>
-            <h2 className="text-[12px] flex justify-between mb-0.5">
+            <h2 className="text-[12px] flex justify-between mb-0.5 underline underline-offset-2">
               Role: <span>{authUser?.role}</span>
             </h2>
           </div>
@@ -99,7 +99,7 @@ const OrganizationDashboard = () => {
             to={"/create-assignments"}
           >
             <div>
-              <h2 className="text-2xl">Add Users To Events</h2>
+              <h2 className="text-2xl">Add Participants To Events</h2>
             </div>
           </Link>
 
