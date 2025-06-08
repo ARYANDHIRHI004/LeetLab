@@ -1,12 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../Store/useAuthStore";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import BlurBlob from "../components/BlurBlob";
 import Tilt from "react-parallax-tilt";
 import Neurocodium from "../assets/neurocodiumLogo.png";
-import { Loader, Mail} from "lucide-react";
+import { Loader, Mail } from "lucide-react";
 
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
@@ -23,13 +23,13 @@ const SignupPage = () => {
       <div className="  p-5 rounded-2xl h-110 flex items-center gap-2 ">
         <div className="max-sm:hidden">
           <BlurBlob
-          position={{ top: "10%", left: "0%" }}
-          size={{ width: "30%", height: "48%" }}
-        />
-        <BlurBlob
-          position={{ top: "70%", left: "100%" }}
-          size={{ width: "30%", height: "48%" }}
-        />
+            position={{ top: "10%", left: "0%" }}
+            size={{ width: "30%", height: "48%" }}
+          />
+          <BlurBlob
+            position={{ top: "70%", left: "100%" }}
+            size={{ width: "30%", height: "48%" }}
+          />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col mb-5">
@@ -43,7 +43,9 @@ const SignupPage = () => {
             />
           </div>
           <div className="flex flex-col mb-5">
-            <label className="flex gap-2 items-center" htmlFor="email">Email</label>
+            <label className="flex gap-2 items-center" htmlFor="email">
+              Email
+            </label>
             <input
               className="border-blue-950 border-2 rounded-xl p-2 bg-black"
               type="text"
@@ -51,7 +53,6 @@ const SignupPage = () => {
               placeholder="Enter Your email"
               {...register("email")}
             />
-              
           </div>
           <div className="flex flex-col">
             <label htmlFor="password">Password</label>
@@ -65,7 +66,7 @@ const SignupPage = () => {
           </div>
 
           <button
-            className="bg-[#3000cf] mt-15 w-full h-10 rounded-2xl"
+            className="bg-[#3000cf] mt-5 w-full h-10 rounded-2xl"
             type="submit"
           >
             {!isSigningUp ? (
@@ -77,7 +78,16 @@ const SignupPage = () => {
               </div>
             )}
           </button>
+          <h3 className="text-[12px] mt-5 text-center">
+            Already On Neurocodium?{" "}
+            <span className="mx-2">
+              <Link className="text-blue-700" to={"/login"}>
+                Login
+              </Link>
+            </span>
+          </h3>
         </form>
+
         <Tilt
           tiltMaxAngleX={10}
           tiltMaxAngleY={10}
