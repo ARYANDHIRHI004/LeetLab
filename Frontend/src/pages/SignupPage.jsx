@@ -21,7 +21,8 @@ const SignupPage = () => {
   return (
     <div className="bg-[linear-gradient(120deg,#090033,#000)] text-white h-[100vh] flex items-center justify-center text-xl">
       <div className="  p-5 rounded-2xl h-110 flex items-center gap-2 ">
-        <BlurBlob
+        <div className="max-sm:hidden">
+          <BlurBlob
           position={{ top: "10%", left: "0%" }}
           size={{ width: "30%", height: "48%" }}
         />
@@ -29,6 +30,7 @@ const SignupPage = () => {
           position={{ top: "70%", left: "100%" }}
           size={{ width: "30%", height: "48%" }}
         />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col mb-5">
             <label htmlFor="Name">Name</label>
