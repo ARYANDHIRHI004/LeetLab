@@ -2,6 +2,9 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import { useAuthStore } from '../Store/useAuthStore'
 import { Loader } from "lucide-react";
+import Tilt from "react-parallax-tilt";
+import Neurocodium from "../assets/neurocodiumLogo.png";
+import BlurBlob from '../components/BlurBlob';
 
 const LoginPage = () => {
    const {isLoggingIn, login} = useAuthStore()
@@ -16,8 +19,19 @@ const LoginPage = () => {
    }
 
   return (
-    <div className='bg-black text-white h-[100vh] flex items-center justify-center text-xl'>
-        <div className=' bg-gray-400 p-5 rounded-2xl w-100 h-110'>
+    <div className='bg-[linear-gradient(120deg,#090033,#000)] text-white h-[100vh] flex items-center justify-center text-xl'>
+        <BlurBlob
+            position={{ top: "10%", left: "0%" }}
+            size={{ width: "30%", height: "48%" }}
+
+          />
+        <BlurBlob
+            position={{ top: "70%", left: "100%" }}
+            size={{ width: "30%", height: "48%" }}
+
+          />
+        <div className=' p-5 rounded-2xl h-110 flex items-center gap-2'>
+            
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col mb-5'>
                     <label htmlFor="email">Email</label>
@@ -55,6 +69,25 @@ const LoginPage = () => {
                 </button>
                
             </form>
+            
+            <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                scale={1.05}
+                transitionSpeed={1000}
+                gyroscope={true}
+                className='max-md:hidden'
+              >
+                <div>
+                  <img
+                    className=" max-sm:w-100 w-120"
+                    src={Neurocodium}
+                    alt="Neuricodium"
+                  />
+                </div>
+              </Tilt>
+               
         </div>
     </div>
   )

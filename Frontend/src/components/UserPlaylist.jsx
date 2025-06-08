@@ -25,7 +25,7 @@ const UserPlaylist = () => {
       <div>
         <div>          
         </div>
-        <div className="bg-gray-800 h-[90vh] rounded-[5px] overflow-auto">
+        <div className=" h-[90vh] rounded-[5px] overflow-auto">
           <h1 className="text-center text-[18px] bg-gray-700 rounded-[5px] p-2 mb-5">
             Your Playlist
           </h1>

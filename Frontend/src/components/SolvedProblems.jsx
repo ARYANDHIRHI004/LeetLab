@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
 import { Link } from "react-router-dom";
 import { useSubmisions } from "../Store/useSubmissions";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const SolvedProblems = () => {
   const { getSolvedProblemByUser, isSolvedProblemLoading, solvedProblem } =
@@ -22,40 +23,40 @@ const SolvedProblems = () => {
   };
 
   return (
-    <div className="bg-[#03030e] h-[100vh] pt-22 p-50 text-white">
+    <div className="bg-[#03030e] h-[100vh] pt-22 flex flex-col items-center text-white">
       <div className="">
         {!isSolvedProblemLoading
           ? solvedProblem?.map((problem) =>
               !toggle ? (
-                <div className="bg-gray-500 rounded-xl p-5  h-20  overflow-scroll">
-                <div className="flex fixed bg-gray-700 rounded-2xl">
+                <div className="bg-gray-500 rounded-xl  h-20 w-[80vw] mb-5  overflow-scroll">
+                <div className="flex fixed bg-gray-700 w-[80vw] items-center h-20 rounded-xl">
                     <button
                       onClick={() => handleToggle(problem.id)}
-                      className="w-10 h-10 flex items-center justify-center "
+                      className="w-20 h-10 flex items-center justify-center "
                     >
-                      d
+                     <ChevronDown />
                     </button>
-                    <Link className="bg-gray-700 w-[76vw] h-10 flex items-center rounded-2xl text-xl " to={`/problem/${problem.id}`}>
-                      <p>{problem.title}</p>
+                    <Link to={`/problem/${problem.id}`}>
+                      <p className="text-[18px] ">{problem.title}</p>
                     </Link>
                   </div>
                   </div>
               ) : (
-                <div className="bg-gray-500 rounded-xl p-5  h-80  overflow-scroll">
-                  <div className="flex fixed bg-gray-700 rounded-2xl">
+                <div className="bg-gray-500 rounded-xl h-90 w-[80vw] mb-5 overflow-scroll">
+                  <div className="flex fixed bg-gray-700  items-center w-[80vw] h-20 rounded-t-xl">
                     <button
                       onClick={() => handleToggle(problem.id)}
-                      className="w-10 h-10 flex items-center justify-center "
+                      className="w-20 h-10 flex items-center justify-center "
                     >
-                      d
+                      <ChevronUp />
                     </button>
-                    <Link className="bg-gray-700 w-[76vw] h-10 flex items-center rounded-2xl text-xl " to={`/problem/${problem.id}`}>
+                    <Link className="text-[18px] " to={`/problem/${problem.id}`}>
                       <p>{problem.title}</p>
                     </Link>
                   </div>
-                  <div className="p-3 text-white mt-10 flex flex-col gap-5  ">
+                  <div className=" text-white mt-20 flex flex-col gap-5  ">
                     {submissions?.map((submission, i) => (
-                      <div className="bg-gray-700 rounded-2xl p-6">
+                      <div className="bg-gray-700 p-6">
                         <p className="mb-2">Submission {i + 1}</p>
                         {submission.testCases.map((testCase, i) => (
                           <div className="mb-2">

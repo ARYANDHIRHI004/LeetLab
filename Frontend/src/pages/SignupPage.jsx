@@ -2,23 +2,33 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../Store/useAuthStore";
 import { Navigate } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import BlurBlob from "../components/BlurBlob";
+import Tilt from "react-parallax-tilt";
+import Neurocodium from "../assets/neurocodiumLogo.png";
+import { Loader, Mail} from "lucide-react";
 
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-      await signup(data);
-      navigate("/login")
-  
+    await signup(data);
+    navigate("/login");
   };
 
   return (
-    <div className="bg-black text-white h-[100vh] flex items-center justify-center text-xl">
-      <div className=" bg-gray-400 p-5 rounded-2xl w-100 h-110">
+    <div className="bg-[linear-gradient(120deg,#090033,#000)] text-white h-[100vh] flex items-center justify-center text-xl">
+      <div className="  p-5 rounded-2xl h-110 flex items-center gap-2 ">
+        <BlurBlob
+          position={{ top: "10%", left: "0%" }}
+          size={{ width: "30%", height: "48%" }}
+        />
+        <BlurBlob
+          position={{ top: "70%", left: "100%" }}
+          size={{ width: "30%", height: "48%" }}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col mb-5">
             <label htmlFor="Name">Name</label>
@@ -31,7 +41,7 @@ const SignupPage = () => {
             />
           </div>
           <div className="flex flex-col mb-5">
-            <label htmlFor="email">Email</label>
+            <label className="flex gap-2 items-center" htmlFor="email">Email</label>
             <input
               className="border-blue-950 border-2 rounded-xl p-2 bg-black"
               type="text"
@@ -39,12 +49,13 @@ const SignupPage = () => {
               placeholder="Enter Your email"
               {...register("email")}
             />
+              
           </div>
           <div className="flex flex-col">
             <label htmlFor="password">Password</label>
             <input
               className="border-blue-950 border-2 rounded-xl p-2 bg-black"
-              type="text"
+              type="password"
               name="password"
               placeholder="*******"
               {...register("password")}
@@ -55,10 +66,33 @@ const SignupPage = () => {
             className="bg-[#3000cf] mt-15 w-full h-10 rounded-2xl"
             type="submit"
           >
-            {isSigningUp ? "Signing Up..." : "sign Up"}
-
+            {!isSigningUp ? (
+              "Sign Up"
+            ) : (
+              <div className="flex justify-center items-center gap-2">
+                <Loader className="size-5 animate-spin" />
+                Signing Up
+              </div>
+            )}
           </button>
         </form>
+        <Tilt
+          tiltMaxAngleX={10}
+          tiltMaxAngleY={10}
+          perspective={1000}
+          scale={1.05}
+          transitionSpeed={1000}
+          gyroscope={true}
+          className="max-md:hidden"
+        >
+          <div>
+            <img
+              className=" max-sm:w-100 w-120"
+              src={Neurocodium}
+              alt="Neuricodium"
+            />
+          </div>
+        </Tilt>
       </div>
     </div>
   );

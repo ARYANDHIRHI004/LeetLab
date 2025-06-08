@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useProblemStore } from "../Store/useProblemStore";
 import { useAuthStore } from "../Store/useAuthStore";
 import { Link } from "react-router-dom";
+import { CalendarFold, ListPlus, Paperclip } from "lucide-react";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
@@ -96,9 +97,9 @@ const HomePage = () => {
             )}
           </select>
         </div>
-        <div className="mt-7 mb-5 text-right px-5">
+        <div className="mt-7 mb-5 text-right px-5 flex justify-end">
           <Link to={"/create-playlist"}
-          className="bg-blue-800 p-2 rounded-[5px] text-white">Create PlayList</Link>
+          className="bg-blue-800 p-2 rounded-[5px] text-white flex justify-center items-center gap-2 w-40"> <ListPlus size={15} />Create PlayList</Link>
         </div>
         <div>
           {!isProblemsLoading ? (
@@ -112,7 +113,7 @@ const HomePage = () => {
                 >
                   <div className="flex gap-2">
                     <input type="checkbox" readOnly={true} />
-                    <p className="font-bold text-white text-[1.1vw]">{problem.title}</p>
+                    <p className="font-bold text-white text-[1.1vw] flex items-center gap-2"><Paperclip size={15} />{problem.title}</p>
                   </div>
 
                   <div className="flex justify-end text-[10px]">
@@ -151,8 +152,9 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2 max-sm:absolute">
-        <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white p-5 overflow-scroll">
+        <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white px-5 pt-2 overflow-scroll">
           {/* Calander */}
+          <h2 className=" text-[18px] flex justify-center items-center gap-2"> <CalendarFold size={20}/><p>Events</p></h2>
           {authUser?.eventAssignedTo?.map((assignment) => (
             <Link to={`/assigned-event/${assignment.id}`}>
               <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">

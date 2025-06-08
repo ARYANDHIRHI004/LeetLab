@@ -27,37 +27,40 @@ const ProblemPage = () => {
   } = useActions();
   const {submissions, submissionRequest, isLoading} = useSubmisions()
 
-  useEffect(() => {
-    getProblemId(id);
+  useEffect( () => {
+     getProblemId(id);
   }, [getProblemId]);
 
-  useEffect(() => {
-    submissionRequest(id);
+  useEffect( () => {
+     submissionRequest(id);
   }, [submissionRequest]);
 
   const [rightWidth, setRightWidth] = useState("50vw");
   const [leftWidth, setLeftWidth] = useState("50vw");
   const [upHight, setUpHight] = useState("60vw");
   const [bottomHight, setBottomHight] = useState("40vw");
+
   const [language, setLanguage] = useState("JAVASCRIPT");
-  const [codeSnippit, setCodeSnippit] = useState("");
+  const [codeSnippit, setCodeSnippit] = useState(submissions[submissions.length-1]?.sourceCode || "aryan");
+
+  console.log("code snippits",codeSnippit)
 
   useEffect(() => {
     switch (language) {
       case "JAVA":
-        setCodeSnippit(`${problem?.codeSnippets?.JAVA}`);
+        setCodeSnippit(problem?.codeSnippets.JAVA);
         break;
       case "PYTHON":
-        setCodeSnippit(problem?.codeSnippets?.PYTHON);
+        setCodeSnippit(problem?.codeSnippets.PYTHON);
         break;
       case "JAVASCRIPT":
-        setCodeSnippit(problem?.codeSnippets?.JAVASCRIPT);
+        setCodeSnippit(problem?.codeSnippets.JAVASCRIPT);
         break;
 
       default:
         break;
     }
-  }, [language, setLanguage, setCodeSnippit]);
+  }, [language, setLanguage]);
 
   const horizontalMouseDown = () => {
     document.addEventListener("mousemove", handleMouseMove);
@@ -187,8 +190,8 @@ const ProblemPage = () => {
         <div className="bg-[#1D1D1D] rounded-xl p-3 flex text-white justify-between">
           <select
             className="bg-[#1D1D1D] h-8 rounded-xl border-0"
-            value={language}
             onChange={(e) => setLanguage(e.target.value)}
+
           >
             <option value="JAVASCRIPT">JAVASCRIPT</option>
             <option value="JAVA">JAVA</option>
@@ -229,9 +232,10 @@ const ProblemPage = () => {
               theme="vs-dark"
               defaultValue={codeSnippit}
               value={
-                 submissions[submissions.length-1]?.sourceCode || codeSnippit
+                   codeSnippit 
                 }
-              options={{ minimap: { enabled: false } }}
+                
+              options={{ minimap: { enabled: false }, readOnly: false }}
               onChange={(value) => setCodeSnippit(value || "")}
             />
               ):(

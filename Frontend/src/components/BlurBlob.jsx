@@ -4,7 +4,7 @@ const BlurBlob = ({position, size}) => {
     const {top, left} = position
     const {width, height} = size
   return (
-    <div className='absolute'
+    <div className='absolute z-0'
     style={{
         top:top,
         left:left,
@@ -13,7 +13,7 @@ const BlurBlob = ({position, size}) => {
         transform:'translate(-50%, -50%)'
     }}
     >
-        <div className='w-full h-full bg-blue-800 rounded-full opacity-20 blur-3xl animate-pulse delay-300 text-white'>
+        <div className='w-full h-full bg-blue-800 rounded-full opacity-20 blur-3xl animate-pulse text-white'>
         </div>
 
     </div>
