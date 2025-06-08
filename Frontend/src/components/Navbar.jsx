@@ -20,15 +20,15 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-black text-white w-full h-[6vh] font-medium gap-60 z-50">
-      <Link to={"/"} className="text-[3.5vh] flex gap-2 items-center">
-        <img src={Neurocodium} className="w-[4.5vw] h-[3.5vh]" />
+    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-[#4b3131] text-white w-[100vw] font-medium gap-60 z-50 h-17">
+      <Link to={"/"} className="text-[25px] flex gap-2 items-center">
+        <img src={Neurocodium} width={60}/>
         <span>Neurocodium</span>
       </Link>
       {
         !authUser?(
           <div>
-        <ul className="flex gap-14 text-[2vh]">
+        <ul className="flex gap-14 text-[15px] max-[1028px]:hidden">
           {NavbarMenu.map((navMenu) => (
             <li key={navMenu.id}>{navMenu.label}</li>
           ))}
@@ -36,17 +36,17 @@ const Navbar = () => {
       </div>
         ):("")
       }
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-5 items-center max-[790px]:hidden">
         {!authUser ? (
           <Link
-            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] text-center hover:drop-shadow-[0px_0px_10px_#0090FF] text-[1.8vh] "
+            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[110px] text-center hover:drop-shadow-[0px_0px_10px_#0090FF] text-[15px] h-10 "
             to={"/login"}
           >
             Login
           </Link>
         ) : (
           <button
-            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] h-10 text-center hover:bg-blue-900 text-[1.8vh] "
+            className="bg-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[110px] h-10 text-center hover:bg-blue-900 text-[15px] "
             onClick={handleLogout}
           >
             {
@@ -60,7 +60,7 @@ const Navbar = () => {
         )}
         {!authUser ? (
           <Link
-            className=" bg-white  text-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[7vw] text-center text-[1.8vh] h-10"
+            className=" bg-white  text-[#3000cf] pt-1.5 pb-1.5 px-8 rounded-full w-[110] text-center text-[15px] h-10"
             to={"/Signup"}
           >
             sign Up
