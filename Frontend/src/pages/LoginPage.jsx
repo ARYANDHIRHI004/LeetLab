@@ -28,6 +28,7 @@ const LoginPage = () => {
         <BlurBlob
             position={{ top: "70%", left: "100%" }}
             size={{ width: "30%", height: "48%" }}
+            
 
           />
         <div className=' p-5 rounded-2xl h-110 flex items-center gap-2'>
