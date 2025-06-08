@@ -20,7 +20,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-[#4b3131] text-white w-[100vw] font-medium gap-60 z-50 h-17">
+    <nav className=" fixed flex justify-between px-20 items-center text-[12px] bg-[#000000] text-white w-[100vw] font-medium gap-60 z-50 h-17">
       <Link to={"/"} className="text-[25px] flex gap-2 items-center">
         <img src={Neurocodium} width={60}/>
         <span>Neurocodium</span>

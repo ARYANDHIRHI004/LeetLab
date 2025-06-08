@@ -10,7 +10,7 @@ const WelcomePage = () => {
     <div>
       <section
         id="home"
-        className="bg-[linear-gradient(120deg,#090033,#000)] md:[mask-image:radial-gradient(ellipse_100%_200%_at_50%_155%,transparent_50%,black_50%)] h-[100vh] "
+        className="bg-[linear-gradient(120deg,#090033,#000)] md:[mask-image:radial-gradient(ellipse_100%_200%_at_50%_155vh,transparent_50%,black_50%)] max-md:[mask-image:radial-gradient(ellipse_120%_45%_at_50%_110vh,transparent_50%,black_50%)] h-[100vh] "
       >
         <div className="max-[1028px]:hidden">
           <BlurBlob
@@ -18,7 +18,7 @@ const WelcomePage = () => {
             size={{ width: "30%", height: "48%" }}
           />
         </div>
-            <div className="absolute right-0 top-[20%] w-full flex max-[710]:justify-center 2xl:justify-end px-30 ">
+            <div className="absolute right-0 top-[20%] max-sm:top-[14%]    px-30 ">
               <Tilt
                 tiltMaxAngleX={10}
                 tiltMaxAngleY={10}
