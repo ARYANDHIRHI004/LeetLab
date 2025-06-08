@@ -2,18 +2,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../Store/useAuthStore";
 import { Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    try {
       await signup(data);
-      Navigate("/")
-    } catch (error) {
-      console.log(error)
-    }
+      navigate("/login")
+  
   };
 
   return (
@@ -56,6 +56,7 @@ const SignupPage = () => {
             type="submit"
           >
             {isSigningUp ? "Signing Up..." : "sign Up"}
+
           </button>
         </form>
       </div>

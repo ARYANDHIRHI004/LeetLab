@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { problems, isProblemsLoading, getAllProblems } = useProblemStore();
-  const { authUser } = useAuthStore();
+  const { authUser, checkAuth} = useAuthStore();
+  console.log(authUser)
 
   useEffect(() => {
     getAllProblems();
   }, [getAllProblems]);
+
+  // useEffect(() => {
+  //   checkAuth()
+  // },[checkAuth])
 
   const [problemName, setProblemName] = useState("");
   const [tagName, setTagName] = useState("All");
@@ -39,7 +44,7 @@ const HomePage = () => {
       <div className="bg-[#050505] h-[92vh] w-[60vw] max-sm:w-full rounded-2xl p-2 max-xl:w-full">
         {/* question list */}
         <div className="text-white sm:text-2xl md:text-[25px] lg:text-[32px] px-6 pt-4">
-          Hi, <span className="font-bold">{authUser.name.toUpperCase()}</span>
+          Hi, <span className="font-bold">{authUser?.name.toUpperCase()}</span>
         </div>
         <div className="flex p-5 justify-between text-[1vw] text-white">
           <div className="bg-[linear-gradient(140deg,#38fd42,#2c6e1b)] h-[13vh] w-[16vw] rounded-[8px] flex flex-col justify-center items-center ">
@@ -148,7 +153,7 @@ const HomePage = () => {
       <div className="flex flex-col gap-2 max-sm:absolute">
         <div className="bg-[#1b1b1b] h-[37vh] w-[20vw] rounded-2xl text-white p-5 overflow-scroll">
           {/* Calander */}
-          {authUser?.eventAssignedTo.map((assignment) => (
+          {authUser?.eventAssignedTo?.map((assignment) => (
             <Link to={`/assigned-event/${assignment.id}`}>
               <div className="bg-gray-700 mb-5 px-4 py-2 rounded-[5px]">
                 <div className="flex justify-between">
