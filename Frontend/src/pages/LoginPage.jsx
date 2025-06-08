@@ -20,7 +20,8 @@ const LoginPage = () => {
 
   return (
     <div className='bg-[linear-gradient(120deg,#090033,#000)] text-white h-[100vh] flex items-center justify-center text-xl'>
-        <BlurBlob
+        <div className='max-sm:hidden'>
+            <BlurBlob
             position={{ top: "10%", left: "0%" }}
             size={{ width: "30%", height: "48%" }}
 
@@ -31,7 +32,8 @@ const LoginPage = () => {
             
 
           />
-        <div className=' p-5 rounded-2xl h-110 flex items-center gap-2'>
+        </div>
+        <div className=' p-5 rounded-2xl h-110 flex items-center gap-2 '>
             
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col mb-5'>
