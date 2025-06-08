@@ -35,11 +35,21 @@ const Events = () => {
   }, [getPlaylistById, Events]);
 
   return (
-    <div className="bg-black h-[100vh] text-white pt-19 px-5">
-      <div className="flex gap-5">
-        <div className="bg-[#141414] w-[50%] rounded-[5px] pt-2 px-4 h-[90vh]">
+    <div className="bg-black h-[100vh] text-white pt-19 px-5 ">
+      <div className="flex gap-5 ">
+        <div className="bg-[#141414] w-[50%] rounded-[5px] pt-2 px-4 h-[90vh] overflow-auto pb-5">
+            <h3 className=" text-[20px] mb-3 ">Events</h3>
+            <div className=" text-[14px] flex">
+              <p className="w-65 mb-3 ">Event Name</p>
+              <p className="w-31 mb-3 ">Active State</p>
+              <p className="w-22 mb-3 ">Mode</p>
+              <p className="w-32 mb-3 ">Event Date</p>
+              <p className="w-22 mb-3 ">Time</p>
+              <p className="w-26 mb-3 ">End Date</p>
+              <p className="w-30 mb-3 ">End Time</p>
+            </div>
+
           <div className="">
-            <h3 className="text-[20px] mb-3">Previous Events</h3>
             <div className="flex flex-col gap-2">
               {playlists?.map((playlist, i) => (
                 <button
@@ -47,13 +57,21 @@ const Events = () => {
                   className="text-left"
                 >
                   <div>
-                    <p
+                    <div
                       className={`text-[15px] ${
                         i % 2 == 0 ? "bg-[#313131]" : "bg-[#0c0c0c]"
                       } p-2 rounded-[3px]`}
                     >
-                      {playlist.name}
-                    </p>
+                      <div className="flex gap-10 text-[13px]">
+                        <p className="w-60 overflow-auto">{playlist.name}</p>
+                      <p className="w-13">{JSON.stringify(playlist.isActive)}</p>
+                      <p>{playlist.mode}</p>
+                      <p>{playlist.eventDate}</p>
+                      <p>{playlist.eventTime}</p>
+                      <p>{playlist.endDate}</p>
+                      <p>{playlist.endTime}</p>
+                      </div>
+                    </div>
                   </div>
                 </button>
               ))}
