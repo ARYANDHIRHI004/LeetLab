@@ -61,8 +61,10 @@ const Assignments = () => {
           </div>
   
         </div>
-        <div className="bg-[#161616]  h-[90vh] w-[70vw] rounded-[5px] p-5 flex flex-col gap-2">
-          <div className="bg-white p-3 rounded-[5px] flex gap-10">
+        <div className="bg-[#161616]  h-[90vh] w-[70vw] rounded-[5px] p-5  overflow-auto pb-5">
+          {selectEvent ? (
+          <div className="flex flex-col gap-2">
+            <div className="bg-white p-3 rounded-[5px] flex gap-10">
              <p className="w-47 ">Event Name</p>
              <p className="w-47 "> Description</p>
              <p className="w-47 "> Event Date</p>
@@ -70,22 +72,24 @@ const Assignments = () => {
              <p className="w-47 "> Event End Date</p>
              <p className="w-47 "> Event End Time</p>
           </div>
-          {selectEvent ? (
-            playlists?.map((playlist) => (
-              <div
-                onClick={() => selectPlaylist(playlist.id, playlist.name)}
-                className="bg-white p-3 rounded-[5px]"
-              >
-                <div className="flex gap-10 overflow-ellipsis">
-                  <p className="w-47 overflow-clip">{playlist.name}</p>
-                <p  className="w-47 overflow-clip">{playlist.description}</p>
-                <p className="w-47 overflow-clip">{playlist.eventDate}</p>
-                <p className="w-47 overflow-clip">{playlist.eventTime}</p>
-                <p className="w-47 overflow-clip">{playlist.endDate}</p>
-                <p className="w-47 overflow-clip">{playlist.endTime}</p>
-                </div>
-              </div>
-            ))
+            <div className="flex flex-col gap-2">
+              {
+                playlists?.map((playlist)=>(
+
+                    <div onClick={()=>selectPlaylist(playlist.id, playlist.name)} className="bg-white p-3 rounded-[5px] flex gap-10">
+                    <p className="min-w-47 overflow-clip ">{playlist.name}</p>
+                    <p className="min-w-47 overflow-clip ">{playlist.description}</p>
+                    <p className="w-47 ">{playlist.eventDate}</p>
+                    <p className="w-47 ">{playlist.eventTime}</p>
+                    <p className="w-47 ">{playlist.endDate}</p>
+                    <p className="w-47 ">{playlist.eventTime}</p>
+                    <p className="w-47 ">{playlist.eventDate}</p>
+                  </div>
+
+                ))
+              }
+            </div>
+          </div>
           ) : selectParticipants ? (
             <div>
               <form className=" flex flex-col gap-2" action={handleSubmit(onSubmitUsers)}>

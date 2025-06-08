@@ -48,14 +48,7 @@ const ProfileMenu = () => {
                   My Playlist
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={() => setDropDown(!dropDown)}
-                  to={"/performance"}
-                >
-                  Performance
-                </Link>
-              </li>
+              
               {authUser.role === "ADMIN" ? (
                 <li>
                   <Link

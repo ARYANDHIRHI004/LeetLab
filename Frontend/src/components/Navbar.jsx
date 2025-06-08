@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { NavbarMenu } from "../constents";
 import Neurocodium from "../assets/neurocodiumLogo.png";
 import { useAuthStore } from "../Store/useAuthStore";
-import { Loader } from "lucide-react";
+import { Loader, LogOut } from "lucide-react";
 import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
@@ -54,7 +54,12 @@ const Navbar = () => {
                 <div className='flex justify-center items-center gap-2'>
                 <Loader className="size-6 animate-spin" />
                 </div>
-            ):"Logout" 
+            ):(
+              <div className="flex gap-1">
+                <LogOut size={20} />
+                <p>Logout</p>
+              </div>
+            ) 
             }
           </button>
         )}

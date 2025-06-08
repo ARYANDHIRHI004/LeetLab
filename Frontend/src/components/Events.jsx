@@ -17,7 +17,6 @@ const Events = () => {
     playlist,
     isPlaylistLoading
   } = usePlaylist();
-  DashboardEventSectionNavtabComponents;
 
   const {
     DashboardEventSectionNavtabActive,
@@ -34,8 +33,6 @@ const Events = () => {
   useEffect(() => {
     getPlaylistById(Events);
   }, [getPlaylistById, Events]);
-
-  isPlaylistLoading?("loading"):console.log(playlist?.name)
 
   return (
     <div className="bg-black h-[100vh] text-white pt-19 px-5">
