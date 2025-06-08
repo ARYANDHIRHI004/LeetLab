@@ -161,11 +161,11 @@ export const addProblemToPlaylist = async (req, res) => {
 export const deletePlaylist = async (req, res) => {
   const userId = req.user.id;
   const { playlistId } = req.params;
-
+  
   try {
     const deleted = await db.playlist.delete({
       where: {
-        playlistId,
+        id:playlistId,
       },
     });
     res.status(200).json({
@@ -228,3 +228,18 @@ export const UpdateIsActiveOfPlaylist = async (req, res) => {
     console.log("error", error);
   }
 };
+
+// export const getPlaylistByCreationDate = async (req, res) => {
+//   const userId = req.user.id;
+//   const { isActive, mode } = req.body;
+
+//   try {
+    
+
+//     return res.status(200).json({
+//       message: "modefied successfully"
+//     })
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+// };
