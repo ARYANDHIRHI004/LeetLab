@@ -134,7 +134,7 @@ const HomePage = () => {
                 </Link>
               ))
             ) : (
-              <div className="text-3xl text-gray-500 h-50 flex items-center justify-center ">
+              <div className="text-3xl max-sm:text-[20px] text-gray-500 h-50 flex items-center justify-center ">
                 No Problem Found
               </div>
             )
