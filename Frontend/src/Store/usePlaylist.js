@@ -8,6 +8,7 @@ export const usePlaylist = create((set) => ({
 
     playlist: null,
     isPlaylistLoading: false,
+    isdeletingProblem: false,
 
 
 
@@ -47,15 +48,43 @@ export const usePlaylist = create((set) => ({
             set({isPlaylistLoading: false});
         }        
     },  
-
+    
     addProblemsInPlaylist: async(data, id) => {
         try {
-          const res = await axiosInstance.post(`/playlist/${id}/add-problem`,data)
-              toast.success(res.data.message)
+            const res = await axiosInstance.post(`/playlist/${id}/add-problem`,data)
+            toast.success(res.data.message)
         } catch (error) {
             // toast.error(error)
             console.log('error while fetching', error);
         }   
     },  
+    
+    deletePlaylist: async(id) => {
+        try {
+            set({isdeleting: true});
+            const res = await axiosInstance.delete(`/playlist/delete/${id}`)
+            toast.success(res.data.message)
+        } catch (error) {
+            set({isdeleting: false});
+            // toast.error(error)
+            console.log('error while fetching', error);
+        }   
+        set({isdeleting: false});
+    },  
+
+    removeProblemsFromPlaylist: async(playlistId, problemId) => {
+        try {
+            set({isdeletingProblem: true});
+            const res = await axiosInstance.delete(`/playlist/${playlistId}/remove-problem`, problemId)
+            toast.success(res.data.message)
+        } catch (error) {
+            set({isdeletingProblem: false});
+            // toast.error(error)
+            console.log('error while fetching', error);
+        }   
+        set({isdeletingProblem: false});
+    },  
+
+    
     
 }))

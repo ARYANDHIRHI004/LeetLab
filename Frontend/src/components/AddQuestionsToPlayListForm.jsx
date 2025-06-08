@@ -19,8 +19,7 @@ const AddQuestionsToPlayListForm = () => {
   const [selectPlayList, setSelectPlaylist] = useState("");
 
   const addQuestions = (data) => {
-    console.log(data)
-    addProblemsInPlaylist({ problemIds: [data.id] }, selectPlayList);
+    addProblemsInPlaylist({ problemIds: data.id }, selectPlayList);
   };
 
   useEffect(() => {

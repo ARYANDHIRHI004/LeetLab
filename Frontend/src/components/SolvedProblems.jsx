@@ -23,13 +23,14 @@ const SolvedProblems = () => {
   };
 
   return (
-    <div className="bg-[#03030e] h-[100vh] pt-22 flex flex-col items-center text-white">
+    <div className="bg-[#050505] h-[100vh] pt-22 flex flex-col items-center text-white overflow-auto">
       <div className="">
+        <h1 className="text-center text-4xl mt-5 mb-5">My Solved Problems</h1>
         {!isSolvedProblemLoading
           ? solvedProblem?.map((problem) =>
               !toggle ? (
-                <div className="bg-gray-500 rounded-xl  h-20 w-[80vw] mb-5  overflow-scroll">
-                <div className="flex fixed bg-gray-700 w-[80vw] items-center h-20 rounded-xl">
+                <div className="bg-[#050505] rounded-xl  h-20 w-[80vw] mb-5  overflow-scroll">
+                <div className="flex fixed bg-[#111111] w-[80vw] items-center h-20 rounded-xl">
                     <button
                       onClick={() => handleToggle(problem.id)}
                       className="w-20 h-10 flex items-center justify-center "
@@ -42,8 +43,8 @@ const SolvedProblems = () => {
                   </div>
                   </div>
               ) : (
-                <div className="bg-gray-500 rounded-xl h-90 w-[80vw] mb-5 overflow-scroll">
-                  <div className="flex fixed bg-gray-700  items-center w-[80vw] h-20 rounded-t-xl">
+                <div className="bg-[#111111] rounded-xl h-90 w-[80vw] mb-5 overflow-scroll">
+                  <div className="flex fixed bg-[#111111]  items-center w-[80vw] h-20 rounded-t-xl">
                     <button
                       onClick={() => handleToggle(problem.id)}
                       className="w-20 h-10 flex items-center justify-center "
@@ -56,12 +57,12 @@ const SolvedProblems = () => {
                   </div>
                   <div className=" text-white mt-20 flex flex-col gap-5  ">
                     {submissions?.map((submission, i) => (
-                      <div className="bg-gray-700 p-6">
-                        <p className="mb-2">Submission {i + 1}</p>
+                      <div className="bg-[#111111] p-6">
+                        <p className="mb-2 text-2xl">Submission {i + 1}</p>
                         {submission.testCases.map((testCase, i) => (
                           <div className="mb-2">
                             <p>Test Case {i + 1}</p>
-                            <div className="flex justify-between bg-gray-600 mt-2 p-2 rounded-2xl">
+                            <div className="flex justify-between bg-[#242424] mt-2 p-2 rounded-2xl">
                               <p>{testCase.status}</p>
                               <p>{testCase.memory}</p>
                               <p>{testCase.time}</p>

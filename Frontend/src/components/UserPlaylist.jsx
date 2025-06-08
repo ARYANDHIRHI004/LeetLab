@@ -3,46 +3,104 @@ import { useForm } from "react-hook-form";
 import { usePlaylist } from "../Store/usePlaylist";
 import { Link } from "react-router-dom";
 import { useActions } from "../Store/useActions";
+import { BookText, ListMusic, Loader, Mouse, Trash2 } from "lucide-react";
 
 const UserPlaylist = () => {
-  const { handleSubmit, register } = useForm();
-  const { playlists, isPlaylistsLoading, createPlaylist, getAllPlaylist } =
-    usePlaylist();
-  const { selectWhichQustion, setselectWhichQustion } = useActions();
+  const {
+    playlists,
+    isPlaylistsLoading,
+    createPlaylist,
+    getAllPlaylist,
+    deletePlaylist,
+    isdeleting,
+  } = usePlaylist();
 
-  console.log(selectWhichQustion)
-
-  const submitPlaylistData = (data) => {
-    createPlaylist(data);
+  const deletePlyList = async (id) => {
+    deleting = true;
+    await deletePlaylist(id);
   };
 
   useEffect(() => {
     getAllPlaylist();
-  }, [getAllPlaylist]);
+  }, [getAllPlaylist, isdeleting]);
 
   return (
-    <div className="bg-black h-[100vh] pt-20 text-white px-8 pb-20 ">
+    <div className="bg-[#050505] h-[100vh] pt-20 text-white px-8 pb-20 ">
       <div>
-        <div>          
-        </div>
-        <div className=" h-[90vh] rounded-[5px] overflow-auto">
-          <h1 className="text-center text-[18px] bg-gray-700 rounded-[5px] p-2 mb-5">
-            Your Playlist
-          </h1>
+        <h1 className=" text-[25px] rounded-[5px]  p-2 mt-5 mb-5 flex justify-center items-center gap-2">
+          <BookText />
+          Your Playlist
+        </h1>
+        <div className=" rounded-[5px] flex justify-center overflow-auto ">
           <div>
             {!isPlaylistsLoading ? (
-              <div className="p-5">
-                {playlists?.map((playlist) => (
-                  <Link to={`/playlist/problems/${playlist.id}`}>
-                    <div className="bg-gray-900 p-5 mb-5 rounded-[5px]">
-                      <h3 className="text-[15px]">{playlist.name}</h3>
-                      <p className="text-[12px]">{playlist.description}</p>
-                    </div>
-                  </Link>
-                ))}
+              <div className="px-10 pt-5 pb-5  rounded-[5px] flex justify-center">
+                <table className="  bg-[#111111] rounded-[10px] table-auto w-[90vw]">
+                  <thead>
+                    <tr>
+                      <th className="w-100 text-[18px] text-left underline underline-offset-4 px-20 pt-5 pb-5 flex items-center gap-2">
+                        <BookText size={18} />
+                        Playlist Name
+                      </th>
+                      <th className="w-100 text-[18px] text-left underline underline-offset-4 px-20 pt-5 pb-5">
+                        {" "}
+                        Creation Date
+                      </th>
+                      <th className="w-100 text-[18px] text-left underline underline-offset-4 px-20 pt-5 pb-5">
+                        Last Update
+                      </th>
+                      <th className="w-100 text-[18px] text-left underline underline-offset-4 px-20 pt-5 pb-5">
+                        Delete Playlist
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {playlists?.map((playlist) => (
+                      <tr>
+                        <td className="pt-5 px-20  pb-5">
+                          <div>
+                            <Link className="flex items-center gap-2" to={`/playlist/problems/${playlist.id}`}>
+                            <Mouse size={30}/>
+                              <div>
+                                <h3 className="text-[20px]">{playlist.name}</h3>
+                              <p className="text-[12px]">
+                                {playlist.description}
+                              </p>
+                              </div>
+                            </Link>
+                          </div>
+                        </td>
+
+                        <td className="pt-5 px-20  pb-5">
+                          <p className="text-[12px]">
+                            {playlist.createdAt.split("T")[0]}
+                          </p>
+                        </td>
+                        <td className="pt-5 px-20  pb-5">
+                          <p className="text-[12px]">
+                            {playlist.updatedAt.split("T")[0]}
+                          </p>
+                        </td>
+                        <td className="pt-5  px-20  pb-5">
+                          <button onClick={() => deletePlyList(playlist.id)}>
+                            {!isdeleting ? (
+                              <Trash2 />
+                            ) : (
+                              <div className="flex justify-center items-center gap-2">
+                                <Loader className="size-6 animate-spin" />
+                              </div>
+                            )}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             ) : (
-              "loading..."
+              <h3 className="text-[40px] text-center text-gray-900 font-bold">
+                Loading Playlists
+              </h3>
             )}
           </div>
         </div>
